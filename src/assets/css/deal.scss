@@ -1,0 +1,183 @@
+body{
+	margin: 0;
+	padding: 0;
+	background: #F3F5F7;
+	
+}
+ul{
+	list-style: none;
+	padding-left: 0;
+	
+}
+a{
+	text-decoration: none;
+}
+.item_fram{
+	width: 1390px;
+	height: 100%;
+	margin-left: 45px;
+	flex-flow: column;
+	display: flex;
+   
+}
+.card_wrap{
+	width: 1350px;
+	height: 780px;
+	overflow: scroll;
+	
+}
+.scenery_auction{
+	width: 100%;
+	height: 100%;
+	
+}
+
+.deal-box{
+    margin-left: 30px;
+    display: inline-block;
+}
+.works_card{
+	width: 620px;
+	height: 330px;
+	border-top:30px solid rgb(250, 240, 250);
+	box-shadow: 0 0 5px rgb(125, 109, 129);
+	border-radius: 20px 20px 10px 10px;
+	margin-bottom:20px ;
+	
+
+}
+.works_img{
+	float: left;
+	width: 370px;
+	height: 280px;
+	box-shadow: 0 0 8px rgb(206, 194, 206) ;
+	margin-left: 17px;
+	margin-top: 21px;
+}
+.work_name{
+	margin-top: 10px;
+}
+.work_brief{
+	float: left;
+	width: 180px;
+	height: 260px;
+	margin-left: 12px;
+	margin-top: 31px;
+	box-shadow: 0 0 5px rgb(212, 208, 212);
+	color:  #CCACD5;
+    padding-left: 5px;
+    font-size: 12px;
+}
+
+.work_brief li{
+	margin-left: 5px;
+	margin-top: 20px;	
+
+}
+.join{
+	margin-left: 50px;
+	margin-top: 5px;
+	height: 30px;
+    width: 60px;
+    font-size: 12px;
+	text-align: center;
+	line-height:30px;
+	color: #CCACD5;
+	background: #F5EDF5;
+	border-radius: 3px;
+	outline: none;
+	float: left;
+	cursor: pointer;
+}
+
+.paixu{
+	width:1300px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 17px;
+	background: rgb(252, 242, 253);
+	box-shadow: 0 0 3px rgb(107, 95, 95);
+	border-radius: 5px;
+	margin-top: 5px;
+	display: flex;	
+}
+.paixu ul{
+	display: flex;
+	margin: 0;
+	padding: 0;
+	
+}
+.paixu ul li{
+	margin-left: 21px;
+	margin-right: 25px;	
+}
+.paixu_item{
+	font-size: 12px;
+	font-weight: 600;
+	cursor:pointer;
+}
+.paixu_back{
+	margin-left: 70px;
+	font-weight: 600;
+	font-size: 14px;
+	color: rgba(97, 55, 145, 0.493);
+	cursor: pointer;
+	margin-top: 2px;
+}
+
+.paixu_serch input{
+	/* border:1px solid #D6CFE3; */
+	outline: none;
+	border:1px solid #D6CFE3;
+	height: 18px;
+	border-radius: 5px;
+	padding: 5px;
+	caret-color:#D6CFE3;
+	padding-left: 5px;
+	color:#705499;
+}
+.paixu_serch input::placeholder{
+	font-size: 10px;
+	color: gainsboro;
+}
+.search_img{
+	cursor: pointer;
+	margin-top: 5px;
+}
+.p_go{
+	color: #BCBCEA;
+	border-radius: 12px;
+
+	
+}
+.p_pop{
+	
+	color:#BACEEF;
+	border-radius: 12px;
+
+	
+}
+.p_end{
+	color: #BCBCEA;
+	border-radius: 12px;
+	
+	
+}
+.p_start{
+	color:#9B9BCE;
+	border-radius: 12px;
+	
+	
+	
+}
+.p_up{
+	color: #8D91DC;
+	border-radius: 12px;
+	opacity: 0.8;
+	
+}
+.p_down{
+	color: #6f72be;
+	border-radius: 12px;
+	opacity: 0.8;
+}

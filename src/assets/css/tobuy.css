@@ -1,0 +1,242 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+input{
+    outline: none;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+.buyrule{
+    width: 1200px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 100px;
+    box-shadow: 0 0 5px rgb(180, 160, 170);
+    font-size: 13px;
+    font-weight: 450;
+    color: rgb(77, 17, 47);
+    text-align: center;
+    font-family: DZF;
+}
+.back{
+    position: absolute;
+    margin-left: 0px;
+    cursor: pointer;
+    color:rgb(156, 49, 103);
+}
+.rules{
+    margin-left: 230px;
+    color: rgb(156, 49, 103);
+    cursor: pointer;
+}
+.showbox{
+    width: 1200px;
+    height: 700px;
+    box-shadow:0 0 2px rgb(167, 148, 157);
+    border-radius: 5px;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+.showtop{
+    display: flex;
+    width: 100%;
+    height: 610px;
+}
+.showfoot{
+    display: flex;
+    width: 800px;
+    height: 30px;
+    margin-top: 15px;
+    background: rgb(255, 251, 255);
+    box-shadow:0 0 2px rgb(173, 139, 173);
+    border-radius: 4px;
+    margin-left: 25px;
+    line-height: 30px;
+    
+}
+.showinfo{
+    margin-left: 25px;
+    font-size: 13px;
+    display: flex;
+    color: rgb(83, 31, 83);
+    font-family:DZF;
+}
+.moreinfo{
+    font-size: 12px;
+    color: rgb(124, 75, 124);
+    margin-left: 80px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family:DZF;
+}
+.imgview{
+    width: 800px;
+    height: 580px;
+    margin-top: 20px;
+    margin-left: 25px;
+    box-shadow: 0 0 5px rgb(97, 60, 72);
+    text-align: center;
+} 
+.imgview img{
+    width: 760px;
+    height: 540px;
+    margin-top: 20px;
+}
+.joinbox{
+    width: 320px;
+    height: 580px;
+    margin-top: 20px;
+    margin-left: 30px;
+    box-shadow:0 0 2px rgb(102, 48, 71);
+}
+.board{
+    width: 320px;
+    height: 30px;
+    box-shadow:0 0 2px rgb(122, 94, 107);
+    font-size: 12px;
+    font-family: DZF;
+    color: rgb(75, 36, 43);
+    line-height: 30px;
+    text-align: center;
+    
+
+}
+.joincontent{
+    width: 320px;  
+    height: 490px;
+    margin-top: 2px;
+    background: rgb(253, 249, 251);
+    overflow: scroll;
+}
+.nowcall{
+    width: 230px;
+    height: 60px;
+    font-size: 12px;
+    color: rgb(102, 48, 71);
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    
+}
+.callprice{
+    width: 120px;
+    height: 25px;
+    box-shadow: 0 0 2px rgb(146, 105, 112);
+    margin-top: 22px;
+    border-radius: 2px;
+    padding-left:5px;
+    line-height: 25px; 
+    font-family: DZF;   
+}
+.parrow::before{
+    content: '';
+    width: 0;
+    height: 0;
+    border: 5px solid;
+    position: absolute;
+    margin-left: -10px;
+    margin-top: 27px;
+    transform: rotate(90deg);
+    border-color: rgb(212, 188, 192) transparent transparent;
+}
+.parrow::after{
+    content: '';
+    width: 0;
+    height: 0;
+    border: 5px solid;
+    position: absolute;
+    margin-left: -9px;
+    margin-top: 27px;
+    transform: rotate(90deg);
+    border-color:  rgb(253, 249, 251) transparent transparent;
+
+}
+.usercall{
+    margin-left: 5px;
+}
+.callicon{
+    background:rgb(253, 249, 251);
+    box-shadow: 0 0 2px rgb(153, 118, 124);
+    color: rgb(196, 173, 173);
+}
+/* .callicon{
+    width: 35px;
+    height: 35px;
+    box-shadow: 0 0 2px rgb(167, 122, 129);
+    border-radius: 50px;
+} */
+.callnumber{
+    transform: scale(0.8);
+    text-align: center;
+    width: 60px;
+    margin-left: -12px;
+}
+.joinput{
+    width: 320px;  
+    height: 56px;
+    margin-top: 2px;
+    box-shadow:0 0 2px rgb(122, 94, 107);
+}
+.inputboard{
+    display: flex;
+    width: 320px;
+    height: 35px; 
+    position: absolute;
+    margin-top: 15px; 
+}
+.inprice{
+    width: 130px;
+    height: 25px;
+    border: none;
+    box-shadow:0 0 2px rgb(102, 48, 71);
+    border-radius: 4px;
+    color:rgb(172, 104, 133);
+    padding-left: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.inprice::-webkit-input-placeholder{
+    color:rgb(231, 214, 231);
+    font-size: 12px;   
+}
+.priceicon{
+    color: rgb(207, 171, 187);
+    font-size: 14px;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    background: white;
+    border-radius: 4px;
+    box-shadow:0 0 2px rgb(102, 48, 71);
+    margin-left: 2px;
+    font-weight: 500;
+}
+.joinbuy{
+    width: 70px;
+    height: 25px;
+    text-align: center;
+    box-shadow: 0 0 2px rgb(185, 103, 128);
+    background: rgb(253, 247, 249);
+    font-size:12px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: rgb(168, 95, 128);
+    line-height: 25px;
+    margin-left: 66px;
+    margin-top: 2px;
+    cursor: pointer;
+   
+}

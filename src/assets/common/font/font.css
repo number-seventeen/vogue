@@ -1,0 +1,24 @@
+@font-face {  
+    font-family: 'DZF';  
+    src: url('./沐瑶软笔手写体.ttf');  
+    font-weight: normal;  
+    font-style: normal;  
+}
+@font-face {  
+    font-family: 'ZI';  
+    src: url('./智勇手书体.ttf');  
+    font-weight: normal;  
+    font-style: normal;  
+}
+@font-face {  
+    font-family: 'B';  
+    src: url('./Atlantic-Inline-Normal.ttf');  
+    font-weight: normal;  
+    font-style: normal;  
+}
+@font-face {  
+    font-family: 'A';  
+    src: url('./叶根友微影体.ttf');  
+    font-weight: normal;  
+    font-style: normal;  
+}

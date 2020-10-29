@@ -1,0 +1,247 @@
+body{
+	margin: 0;
+	padding: 0;	
+}
+a{
+	text-decoration: none;
+}
+ul{
+	list-style: none;
+	padding: 0px;
+	margin: 0;
+}
+.head{
+	width: 100%;
+	height: 80px;
+	margin-bottom: 40px;
+	/* background: #1B1D1E; */
+	opacity: 0.8;
+}
+.background{
+	width:100%;  
+    height:100%;  /**宽高100%是为了图片铺满屏幕 */
+    z-index:-1;
+	position: absolute;
+	background: #181A1B;
+	opacity: 0.97;
+	
+	
+}
+.backimg{
+	width: 1440PX;
+	height: 821PX;
+}
+.appname{
+	width: 500px;
+	height: 50px;
+	float: left;
+	font-family:B;
+	font-size: 35px;
+	margin-top: 4px;	
+	color: rgb(245, 245, 245);
+	margin-left: 80px;
+}
+.login{
+	width: 320px;
+	height: 50px;
+	float: right;
+	display: flex;
+	margin-top: 20px;
+	cursor: pointer;
+	color: rgb(235, 235, 235);
+	font-family: DZF;
+}
+.navs{
+	transition: 0.3s ease-out;
+	margin-right: 40px;
+	font-size: 25px;
+}
+.cuinav{
+	transform: scale(1.2);
+	transition: 0.5s ease-out;
+	color: rgb(138, 138, 138);
+}
+/* .note{
+	width: 390px;
+	position: relative;
+	top:-83px;
+	left: 360px;
+	font-size: 25px;
+	letter-spacing: 5px;
+	font-weight: 600;
+	color: #2c3e50;
+
+} */
+.show{
+	width: 100%;
+	height: 540px;
+	display: flex;	
+}
+.rigister_box{
+	animation: move 1.2s ease-in-out 0s 1 alternate forwards;
+	width: 380px;
+	height: 385px;
+	border-radius: 4px;
+	margin-left: 500px;
+	margin-top: 100px;
+	opacity: 0.65;
+	background: rgb(105, 105, 105);	
+	border-radius: 15px;
+	box-shadow: 0 0 4px gray;
+}
+.out{
+	animation: out 1s ease-in-out 0s 1 alternate forwards;
+}
+@keyframes move {
+	0%{
+		margin-left: 0;
+		opacity: 0;
+	}
+    100%{
+		margin-left: 500px;
+		opacity: 0.65;
+	}
+}
+
+@keyframes out {
+	100%{
+		margin-left: 500px;
+		opacity: 0.65;
+	}
+    0%{
+		margin-left: 0;
+		opacity: 0;
+	}
+}
+.close{
+	height: 20px;
+	width: 100%;
+	border-radius: 5px;
+	margin-top: 8px;
+}
+.close .el-icon-close{
+	margin-left: 350px;
+	color: rgb(235, 235, 235);
+}
+.register_pic{
+	width: 200px;
+	height: 70px;
+	text-align: center;
+	font-family: B;
+	font-size: 55px;
+	margin-top: 10px;
+	margin-left:95px;
+	margin-bottom: 50px;
+	letter-spacing: 3px;
+	color: #c9c9c9;
+	
+}
+.form_box{
+	width: 260px;
+	margin-left: 80px;
+}
+.form_box input{
+	border-radius: 10px;
+	border: 1px solid rgb(150, 150, 150);
+	background: rgb(212, 212, 212);
+	outline: none;
+	height: 23px;
+	margin-left: 5px;
+	padding-left:5px;
+	color: #464343;
+	font-family: A;
+}
+.form_box div{
+	margin-bottom: 20px;
+	color: #ffffff;
+	font-family: A;
+}
+.input_botton{
+	margin-top: 50px;
+}
+.pwd_forgot{
+	text-align: center;
+	width: 100px;
+	height: 20px;
+	margin-left: 149px;
+	margin-top: -15px;
+	font-size: 12px;
+	transform: scale(0.8);
+	font-family: A;
+}
+.pwd_forgot a:hover{
+	color: #e08247 !important;
+}
+
+
+/* .abouts{
+	width: 100%;
+	height: 200px;
+	background: rgb(173, 173, 173);
+	color:rgb(12, 0, 0);
+	opacity: 0.5;
+	font-size: 17px;
+	font-family: A;
+	margin-top: 270px;
+	text-indent:10px;
+	border-radius: 10px;
+
+}
+.about{
+	height: 40px;
+	width: 450px;
+	margin-top: 15px;
+	margin-left: 490px;
+	letter-spacing: 0.05em;
+
+}
+.abouts .three{
+	text-align: center;
+	line-height: 70px;
+	cursor: pointer;
+	color: rgb(31, 29, 29);
+} */
+.company{
+	width: 1440PX;
+	height: 70px;
+	float: left;
+	text-align: center;
+	color:rgb(233, 233, 233);
+	font-weight: 500;
+	font-size: 22px;
+	letter-spacing: 0.2em;
+	font-family: DZF;
+	line-height: 70px;
+	margin-top: 20px;
+
+}
+.server{
+	display: inline-block;
+	margin-right: 25px;
+	cursor: pointer;
+}
+footer{
+	width: 1440px;
+	height: 40PX;
+	float: left;
+	font-size: 16px;
+	text-align: center;
+	color: whitesmoke;
+	font-family: DZF;
+	font-family:B;
+	
+}
+footer li{
+	display: inline-block;
+}
+footer div{
+	margin: 2px;
+	padding: 0px;
+	font-size: 13px;
+
+}
+.connect{
+	height: 30px;
+	line-height: 30px;
+
+}
