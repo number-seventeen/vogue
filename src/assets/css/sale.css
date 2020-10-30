@@ -13,13 +13,16 @@ a{
 
 .el-dropdown-link {
     cursor: pointer;
-	color: #b8cae4;
+	color: rgba(68, 119, 175, 0.644);
 }
 .demonstration {
     display: block;
 	color: #8492a6;
     font-size: 14px;
     margin-bottom: 20px;
+}
+.el-dropdown-menu{
+	margin-top: -10px;
 }
 .el-dropdown-menu__item{
 	color: rgba(112, 95, 146, 0.63);
@@ -47,7 +50,7 @@ a{
     z-index:-1;
 	position: absolute;
 	background: #181A1B;
-	opacity: 0.5;
+	opacity: 0.25;
 	
 	
 }

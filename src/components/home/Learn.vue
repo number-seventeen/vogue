@@ -16,11 +16,11 @@
                 <div class="set" >
                     <el-col :span="12">
                         <el-dropdown trigger="click">
-                            <span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;">设置</span>
+                            <span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;"><i class="el-icon-more"></i></span>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item ><router-link to="/">退出登录</router-link></el-dropdown-item>
-                                <el-dropdown-item ><router-link to="/">返回首页</router-link></el-dropdown-item>
-                                <el-dropdown-item ><router-link to="/">个人中心</router-link></el-dropdown-item>
+                               <el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">退出登录</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">返回首页</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">个人中心</span></router-link></el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-col>
@@ -106,9 +106,9 @@ export default {
 			],
             pageid:3,
             tagid:0,
-            learnid:0,
+            learnid:-1,
             tagname:'article',
-            bk:require('../../assets/img/48.jpg'),
+            bk:require('../../assets/img/52.jpg'),
             tags:[
                 {
                     name:'绘画指导文章',
@@ -148,7 +148,7 @@ export default {
                     title:'素描基础入门',
                     wordkeys:'article',
                     url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/30.png'),
+                    cover:require('../../assets/img/36.png'),
                     
                },
                {
@@ -225,7 +225,7 @@ export default {
                     title:'简笔画人物教程一',
                     wordkeys:'article',
                     url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/30.png'),    
+                    cover:require('../../assets/img/37.png'),    
                },
 
            ]

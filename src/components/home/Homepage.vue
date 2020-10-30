@@ -16,11 +16,11 @@
 				<div class="set" >
 					<el-col :span="12">
 						<el-dropdown trigger="click">
-							<span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;">设置</span>
+							<span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;"><i class="el-icon-more"></i></span>
 							<el-dropdown-menu slot="dropdown">
-								<el-dropdown-item ><router-link to="/">退出登录</router-link></el-dropdown-item>
-								<el-dropdown-item ><router-link to="/">返回首页</router-link></el-dropdown-item>
-								<el-dropdown-item ><router-link to="/">个人中心</router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">退出登录</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">返回首页</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">个人中心</span></router-link></el-dropdown-item>
 							</el-dropdown-menu>
 						</el-dropdown>
 					</el-col>
@@ -45,7 +45,7 @@
 											<router-link to="/Deal" style="color:rgb(129, 147, 167);font-weight:600;">查看更多拍卖</router-link>
 										</div>
 									</div>
-									<div class="works_img"><img src="../../assets/img/25.jpg" style="width:620px; height:420px; margin:20px 0px 0px 10px;"/></div>
+									<div class="works_img"><img src="../../assets/img/54.jpg" style="width:620px; height:420px;border:2px solid gray; margin:20px 0px 0px 10px;opacity:0.8;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -140,7 +140,7 @@ export default {
 					head:'Learn'
 				},
 			],
-			bk:require('../../assets/img/48.jpg'),
+			bk:require('../../assets/img/52.jpg'),
 			pageid:0,
 			picid:0,
 			hotid:0,
@@ -267,7 +267,10 @@ export default {
 			that.ts=that.counts+1
 			that.changetime(0)
 			
-		}
+		},
+		errorHandler() {
+        	return true
+      	}
 
 
 	}

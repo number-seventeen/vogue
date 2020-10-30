@@ -16,32 +16,31 @@
 					<div class="navs" v-for="(inav,index) in indexnav" :key="index" :class="{cuinav:index==navid}" @click="Changeindex(index)" @mouseover="Changeinav(index)" @mouseout="moveinav()">{{inav.name}}</div>
 				</div>
 			</div>
-
-			<div class="show">
-				<!-- <div class="abouts">
-					<div class="about one">high light意为高光，在艺术领域是为艺术作品提亮的一种手法。意为提高作品的立体感让作品更加饱满和亮眼</div>
-					<div class="about two">如果您热爱艺术并想要展示您的艺术作品，或者想要学习、欣赏、购买更多的画作，欢迎您加入high light！</div>
-					<div class="about three">-了解更多关于high light的使用tips-</div>
-				</div> -->
-					<div class="rigister_box" v-show="logindialog" :class="{out:isout==true}">
-						<div class="close"><i class="el-icon-close" @click="movelogin()"  /></div>
+			
+			<div class="show" v-show="logindialog" :class="{out:this.isout==true}">
+					<div class="rigister_box" >
 						<div class="register_pic">
 							login
 						</div>
 						<div class="form_box">
 								<div><label style="font-size: 15px;">用户昵称:</label><input type="text" name="uname" v-model="userName" autocomplete="off"></div>
 								<div><label style="font-size: 15px;">登录密码:</label><input type="password" name="pwd" v-model="password" autocomplete="off"></div>				
-								<div style="margin-left:65px;"><input type="submit" value="登录" style="width: 100px; height: 25px; color: #464343;" class="input_botton" @click="submit()"></div>
+								<div style="margin-left:65px;"><input type="submit" value="登录" style="width: 100px; height: 25px; color:#554b4b; letter-spacing:0.7em;padding-left:15px;" class="input_botton" @click="submit()"></div>
 						</div>
 						<div class="pwd_forgot">
 							<div><router-link to="/"><span style="color:whitesmoke;font-weight:500;">忘记密码</span></router-link></div>
 						</div>
 					</div>
-					<!-- <span slot="footer" class="dialog-footer">
-						<el-button @click="logindialog = false">登录</el-button>
-					</span> -->
+					<div class="abouts">
+						<div class="about one">high light意为高光，在艺术领域是为艺术作品提亮的一种手法。意为提高作品的立体感让作品更加饱满和亮眼</div>
+						<div class="about two">如果您热爱艺术并想要展示您的艺术作品，或者想要学习、欣赏、购买更多的画作，欢迎您加入high light！</div>
+						<div class="about three">-了解更多关于high light的使用tips-</div>
+					</div>
 				
+					<div class="close"><i class="el-icon-arrow-down" @click="movelogin()"  /></div>
 			</div>
+
+
 			<div class="company">
 				<!-- <div class="server">腾讯云服务</div>
 				<div class="server">阿里巴巴</div>
@@ -135,7 +134,14 @@ export default {
 		},
 		movelogin(){
 			this.isout=true
-			this.logindialog=false	
+			setTimeout(() => {
+				this.end()//娃娃消失
+			
+			}, 1500);
+		},
+		end(){
+			this.isout=false
+			this.logindialog=false
 		},
 		submit(){
 			if (!this.userName) {

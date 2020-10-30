@@ -16,11 +16,11 @@
 				<div class="set" >
 					<el-col :span="12" style="line-height: 45px;"> 
 						<el-dropdown trigger="click">
-							<span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;">设置</span>
+							<span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;"><i class="el-icon-more"></i></span>
 							<el-dropdown-menu slot="dropdown">
-								<el-dropdown-item ><router-link to="/">退出登录</router-link></el-dropdown-item>
-								<el-dropdown-item ><router-link to="/">返回首页</router-link></el-dropdown-item>
-								<el-dropdown-item ><router-link to="/">个人中心</router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">退出登录</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">返回首页</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">个人中心</span></router-link></el-dropdown-item>
 							</el-dropdown-menu>
 						</el-dropdown>
 					</el-col>
@@ -240,7 +240,7 @@ export default {
         dialogImageUrl: '',
         dialogVisible: false,
 		disabled: false,
-		bk:require('../../assets/img/48.jpg'),
+		bk:require('../../assets/img/52.jpg'),
 		RouterHead:'',
 		RouterFoot:'',
 		navs:[

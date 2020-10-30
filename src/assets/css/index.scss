@@ -23,8 +23,7 @@ ul{
     z-index:-1;
 	position: absolute;
 	background: #181A1B;
-	opacity: 0.97;
-	
+	opacity: 1;
 	
 }
 .backimg{
@@ -38,107 +37,101 @@ ul{
 	font-family:B;
 	font-size: 35px;
 	margin-top: 4px;	
-	color: rgb(245, 245, 245);
+	color: rgba(236, 235, 235, 0.781);
 	margin-left: 80px;
 }
 .login{
-	width: 320px;
+	width: 260px;
 	height: 50px;
 	float: right;
 	display: flex;
-	margin-top: 20px;
+	margin-top: 25px;
 	cursor: pointer;
-	color: rgb(235, 235, 235);
-	font-family: DZF;
+	color: rgba(235, 235, 235, 0.664);
+	font-family: A;
+	font-weight: 600;
 }
 .navs{
 	transition: 0.3s ease-out;
 	margin-right: 40px;
-	font-size: 25px;
+	font-size: 17px;
 }
 .cuinav{
-	transform: scale(1.2);
+	transform: scale(1.25);
 	transition: 0.5s ease-out;
-	color: rgb(138, 138, 138);
+	color: rgb(228, 228, 228);
 }
-/* .note{
-	width: 390px;
-	position: relative;
-	top:-83px;
-	left: 360px;
-	font-size: 25px;
-	letter-spacing: 5px;
-	font-weight: 600;
-	color: #2c3e50;
-
-} */
 .show{
 	width: 100%;
-	height: 540px;
+	height: 320px;
 	display: flex;	
+	position: absolute;
+	margin-top:381px;
+	background: rgba(0, 0, 0, 0.85);	
+	animation: move 1s ease-in-out 0s 1 alternate forwards;
+	box-shadow: 0 0 10px rgb(0, 0, 0);
+	opacity: 0.7;
 }
 .rigister_box{
-	animation: move 1.2s ease-in-out 0s 1 alternate forwards;
-	width: 380px;
-	height: 385px;
+	width: 365px;
+	height: 310px;
 	border-radius: 4px;
-	margin-left: 500px;
-	margin-top: 100px;
 	opacity: 0.65;
-	background: rgb(105, 105, 105);	
-	border-radius: 15px;
-	box-shadow: 0 0 4px gray;
+	border-radius: 20px;
+	overflow: hidden;
+}
+@keyframes move {
+	0%{
+		margin-top: 600px;
+		opacity: 0;
+	}
+    100%{
+		margin-top: 381px;
+		opacity: 0.65;
+	}
 }
 .out{
 	animation: out 1s ease-in-out 0s 1 alternate forwards;
 }
-@keyframes move {
+@keyframes out {
 	0%{
-		margin-left: 0;
-		opacity: 0;
 	}
     100%{
-		margin-left: 500px;
-		opacity: 0.65;
-	}
-}
+		margin-top: 700px;
 
-@keyframes out {
-	100%{
-		margin-left: 500px;
-		opacity: 0.65;
-	}
-    0%{
-		margin-left: 0;
-		opacity: 0;
 	}
 }
 .close{
-	height: 20px;
-	width: 100%;
+	height: 25px;
+	width: 300px;
+	position: absolute;
 	border-radius: 5px;
-	margin-top: 8px;
+	margin-left: 600px;
+	text-align: center;
 }
-.close .el-icon-close{
-	margin-left: 350px;
-	color: rgb(235, 235, 235);
+.close .el-icon-arrow-down{
+	// margin-left: 350px;
+	margin-right: 17px;
+	font-weight: 800;
+	color: rgba(238, 238, 238, 0.602);
+	font-size: 27px;
 }
 .register_pic{
 	width: 200px;
-	height: 70px;
+	height: 50px;
 	text-align: center;
 	font-family: B;
-	font-size: 55px;
-	margin-top: 10px;
-	margin-left:95px;
-	margin-bottom: 50px;
+	font-size: 45px;
+	margin-left:75px;
+	margin-bottom: 35px;
 	letter-spacing: 3px;
 	color: #c9c9c9;
+	margin-top: 10px;
 	
 }
 .form_box{
 	width: 260px;
-	margin-left: 80px;
+	margin-left: 50px;
 }
 .form_box input{
 	border-radius: 10px;
@@ -148,59 +141,63 @@ ul{
 	height: 23px;
 	margin-left: 5px;
 	padding-left:5px;
-	color: #464343;
+	color: #1d1a1a;
 	font-family: A;
+	font-weight: 600;
 }
 .form_box div{
-	margin-bottom: 20px;
+	margin-bottom: 35px;
 	color: #ffffff;
 	font-family: A;
 }
 .input_botton{
-	margin-top: 50px;
+	margin-top: 8px;
 }
 .pwd_forgot{
 	text-align: center;
 	width: 100px;
 	height: 20px;
-	margin-left: 149px;
-	margin-top: -15px;
+	margin-left: 119px;
+	margin-top: -30px;
 	font-size: 12px;
 	transform: scale(0.8);
 	font-family: A;
 }
+
 .pwd_forgot a:hover{
 	color: #e08247 !important;
 }
 
-
-/* .abouts{
-	width: 100%;
+.abouts{
+	width: 490px;
 	height: 200px;
-	background: rgb(173, 173, 173);
-	color:rgb(12, 0, 0);
+	color:rgb(235, 235, 235,0.9);
 	opacity: 0.5;
-	font-size: 17px;
+	font-size: 15px;
 	font-family: A;
-	margin-top: 270px;
-	text-indent:10px;
-	border-radius: 10px;
+	text-indent:20px;
+	border-radius: 8px;
+	margin-left: 150px;
+	margin-top: 75px;
+	font-weight: 600;
 
 }
 .about{
 	height: 40px;
-	width: 450px;
+	width:470px;
 	margin-top: 15px;
-	margin-left: 490px;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.2em;
 
 }
 .abouts .three{
 	text-align: center;
-	line-height: 70px;
+	line-height: 26px;
 	cursor: pointer;
-	color: rgb(31, 29, 29);
-} */
+	color: #d8d5d5;
+} 
+.abouts .three:hover{
+	color: #c28db5;
+} 
 .company{
 	width: 1440PX;
 	height: 70px;
@@ -212,7 +209,7 @@ ul{
 	letter-spacing: 0.2em;
 	font-family: DZF;
 	line-height: 70px;
-	margin-top: 20px;
+	margin-top: 560px;
 
 }
 .server{
@@ -243,5 +240,6 @@ footer div{
 .connect{
 	height: 30px;
 	line-height: 30px;
+	margin-left: 30px;
 
 }
