@@ -70,7 +70,7 @@
 										<div  class="join" @click="ToBuy()">查看详情</div>
 									</div>	
 								</div>
-								<div v-show="downshow" style="margin-top:-40px;margin-left:430px;font-size:12px;font-weight:600;font-family:A;color:rgba(114, 158, 206, 0.644);">下滑浏览热门画作分享</div>
+								<div v-show="downshow" style="margin-top:-50px;margin-left:430px;font-size:12px;font-weight:600;font-family:A;color:rgba(114, 158, 206, 0.644);">下滑浏览热门画作分享</div>
 								<div class="chevron" v-show="downshow"><img src="../../assets/img/downarrow.png" style="width:60px;height:40px;" /></div>
 							</li>	
 						</ul>

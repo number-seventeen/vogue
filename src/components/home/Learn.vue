@@ -1,76 +1,81 @@
 <template>
     <div>
-        <div class="main_head">
-			<div class="appname">
-				<div>
-					<!-- <img src="../../assets/img/star.png" style="width:245px;height:70px;margin:7px 0 0px 10px;" class="mainlogo"/> -->
-					High Light
-				</div>
-				<!-- <p class="note">心有瑰宝 绚丽灿烂 唯有艺术是生动的永恒 </p> -->
-			<!-- 星夜来自于梵高知名度最高作品之一的星夜，漫舞是将画家在绘画时画笔在挥动时的状态比喻成跳舞-->
-			</div>
-			<div class="set" >
-				<el-col :span="12">
-					<el-dropdown trigger="click">
-						<span class="el-dropdown-link" style="font-size:20px; letter-spacing:0.1em;">设置</span>
-						<el-dropdown-menu slot="dropdown">
-							<el-dropdown-item ><router-link to="/">退出登录</router-link></el-dropdown-item>
-							<el-dropdown-item ><router-link to="/">返回首页</router-link></el-dropdown-item>
-							<el-dropdown-item ><router-link to="/">个人中心</router-link></el-dropdown-item>
-						</el-dropdown-menu>
-					</el-dropdown>
-  				</el-col>
-			</div>
-
+        <div class="background">
+			<img :src="bk" class="backimg" />
 		</div>
-        <div class="items_nav">
-				<ul class="item_nav">
-					<li class="navlist" v-for="(nlist,index) in navs" :key="index" @click="ChangeCu(index)" :class="{cupage:index===pageid}">
-						{{nlist.name}}
-					</li>
-				</ul>	
-		</div>
-        <div class="content" >
-            <div class="learnpack">
-                <div class="learnsort">
-                    <span style="margin-left:20px; font-size:20px; ">分类</span>
-                    <span class="learntag" v-for="(tage,index) in tags" :key="index" @click="ChangeTag(index)" :class="{cutag:index===tagid}">={{tage.name}}=</span>
+        <div>
+            <div class="main_head">
+                <div class="appname">
+                    <div>
+                        <!-- <img src="../../assets/img/star.png" style="width:245px;height:70px;margin:7px 0 0px 10px;" class="mainlogo"/> -->
+                        High Light
+                    </div>
+                    <!-- <p class="note">心有瑰宝 绚丽灿烂 唯有艺术是生动的永恒 </p> -->
+                <!-- 星夜来自于梵高知名度最高作品之一的星夜，漫舞是将画家在绘画时画笔在挥动时的状态比喻成跳舞-->
                 </div>
-                <div class="learnbox" >
-<!-- 文章 -->
-                    <div class="article" v-show=" tagname=='article' ">
-                        <div class="study" v-for="(learn,index) in learnlist" :key="index" @mouseover="handleview(index)" @click="Changelearn(index)" :class="{culearn:index===learnid}" >
-                            <div class="titles">---{{learn.title}}---</div>
-                            <div class="lcontent" >
-                            <img class="lcover" :src="learn.cover" />
+                <div class="set" >
+                    <el-col :span="12">
+                        <el-dropdown trigger="click">
+                            <span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;">设置</span>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item ><router-link to="/">退出登录</router-link></el-dropdown-item>
+                                <el-dropdown-item ><router-link to="/">返回首页</router-link></el-dropdown-item>
+                                <el-dropdown-item ><router-link to="/">个人中心</router-link></el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </el-col>
+                </div>
+
+            </div>
+            <div class="items_nav">
+                    <ul class="item_nav">
+                        <li class="navlist" v-for="(nlist,index) in navs" :key="index" @click="ChangeCu(index)" :class="{cupage:index===pageid}">
+                            {{nlist.name}}
+                        </li>
+                    </ul>	
+            </div>
+            <div class="content" >
+                <div class="learnpack">
+                    <div class="learnsort">
+                        <span style="margin-left:20px; font-size:20px; ">分类</span>
+                        <span class="learntag" v-for="(tage,index) in tags" :key="index" @click="ChangeTag(index)" :class="{cutag:index===tagid}">={{tage.name}}=</span>
+                    </div>
+                    <div class="learnbox" >
+    <!-- 文章 -->
+                        <div class="article" v-show=" tagname=='article' ">
+                            <div class="study" v-for="(learn,index) in learnlist" :key="index" @mouseover="handleview(index)" @mouseout="moveview()" @click="Changelearn(index)" :class="{culearn:index===learnid}" >
+                                <div class="titles">---{{learn.title}}---</div>
+                                <div class="lcontent" >
+                                <img class="lcover" :src="learn.cover" />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-<!-- 视频 -->
-                    <div class="video" v-show=" tagname=='video' ">
+    <!-- 视频 -->
+                        <div class="video" v-show=" tagname=='video' ">
 
-                    </div>
-                    
-<!-- 机构 -->
-                    <div class="organize" v-show=" tagname=='organize' ">
+                        </div>
+                        
+    <!-- 机构 -->
+                        <div class="organize" v-show=" tagname=='organize' ">
 
-                    </div>
+                        </div>
 
-<!-- 画展 -->
-                    <div class="show" v-show=" tagname=='show' ">
+    <!-- 画展 -->
+                        <div class="show" v-show=" tagname=='show' ">
 
+                        </div>
                     </div>
                 </div>
+                <!-- 广告栏 -->
+                <!-- <div class="learnad">
+                    <el-carousel  style="text-align:center;margin-top:5px;">
+                        <el-carousel-item v-for="(ad,index) in ads" :key="index">
+                            <img :src="ad.url" class="adpic">
+                        </el-carousel-item>
+                    </el-carousel>
+                </div> -->
             </div>
-            <!-- 广告栏 -->
-            <!-- <div class="learnad">
-                <el-carousel  style="text-align:center;margin-top:5px;">
-                    <el-carousel-item v-for="(ad,index) in ads" :key="index">
-                        <img :src="ad.url" class="adpic">
-                    </el-carousel-item>
-                </el-carousel>
-            </div> -->
         </div>
     </div>
 </template>
@@ -99,10 +104,11 @@ export default {
 					head:'Learn'
 				},
 			],
-            pageid:0,
+            pageid:3,
             tagid:0,
             learnid:0,
             tagname:'article',
+            bk:require('../../assets/img/48.jpg'),
             tags:[
                 {
                     name:'绘画指导文章',
@@ -226,7 +232,7 @@ export default {
         }
     },
     mounted(){
-		this.pageid=this.$route.query.pageid
+		// this.pageid=this.$route.query.pageid
 	},
     methods:{
         ChangeCu(i){
@@ -246,6 +252,9 @@ export default {
         },
         handleview(i){
             this.learnid=i
+        },
+        moveview(){
+            this.learnid=-1
         },
         Changelearn(i){
             this.RouterHead='Load'

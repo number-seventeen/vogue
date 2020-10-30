@@ -24,7 +24,7 @@ button{
     z-index:-1;
 	position: absolute;
 	background: #181A1B;
-	opacity: 0.8;
+	opacity: 0.5;
 	
 	
 }
@@ -146,8 +146,7 @@ button{
 	width:930px; 
 	padding-top:25px;
 	padding-left:12px;
-	border-radius: 20px;
-	box-shadow: 0px 4px 5px -4px gray;
+	box-shadow: 0px 5px 5px -5px gray;
 }
 
 .scenery_auction{
@@ -370,6 +369,6 @@ button{
     }
     100% {
         opacity: 0;
-        transform: translateY(10px) scale3d(0.5, 0.5, 0.5);
+        transform: translateY(15px) scale3d(0.5, 0.5, 0.5);
     }
 }
