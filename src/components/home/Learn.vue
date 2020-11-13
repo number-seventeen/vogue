@@ -18,9 +18,9 @@
                         <el-dropdown trigger="click">
                             <span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;"><i class="el-icon-more"></i></span>
                             <el-dropdown-menu slot="dropdown">
-                               <el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">退出登录</span></router-link></el-dropdown-item>
+                               <el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">{{logined}}</span></router-link></el-dropdown-item>
 								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">返回首页</span></router-link></el-dropdown-item>
-								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">个人中心</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/User"><span style="color: rgb(129, 147, 167);">个人中心</span></router-link></el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-col>
@@ -43,7 +43,7 @@
                     <div class="learnbox" >
     <!-- 文章 -->
                         <div class="article" v-show=" tagname=='article' ">
-                            <div class="study" v-for="(learn,index) in learnlist" :key="index" @mouseover="handleview(index)" @mouseout="moveview()" @click="Changelearn(index)" :class="{culearn:index===learnid}" >
+                            <div class="study" v-for="(learn,index) in articlelist" :key="index" @mouseover="handleview(index)" @mouseout="moveview()" @click="Changelearn(index)" :class="{culearn:index===learnid}" >
                                 <div class="titles">---{{learn.title}}---</div>
                                 <div class="lcontent" >
                                 <img class="lcover" :src="learn.cover" />
@@ -53,16 +53,32 @@
 
     <!-- 视频 -->
                         <div class="video" v-show=" tagname=='video' ">
-
+                            <div class="study" v-for="(learn,index) in videolist" :key="index" @mouseover="handleview(index)" @mouseout="moveview()" @click="Changelearn(index)" :class="{culearn:index===learnid}" >
+                                <div class="titles">---{{learn.title}}---</div>
+                                <div class="lcontent" >
+                                <img class="lcover" :src="learn.cover" />
+                                </div>
+                            </div>
                         </div>
                         
     <!-- 机构 -->
                         <div class="organize" v-show=" tagname=='organize' ">
-
+                            <div class="study" v-for="(learn,index) in organizelist" :key="index" @mouseover="handleview(index)" @mouseout="moveview()" @click="Changelearn(index)" :class="{culearn:index===learnid}" >
+                                <div class="titles">---{{learn.title}}---</div>
+                                <div class="lcontent" >
+                                <img class="lcover" :src="learn.cover" />
+                                </div>
+                            </div>
                         </div>
 
     <!-- 画展 -->
                         <div class="show" v-show=" tagname=='show' ">
+                            <div class="study" v-for="(learn,index) in showlist" :key="index" @mouseover="handleview(index)" @mouseout="moveview()" @click="Changelearn(index)" :class="{culearn:index===learnid}" >
+                                <div class="titles">---{{learn.title}}---</div>
+                                <div class="lcontent" >
+                                <img class="lcover" :src="learn.cover" />
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -84,155 +100,427 @@
 export default {
     data(){
         return{
-            RouterHead:'',
-			RouterFoot:'',
-			navs:[
-				{
-					name:'艺术之廊',
-                    head:'Homepage'
-				},
-				{
-					name:'分享画作',
-					head:'Share'
-				},
-				{
-					name:'拍卖画作',
-					head:'Sale'
-				},
-				{
-					name:'绘画指导',
-					head:'Learn'
-				},
-			],
-            pageid:3,
-            tagid:0,
-            learnid:-1,
-            tagname:'article',
-            bk:require('../../assets/img/52.jpg'),
-            tags:[
-                {
-                    name:'绘画指导文章',
-                    wordkeys:'article'
-                },
-                {
-                    name:'绘画指导视频',
-                    wordkeys:'video'
-                },
-                {
-                    name:'绘画指导机构',
-                    wordkeys:'organize'
-                },
-                {
-                    name:'近期艺术画展',
-                    wordkeys:'show'
-                },
-
-            ],
-            ads:[
+          RouterHead:'',
+          RouterFoot:'',
+          islogin:false,
+		logined:"登录",
+          navs:[
                {
-                   url:require('../../assets/img/29.jpg'),
-                   
+                    name:'艺术之廊',
+               head:'Homepage'
                },
-                {
-                   url:require('../../assets/img/28.jpg'),
-                   
+               {
+                    name:'分享画作',
+                    head:'Share'
                },
-                {
-                   url:require('../../assets/img/27.jpg'),
-                   
+               {
+                    name:'拍卖画作',
+                    head:'Sale'
+               },
+               {
+                    name:'绘画指导',
+                    head:'Learn'
+               },
+               {
+                    name:'动态广场',
+                    head:'Ground'
+               },
+          ],
+          pageid:3,
+          tagid:0,
+          learnid:-1,
+          tagname:'article',
+          bk:require('../../assets/img/52.jpg'),
+          tags:[
+               {
+               name:'绘画指导文章',
+               wordkeys:'article'
+               },
+               {
+               name:'绘画指导视频',
+               wordkeys:'video'
+               },
+               {
+               name:'绘画指导机构',
+               wordkeys:'organize'
+               },
+               {
+               name:'近期艺术画展',
+               wordkeys:'show'
                },
 
-            ],
-            learnlist:[
+          ],
+          ads:[
+          {
+               url:require('../../assets/img/29.jpg'),
+               
+          },
                {
-                    title:'素描基础入门',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/36.png'),
-                    
-               },
+               url:require('../../assets/img/28.jpg'),
+               
+          },
                {
-                    title:'油画的调色与上色',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/31.png'),
-                    
-               },
-               {
-                    title:'绘画工具的选择',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/32.png'),
-                    
-               },
-               {
-                    title:'绘画时的光影部分',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/33.png'),
-                    
-               },
-               {
-                    title:'风景写生的技巧',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/34.png'),
-                    
-               },
-               {
-                    title:'像艺术家一样思考',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/35.png'),
-                    
-               },
-               {
-                    title:'简笔画人物教程一',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/36.png'),
-                    
-               },
-               {
-                    title:'简笔画人物教程一',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/37.png'),
-                    
-               },
-               {
-                    title:'简笔画人物教程一',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/39.png'),
-                    
-               },
-               {
-                    title:'简笔画人物教程一',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/39.png'),
-                    
-               },
-               {
-                    title:'简笔画人物教程一',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/40.png'),
-                    
-               },
-               {
-                    title:'简笔画人物教程一',
-                    wordkeys:'article',
-                    url:'https://www.021gov.cn/smrm/976.html',
-                    cover:require('../../assets/img/37.png'),    
-               },
+               url:require('../../assets/img/27.jpg'),
+               
+          },
 
-           ]
+          ],
+          articlelist:[
+          {
+               title:'素描基础入门',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/36.png'),
+               
+          },
+          {
+               title:'油画的调色与上色',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/31.png'),
+               
+          },
+          {
+               title:'绘画工具的选择',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/32.png'),
+               
+          },
+          {
+               title:'绘画时的光影部分',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/33.png'),
+               
+          },
+          {
+               title:'风景写生的技巧',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/34.png'),
+               
+          },
+          {
+               title:'像艺术家一样思考',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/35.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/36.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/37.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/39.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/39.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/40.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/37.png'),    
+          },
+
+          ],
+          videolist:[
+          {
+               title:'素描基础入门',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/36.png'),
+               
+          },
+          {
+               title:'油画的调色与上色',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/31.png'),
+               
+          },
+          {
+               title:'绘画工具的选择',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/32.png'),
+               
+          },
+          {
+               title:'绘画时的光影部分',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/33.png'),
+               
+          },
+          {
+               title:'风景写生的技巧',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/34.png'),
+               
+          },
+          {
+               title:'像艺术家一样思考',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/35.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/36.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/37.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/39.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/39.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/40.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/37.png'),    
+          },
+
+          ],
+          organizelist:[
+          {
+               title:'素描基础入门',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/36.png'),
+               
+          },
+          {
+               title:'油画的调色与上色',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/31.png'),
+               
+          },
+          {
+               title:'绘画工具的选择',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/32.png'),
+               
+          },
+          {
+               title:'绘画时的光影部分',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/33.png'),
+               
+          },
+          {
+               title:'风景写生的技巧',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/34.png'),
+               
+          },
+          {
+               title:'像艺术家一样思考',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/35.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/36.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/37.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/39.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/39.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/40.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/37.png'),    
+          },
+
+          ],
+          showlist:[
+          {
+               title:'素描基础入门',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/36.png'),
+               
+          },
+          {
+               title:'油画的调色与上色',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/31.png'),
+               
+          },
+          {
+               title:'绘画工具的选择',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/32.png'),
+               
+          },
+          {
+               title:'绘画时的光影部分',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/33.png'),
+               
+          },
+          {
+               title:'风景写生的技巧',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/34.png'),
+               
+          },
+          {
+               title:'像艺术家一样思考',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/35.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/36.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/37.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/39.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/39.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/40.png'),
+               
+          },
+          {
+               title:'简笔画人物教程一',
+               wordkeys:'article',
+               url:'https://www.021gov.cn/smrm/976.html',
+               cover:require('../../assets/img/37.png'),    
+          },
+
+          ],
+           
         }
     },
     mounted(){
-		// this.pageid=this.$route.query.pageid
+          // this.pageid=this.$route.query.pageid
+          this.islogin=this.$route.query.islogin
+		if(this.islogin==true){
+			this.logined="退出登录"
+		}
+		else if(this.islogin==false){
+			this.logined="登录"
+		}
 	},
     methods:{
         ChangeCu(i){
@@ -262,7 +550,7 @@ export default {
             // this.ChangeRouter()
         },
         ChangeRouter(){
-			this.$router.push({ path: `/${this.RouterHead}/${this.RouterFoot}`,query:{pageid:this.pageid}})
+			this.$router.push({ path: `/${this.RouterHead}/${this.RouterFoot}`,query:{pageid:this.pageid,islogin:this.islogin}})
 		},
     }
 }

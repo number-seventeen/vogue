@@ -9,6 +9,10 @@ import Sale from '@/components/home/Sale.vue'
 import Deal from '@/components/home/Deal.vue'
 import Tobuy from '@/components/home/Tobuy.vue'
 import Learn from '@/components/home/Learn.vue'
+import shareground from '@/components/home/shareground.vue'
+import User from '@/components/home/User.vue'
+import svg from '@/components/home/svgdemo.vue'
+import hao from '@/components/home/hao.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -60,6 +64,30 @@ export default new Router({
       name: 'Learn',
       meta:{index:7},
       component: Learn
+    },
+    {
+      path: '/shareground',
+      name: 'shareground',
+      meta:{index:8},
+      component: shareground
+    },
+    {
+      path: '/User',
+      name: 'User',
+      meta:{index:9},
+      component: User
+    },
+    {
+      path: '/svg',
+      name: 'svg',
+      meta:{index:10},
+      component: svg
+    },
+    {
+      path: '/hao',
+      name: 'hao',
+      meta:{index:11},
+      component: hao
     },
 
   ]

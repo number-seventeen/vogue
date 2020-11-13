@@ -18,9 +18,9 @@
 						<el-dropdown trigger="click">
 							<span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;"><i class="el-icon-more"></i></span>
 							<el-dropdown-menu slot="dropdown">
-								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">退出登录</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">{{logined}}</span></router-link></el-dropdown-item>
 								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">返回首页</span></router-link></el-dropdown-item>
-								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">个人中心</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/User"><span style="color: rgb(129, 147, 167);">个人中心</span></router-link></el-dropdown-item>
 							</el-dropdown-menu>
 						</el-dropdown>
 					</el-col>
@@ -240,6 +240,8 @@ export default {
         dialogImageUrl: '',
         dialogVisible: false,
 		disabled: false,
+		islogin:false,
+		logined:"登录",
 		bk:require('../../assets/img/52.jpg'),
 		RouterHead:'',
 		RouterFoot:'',
@@ -259,6 +261,10 @@ export default {
 			{
 				name:'绘画指导',
 				head:'Learn'
+			},
+			{
+				name:'动态广场',
+				head:'Ground'
 			},
 		],
 		pageid:1,
@@ -288,7 +294,7 @@ export default {
 			this.ChangeRouter()
 		},
 		ChangeRouter(){
-			this.$router.push({ path: `/${this.RouterHead}/${this.RouterFoot}`,query:{pageid:this.pageid}})
+			this.$router.push({ path: `/${this.RouterHead}/${this.RouterFoot}`,query:{pageid:this.pageid,islogin:this.islogin}})
 		},
 
 	},
@@ -296,6 +302,14 @@ export default {
 
 	mounted(){
 		// this.pageid=this.$route.query.pageid
+		this.islogin=this.$route.query.islogin
+		if(this.islogin==true){
+			this.logined="退出登录"
+		}
+		else if(this.islogin==false){
+			this.logined="登录"
+		}
+
 	},
 }
 </script>

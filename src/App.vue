@@ -142,13 +142,13 @@ body{
 	border: 1px solid #bda5c8;
 }
 .chooseblong .el-radio__input.is-checked .el-radio__inner{
-    border-color: #724c85;
-    background: #724c85;
+    border-color: #f6edfa;
+    background: #3f4347;
 }
 .chooseblong .el-radio:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner{
-      box-shadow: 0 0 0px white;
+      box-shadow: 0 0 0px rgb(156, 69, 69);
 }
 .chooseblong .el-radio__input.is-checked+.el-radio__label{
-  color: #724c85;
+  color: #e7dcec;
 }
 </style>

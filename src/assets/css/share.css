@@ -122,7 +122,7 @@ a{
 }
 .cupage{
 	color: #0840818f !important;  
-	font-size: 20px !important; 
+	font-size: 22px !important; 
 }
 .item_fram{
 	width: 960px;
@@ -156,6 +156,7 @@ a{
 	margin-left: 10px;
 	margin-right: 20px;
 	margin-top: 21px;
+	opacity: 0.8;
 }
 .history_img{
     margin-top: 10px;
@@ -163,7 +164,8 @@ a{
     width: 450px;
 	height: 340px;
     box-shadow: 0 0 8px #466a9c;
-	margin-bottom: 10px;	 
+	margin-bottom: 10px;	
+	 
 }
 .history_list{
 	width: 450px;
@@ -257,11 +259,11 @@ a{
 	margin-top: 10px;
 }
 .share_info input{
-	border:1px solid rgb(162, 183, 206);
+	border:1px solid rgb(178, 193, 211);
 	height: 20px;
 	width: 120px;
 	outline:none ;
-	background: rgb(228, 236, 245);
+	background: rgba(236, 241, 246, 0.726);
 	opacity: 0.5;
 	caret-color: rgb(87, 112, 141);
 	padding-left:4px ;
@@ -271,24 +273,24 @@ a{
 	border-radius: 8px;
 } 
 .share_info textarea{
-	width: 205px;
+	width: 250px;
 	height: 120px;
 	opacity: 0.5;
 	border-radius: 5px;
 	letter-spacing: 0.1em;
 	outline: none;
 	padding-left: 4px;
-	border:1px solid rgb(144, 165, 189);
+	border:1px solid rgb(178, 193, 211);
 	caret-color: rgb(87, 112, 141);
 	color:rgb(62, 97, 136);
-	background: rgb(228, 236, 245);
+	background: rgba(236, 241, 246, 0.726);
 	font-family: A;
 	font-weight: 600;
 }
 .submit{
 	cursor: pointer;
 	text-align: center;
-	margin-left: 16px;
+	margin-left: 42px;
 	margin-top: 35px;
 	width: 180px;
 	border-radius: 5px;

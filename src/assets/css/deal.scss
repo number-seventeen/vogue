@@ -1,7 +1,6 @@
 body{
 	margin: 0;
 	padding: 0;
-	background: #F3F5F7;
 	
 }
 ul{
@@ -12,6 +11,19 @@ ul{
 a{
 	text-decoration: none;
 }
+.background{
+	width:100%;  
+    height:100%;  /**宽高100%是为了图片铺满屏幕 */
+    z-index:-1;
+	position: absolute;
+	background: #181A1B;
+	opacity: 0.3;	
+}
+.backimg{
+	width: 1440PX;
+	height: 821PX;
+}
+
 .item_fram{
 	width: 1390px;
 	height: 100%;
@@ -38,11 +50,11 @@ a{
 }
 .works_card{
 	width: 620px;
-	height: 330px;
-	border-top:30px solid rgb(250, 240, 250);
-	box-shadow: 0 0 5px rgb(125, 109, 129);
+	height: 360px;
+	box-shadow: 0 0 5px rgb(127, 125, 128);
 	border-radius: 20px 20px 10px 10px;
 	margin-bottom:20px ;
+	background: rgba(232, 239, 245, 0.438);
 	
 
 }
@@ -50,44 +62,50 @@ a{
 	float: left;
 	width: 370px;
 	height: 280px;
-	box-shadow: 0 0 8px rgb(206, 194, 206) ;
 	margin-left: 17px;
-	margin-top: 21px;
+	margin-top: 35px;
+	background: rgba(245, 245, 245, 0.534);
+	box-shadow: 0 0 8px gray;
+	opacity: 0.8;
 }
 .work_name{
 	margin-top: 10px;
 }
 .work_brief{
 	float: left;
-	width: 180px;
-	height: 260px;
-	margin-left: 12px;
-	margin-top: 31px;
-	box-shadow: 0 0 5px rgb(212, 208, 212);
-	color:  #CCACD5;
-    padding-left: 5px;
-    font-size: 12px;
+	width: 200px;
+	height: 280px;
+	margin-left: 15px;
+	margin-top: 35px;
+	box-shadow: 0 0 5px rgba(116, 114, 114, 0.644);
+	color:  rgb(144, 165, 189);
+	padding-left: 5px;
 }
 
-.work_brief li{
-	margin-left: 5px;
-	margin-top: 20px;	
-
+.work_brief ul li{
+	margin-top: 20px;
+	margin-left: 11px;
+	font-size: 12px;
+	font-family:A;
+	font-weight: 600;
+	display: flex;
 }
 .join{
-	margin-left: 50px;
-	margin-top: 5px;
-	height: 30px;
-    width: 60px;
-    font-size: 12px;
+	margin-left: 55px;
+	margin-top: 25px;
+	height: 25px;
+	width: 80px;
 	text-align: center;
-	line-height:30px;
-	color: #CCACD5;
-	background: #F5EDF5;
-	border-radius: 3px;
+	line-height:25px;
+	box-shadow: 0 0 4px rgb(93, 123, 156);
+	color: rgba(84, 133, 185, 0.644);
+	/* background: #ecebeb; */
+	border-radius: 10px;
+	font-family: A;
 	outline: none;
-	float: left;
 	cursor: pointer;
+	font-size: 12px;
+	font-weight: 600;
 }
 
 .paixu{
@@ -95,7 +113,7 @@ a{
 	height: 40px;
 	line-height: 40px;
 	margin-left: 17px;
-	background: rgb(252, 242, 253);
+	background: rgb(232, 239, 245);
 	box-shadow: 0 0 3px rgb(107, 95, 95);
 	border-radius: 5px;
 	margin-top: 5px;
@@ -116,11 +134,11 @@ a{
 	font-weight: 600;
 	cursor:pointer;
 }
-.paixu_back{
+.paixu_back a{
 	margin-left: 70px;
 	font-weight: 600;
 	font-size: 14px;
-	color: rgba(97, 55, 145, 0.493);
+	color: rgba(53, 87, 131, 0.493);
 	cursor: pointer;
 	margin-top: 2px;
 }
@@ -128,17 +146,18 @@ a{
 .paixu_serch input{
 	/* border:1px solid #D6CFE3; */
 	outline: none;
-	border:1px solid #D6CFE3;
+	border:1px solid #c6d1e2;
 	height: 18px;
 	border-radius: 5px;
 	padding: 5px;
 	caret-color:#D6CFE3;
 	padding-left: 5px;
 	color:#705499;
+	background:#dfe7f06c;
 }
 .paixu_serch input::placeholder{
 	font-size: 10px;
-	color: gainsboro;
+	color: rgb(197, 196, 196);
 }
 .search_img{
 	cursor: pointer;

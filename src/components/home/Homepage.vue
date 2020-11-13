@@ -18,9 +18,9 @@
 						<el-dropdown trigger="click">
 							<span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;"><i class="el-icon-more"></i></span>
 							<el-dropdown-menu slot="dropdown">
-								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">退出登录</span></router-link></el-dropdown-item>
-								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">返回首页</span></router-link></el-dropdown-item>
-								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">个人中心</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">{{logined}}</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/hao"><span style="color: rgb(129, 147, 167);">返回首页</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/User"><span style="color: rgb(129, 147, 167);">个人中心</span></router-link></el-dropdown-item>
 							</el-dropdown-menu>
 						</el-dropdown>
 					</el-col>
@@ -93,20 +93,26 @@
 					<div style="font-size:19px;font-weight:600;width:1215px;text-align:center;color:rgba(112, 95, 146, 0.63);">热 门 分 享 画 作 </div>
 					<div>
 						<ul>
-							<li v-for="(piclist,index) in 9" :key="index" @click="ChangePic(index)" :class="{cuPic:index===picid}">
+							<li v-for="(shareimg,index) in sharebest" :key="index">
 								<div class="toshow">
 									<div class="to_pic">
-										<div><img class="sharepic" src="../../assets/img/20.jpg" /></div>
+										<div><img class="sharepic" :src="shareimg.url" /></div>
 									</div>
 									<div class="to_user">
 										<div class="to_icon"></div>
 										<div class="to_name">梵高</div>
+										<div class="to_like" @click="Changelike(index)">
+											<div><img class="heart" src="../../assets/img/dislike.png" ref="hearts"/></div>
+											<!-- <div v-show="shareimg.shareid==1200" ><img class="heart"  src="../../assets/img/like.png" /></div> -->
+											<!-- <div style="margin-top:-5px;font-size:12px;font-family:A;color:rgba(112, 95, 146, 0.63);transform:scale(0.8);">{{shareimg.like}}</div> -->
+										</div>
 									</div>
-								</div>
-								
+								</div>	
 							</li>
+							<div class="sharemore" @click="ToMore()">查看更多</div>
 						</ul>
 					</div>
+					
 				</div>
 			</div>
 		<!-- 内容盒子底部 -->
@@ -121,6 +127,8 @@ export default {
 			downshow:true,
 			RouterHead:'',
 			RouterFoot:'',
+			islogin:false,
+			logined:"登录",
 			uicon:require('../../assets/img/46.jpg'),
 			navs:[
 				{
@@ -139,8 +147,14 @@ export default {
 					name:'绘画指导',
 					head:'Learn'
 				},
+				{
+					name:'动态广场',
+					head:'Ground'
+				},
 			],
 			bk:require('../../assets/img/52.jpg'),
+			likeicon:require('../../assets/img/like.png'),
+			dislikeicon:require('../../assets/img/dislike.png'),
 			pageid:0,
 			picid:0,
 			hotid:0,
@@ -151,7 +165,78 @@ export default {
 			ts:0,
 			msecs:0,
 			endtime:'',
-			tname:'hahahahaha'
+			dislike:true,
+			tname:'hahahahaha',
+			sharebest:[],
+			shareimgs:[
+				{	shareid:10,
+					url:require('../../assets/img/41.jpg'),
+					like:12000,
+				},
+				{	shareid:9,
+					url:require('../../assets/img/42.jpg'),
+					like:1600,
+				},
+				{	shareid:12,
+					url:require('../../assets/img/43.jpg'),
+					like:1200,
+				
+				},
+				{	shareid:13,
+					url:require('../../assets/img/52.jpg'),
+					like:100,
+					
+				},
+				{	shareid:16,
+					url:require('../../assets/img/53.jpg'),
+					like:100,
+					
+				},
+				{	shareid:14,
+					url:require('../../assets/img/57.jpg'),
+					like:100,
+					
+				},
+				{	shareid:2,
+					url:require('../../assets/img/60.jpg'),
+					like:100,
+					
+				},
+				{	shareid:4,
+					url:require('../../assets/img/61.jpg'),
+					like:100,
+					
+
+				},
+				{	shareid:5,
+					url:require('../../assets/img/69.jpg'),
+					like:100,
+					islike:require('../../assets/img/dislike.png'),
+				},
+				{	shareid:6,
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+					islike:require('../../assets/img/dislike.png'),
+				},
+				
+			],
+			ilike:[
+				{	shareid:99,
+					url:require('../../assets/img/45.jpg'),
+					like:12,
+					islike:require('../../assets/img/like.png'),
+				},
+				{	shareid:9,
+					url:require('../../assets/img/42.jpg'),
+					like:1600,
+				},
+				{	shareid:16,
+					url:require('../../assets/img/53.jpg'),
+					like:100,
+					islike:require('../../assets/img/like.png'),
+				},
+				
+			]
 
 		}
 	},
@@ -161,7 +246,49 @@ export default {
 		console.log("df",this.counts)
 		console.log("ms",this.msec)
 		this.countdown()
-		 
+		for (let i = 0; i <=8; i++) {
+			var best=this.shareimgs[i]
+			this.sharebest.push(best)
+		}
+
+
+		this.islogin=this.$route.query.islogin
+		if(this.islogin==true){
+			this.logined="退出登录"
+		}
+		else if(this.islogin==false){
+			this.logined="登录"
+		}
+
+		//判断best里有没有已添加的喜欢
+		var result = [];
+		var m=[]
+		for(var i = 0; i < this.sharebest.length; i++){
+			var obj = this.sharebest[i];
+			var num = obj.shareid;
+			var isExist = false;
+			for(var j = 0; j < this.ilike.length; j++){
+				var aj = this.ilike[j];
+				var n = aj.shareid;
+				if(n == num){
+					isExist = true;
+					break;
+				}
+			}
+			if(isExist){
+				m.push(i)
+				// console.log(this.$refs.hearts)	
+				this.$nextTick(function(){
+					setTimeout(() => {
+						for (let d = 0; d < m.length; d++) {
+							var g=m[d]
+							document.getElementsByClassName("heart")[g].setAttribute("src",this.likeicon)	
+						}	
+					}, 10)
+				})
+				
+			}
+		}	
 	},
 	computed: {
         // 用vuex读取数据(读取的是state.js中的数据)
@@ -206,17 +333,41 @@ export default {
 			}
 			this.ChangeRouter()
 		},
-		ChangePic(i){
-			this.picid=i
+		Changelike(i){
+			var t=this.sharebest[i].shareid
+			if(this.ilike.length>0){
+				if (this.ilike.some(item => item.shareid==t)) {
+					for (let f = 0; f < this.ilike.length; f++) {
+						if (this.ilike[f].shareid==t){
+							this.ilike.splice(f,1);
+						}
+						document.getElementsByClassName("heart")[i].setAttribute("src",this.dislikeicon)
+						
+					}
+				}
+				else{
+					console.log("haoddd")
+					this.ilike.push(this.sharebest[i])
+					document.getElementsByClassName("heart")[i].setAttribute("src",this.likeicon)
+				}
+			}
+			console.log(t,i,this.ilike)
 		},
 		ChangeHot(i){
 			this.hotid=i
 		},
 		ChangeRouter(){
-			this.$router.push({ path: `/${this.RouterHead}/${this.RouterFoot}`,query:{pageid:this.pageid}})
+			this.$router.push({ path: `/${this.RouterHead}/${this.RouterFoot}`,query:{pageid:this.pageid,islogin:this.islogin}})
 		},
 		ToBuy(){
 			this.RouterHead='Tobuy'
+			this.RouterFoot=''
+			this.ChangeRouter()
+
+			
+		},
+		ToMore(){
+			this.RouterHead='shareground'
 			this.RouterFoot=''
 			this.ChangeRouter()
 

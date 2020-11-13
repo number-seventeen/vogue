@@ -26,7 +26,6 @@ button{
 	background: #181A1B;
 	opacity: 0.25;
 	
-	
 }
 .backimg{
 	width: 1440PX;
@@ -175,6 +174,7 @@ button{
 	box-shadow: 0 0 5px rgba(3, 3, 3, 0.644);
 	margin-left: 35px;
 	margin-top: 45px;
+	background: rgba(240, 240, 230, 0.479);
 	
 }
 .work_brief{
@@ -186,6 +186,7 @@ button{
 	box-shadow: 0 0 5px rgba(116, 114, 114, 0.644);
 	color:  rgb(144, 165, 189);
 	padding-left: 5px;
+	
 }
 .work_brief ul li{
 	margin-top: 32px;
@@ -308,6 +309,7 @@ button{
 	border-radius: 10px;
 	margin-bottom: 30px;
 	padding-top: 5px;
+	background: rgba(240, 240, 230, 0.479);
 }
 .pic_show li{
 	display: inline-block;
@@ -324,29 +326,48 @@ button{
 }
 .to_user{
 	margin-top: 10px;
-	width: 180px;
-	height: 60px;
 	display: flex;
-	line-height: 60px;
-	
-	
+	width: 360px;
+	height: 60px;
+		
 }
 .to_icon{
 	box-shadow: 0 0 2px rgba(63, 63, 63, 0.644);
 	border-radius: 50px;
-	width: 40px;
-	height: 40px;
+	width: 35px;
+	height: 35px;
 	margin-left: 15px;
+	margin-top: 4px;
 }
 .to_name{
 	margin-left: 10px;
 	height: 45px;
 	position: relative;
 	letter-spacing: 0.15em;
-	top: -8px;
+	top: 12px;
 	color: rgba(112, 95, 146, 0.63);
 	cursor: pointer;
 	font-size: 14px;
+}
+.heart{
+	width: 25px;
+	height: 25px;
+	opacity: 0.5;
+	margin-top:8px;
+}
+.to_like{
+	margin-left: 225px;
+	text-align: center;
+	width: 35px;
+	height: 45px;
+}
+.sharemore{
+	margin-left:590px;
+	margin-top:-10px;
+	font-family:A;
+	color:rgba(112, 95, 146, 0.63);
+	font-weight:600;
+	cursor: pointer;
 }
 
 .chevron {

@@ -22,21 +22,22 @@ li{
     line-height: 30px;
     margin-left: 100px;
     box-shadow: 0 0 5px rgb(180, 160, 170);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 450;
-    color: rgb(77, 17, 47);
+    color: rgba(139, 57, 98, 0.828);
     text-align: center;
-    font-family: DZF;
+    font-family: A;
+    font-weight: 600;
 }
 .back{
     position: absolute;
     margin-left: 0px;
     cursor: pointer;
-    color:rgb(156, 49, 103);
+    color:rgba(102, 12, 55, 0.746);
 }
 .rules{
     margin-left: 230px;
-    color: rgb(156, 49, 103);
+    color: rgba(114, 21, 75, 0.849);
     cursor: pointer;
 }
 .showbox{
