@@ -284,19 +284,20 @@ button{
 	 
 	 font-family: B;
 }
-.pic_show{
-	margin-top: 40px;
-	width: 1215px;
-	float: left;
-	margin-left: 20px;
-	
-	
-}
 .content{
 	width: 1300px;
 	margin-left: 142px;
 	height: 720px;
 	overflow: scroll;
+	
+	
+}
+
+.pic_show{
+	margin-top: 40px;
+	width: 1215px;
+	float: left;
+	margin-left: 20px;
 	
 	
 }

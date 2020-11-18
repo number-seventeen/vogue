@@ -50,16 +50,16 @@ export default {
 }
 body{
   margin: 0;
-  min-width: 1439px;
+  /* min-width: 1439px; */
   overflow: auto;
   height: 100%;
   
 }
 ::-webkit-scrollbar {
-     width: 0 !important;
+     width: 2 !important;
 }
 ::-webkit-scrollbar {
-     width: 0 !important;height: 0;
+     width: 2 !important;height: 0;
 }
 .learnad .el-carousel__button{
 	background: rgb(52, 26, 77);

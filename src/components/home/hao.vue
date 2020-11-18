@@ -1,7 +1,7 @@
 <template>
   <div class="con">
             <div class="centers" style="position:absolute;z-index:1;">
-                <svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svgs">
                     <g class="topsbox"> 
                         <circle  v-for="(item,index) in top.length" :key="'topc'+index" :cx="top[index].x" :cy="top[index].y" r="2"  stroke-width="2" fill="black" />
                         <line v-for="(item,index) in top.length" :key="'top'+index"  :x1="top[index].x" :y1="top[index].y"  :x2="topnode[index].x" :y2="topnode[index].y"  style="stroke:#BBBBBB;stroke-width:2"/>   
@@ -27,7 +27,7 @@
                    
                 </svg>
             </div>
-            <div class="clo" >
+            <div class="clo" style="width:1880;">
                 <div class="clos">
                     <div class="on"> 
                         <div v-for="(clos,index) in 4" :key="index" class="box" :class="{cudraw:index==num}"></div>
@@ -84,6 +84,8 @@ export default {
             list:[],
             listx:[],
             positions:'',
+            screenWidth: '1920px' ,
+            timer:null,
            
 
 
@@ -92,7 +94,18 @@ export default {
         }
     },
     mounted(){
-        this.draw()
+        setTimeout(() => {
+            this.draw()
+        }, 100);
+        // const that = this
+        // window.onresize = () => {
+        //     return (() => {
+        //         window.screenWidth = document.body.clientWidth
+        //         that.screenWidth = window.screenWidth
+                
+        //     })()
+        // }
+        
     },
     watch:{
         // rgbs:{
@@ -103,12 +116,37 @@ export default {
         //       }
                 
         //     }
+        // },
+        // screenWidth (val,old) {
+        //     if (!this.timer) {
+        //         this.screenWidth = val
+        //         var num = parseFloat(old);
+        //         var total = parseFloat(val);
+        //         if (isNaN(num) || isNaN(total)) {
+        //             return "-";
+        //         }
+        //         var bi=''
+        //         if(total <= 0 ){
+        //             bi=0
+        //         } 
+        //         else if(total>0){
+        //            bi= (Math.round( total/num * 10000) / 100.00)/100
+        //         }
+        //         console.log("o",old,bi)
+        //         this.timer = true
+        //         let that = this
+        //         setTimeout(function () {
+        //             // that.screenWidth = that.$store.state.canvasWidth
+        //             console.log(that.screenWidth)
+        //             that.init(bi)
+        //             that.timer = false
+        //         }, 500)
+        //     }
         // }
     },
     methods:{
 
         draw(){
-            
             var elx=document.getElementsByClassName("box")
             var elsey=document.getElementsByClassName("boxs")
             var topbox=document.getElementsByClassName("box").length
@@ -302,8 +340,7 @@ export default {
             console.log(this.listx[i].x,this.listx[i].y)
 
 
-        }
-       
+        },
         
        
     }
@@ -323,13 +360,13 @@ input{
 }
 
 .clo{
-    width: 1880px;
     margin-left: 40px;
     height: 320px;
     margin-top: 20px;
     cursor: pointer;
     float: left;
     display: flex;
+   
    
 }
 .control{
@@ -438,6 +475,10 @@ body{
 .con{
     width: 1920px;
     height: 1080px; 
+    background: rgb(185, 185, 248);
     
+}
+.svgs{
+    background:pink;
 }
 </style>

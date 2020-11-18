@@ -27,4 +27,5 @@ module.exports = {
             .rule('images')
             .test(/\.(png|jpe?g|gif|svg)(\?.*)?$/)
     },
-} 
+    
+}
