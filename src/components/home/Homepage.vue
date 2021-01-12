@@ -19,7 +19,7 @@
 							<span class="el-dropdown-link" style="font-size:30px; letter-spacing:0.1em;"><i class="el-icon-more"></i></span>
 							<el-dropdown-menu slot="dropdown">
 								<el-dropdown-item ><router-link to="/"><span style="color: rgb(129, 147, 167);">{{logined}}</span></router-link></el-dropdown-item>
-								<el-dropdown-item ><router-link to="/hao"><span style="color: rgb(129, 147, 167);">返回首页</span></router-link></el-dropdown-item>
+								<el-dropdown-item ><router-link to="/User"><span style="color: rgb(129, 147, 167);">返回首页</span></router-link></el-dropdown-item>
 								<el-dropdown-item ><router-link to="/go"><span style="color: rgb(129, 147, 167);">个人中心</span></router-link></el-dropdown-item>
 							</el-dropdown-menu>
 						</el-dropdown>

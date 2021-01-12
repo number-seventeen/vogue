@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition :name="transitionName"> 
-      <router-view/>
+      <router-view v-if="isRouterShow"/>
     </transition>
   </div>
 </template>
@@ -9,9 +9,15 @@
 <script>
 export default {
   name: 'App',
+  provide () {
+    return {
+      reload: this.reload
+    }
+  },
   data(){
     return{
       transitionName:'',
+      isRouterShow: true
     }
   },
   watch: {//使用watch 监听$router的变化
@@ -36,6 +42,13 @@ export default {
           sessionStorage.setItem('store', JSON.stringify(this.$store.state))
       })
   },
+  methods:{
+    async reload () {
+      this.isRouterShow = false
+      await this.$nextTick()
+      this.isRouterShow = true
+    }
+  }
 
 }
 </script>
@@ -53,7 +66,7 @@ body{
   /* min-width: 1439px; */
   overflow: auto;
   height: 100%;
-  
+ 
 }
 ::-webkit-scrollbar {
      width: 2 !important;

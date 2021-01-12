@@ -11,15 +11,15 @@
              
                 </g>
                 <g class="tablesbox" > 
-                    <circle  v-for="(item,index) in table.length" :key="'table'+index" :cx="table[index].x" :cy="table[index].y" r="20"  stroke-width="2" fill="gray" @click="t(index)" />
+                    <circle  v-for="(item,index) in table.length" :key="'table'+index" :cx="table[index].x" :cy="table[index].y" r="2"  stroke-width="2" fill="none"  />
                     <line v-for="(item,index) in right.length" :key="'hen'+index"  :x1="tsnode[index].x" :y1="tsnode[index].y" :x2="rightsort[index].x" :y2="rightsort[index].y"  style="stroke:#BBBBBB;stroke-width:1"/> 
                     <line v-for="(item,index) in top.length" :key="'su'+index"  :x1="topsort[index].x" :y1="topsort[index].y" :x2="lenode[index].x" :y2="lenode[index].y"  style="stroke:#BBBBBB;stroke-width:1"/>     
                 </g>
-                <!-- <g class="connect">
-                    <polyline class="actionline" v-for="(item,index) in point.length" :key="index" :points="point[index].path" fill='none' stroke='yellow' stroke-width='2' /> 
-                </g> -->
+                <g class="connect">
+                    <polyline class="actionline" v-for="(item,index) in point.length" :key="index" :points="point[index].path" fill='none' stroke='blue' stroke-width='0.05%' /> 
+                </g>
                 <g class="animotion">
-                    <polyline class="actionline" v-for="(item,index) in point.length" :key="index" :points="point[index].path" fill='none' stroke='purple' stroke-width='4' /> 
+                    <polyline class="actionline" v-for="(item,index) in point.length" :key="index" :points="point[index].path" fill='none' stroke='purple' stroke-width='0.3%' /> 
                 </g>
 
             </svg> 
@@ -60,10 +60,11 @@
             <div class="top-right-con">
                 <div class="con-top">
                     <div class="left-control">
-                        <input type="number" v-model="inner" placeholder="shuru">
+                        <div><input type="number" v-model="inner" placeholder="shuru" style="width:50%;"></div>
+                        <div @click="sure()" style="margin-top:40px;cursor: pointer;">确认</div>
                     </div>
                     <div class="right-control">
-                        <input type="number" v-model="out" placeholder="shuchu">
+                        <div><input type="number" v-model="out" placeholder="shuchu" style="width:50%;"></div>
                     </div>
                 </div>
                 <div class="con-bottom">
@@ -72,6 +73,8 @@
             </div>
         </div>
 
+
+        <!-- 右侧边的盒子 -->
         <div class="right-box">
             <div class="out-left-box">
                 <div class="out-left-list">
@@ -79,7 +82,7 @@
                     <div class="out-item" v-for="(item,index) in 4" :key="index">
                         <!-- 行中的盒子 -->
                         <div class="out">
-                            <div class="ou">hhhhh</div>
+                            <div class="ou"></div>
                             <!-- 真正的内容 -->
                         </div>
                         <!-- 撑容器 -->
@@ -100,12 +103,14 @@
                 </div>   
             </div>
         </div>
+        <div v-show="drawdo==true" class="bord" v-for="(item,index) in tablelength" :key="index" @click="HandleOpen(index)"></div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
+    inject: ['reload'],
     data(){
         return{
           margin:0,
@@ -124,10 +129,14 @@ export default {
           inner:null,
           out:null,
           whichon:[],
+          drawdo:false,
+          tablelength:0,
+          modlechange:false,
           
         }
     },
     mounted(){
+        this.handlemodle()
         setTimeout(() => {
            this.draw()
         }, 100);
@@ -149,25 +158,25 @@ export default {
                 this.timer = true
                 let that = this   
                 that.clear()
+                
                 setTimeout(function(){
-                    // 打印screenWidth变化的值
-                    that.draw()
-                    that.REON()
+                    // that.draw()
+                    // that.REON()
+                    that.reload()
                     that.timer = false
-                },100)
+                },400)
+                
                 
             }
         }
     },
+
     methods:{
+
+        // 画连接点以及小圆板
         draw(){
-            this.top=[]
-            this.right=[]
-            this.table=[]
-            this.topsort=[]
-            this.rightsort=[]
-            this.tsnode=[]
-            this.lenode=[]
+           
+            
             // 顶部盒子的连接点
             var topbox=document.getElementsByClassName("insert-item")
             var toplen=document.getElementsByClassName("insert-item").length
@@ -205,7 +214,7 @@ export default {
               }
               else if(i<rightlen&&i>=rightlen/2){
                 var cx=rightbox[i].getBoundingClientRect().x
-                var cy=rightbox[i].getBoundingClientRect().y+(rightbox[i].clientHeight*(10.5/12))
+                var cy=rightbox[i].getBoundingClientRect().y+(rightbox[i].clientHeight*(11/12))
                 this.right.push({x:cx,y:cy,id:i+1})
                 this.rightsort.push({x:cx,y:cy})
               }
@@ -221,8 +230,7 @@ export default {
                     this.table.push({x:cx,y:my})  
                 }
             }
-
-
+            
             for (let i = 0; i < rightlen; i++) {
                 var sx=this.top[0].x
                 var sy=this.rightsort[i].y
@@ -235,9 +243,29 @@ export default {
                 this.lenode.push({x:lx,y:ey})
             }
 
+    
+            this.drawdo=true
+            var tlen=this.table.length
+            for (let i = 0; i < tlen; i++) {
+                var r=document.body.clientWidth*(0.022)
+                var t='width:'+r.toString()+'px;'+'height:'+r.toString()+'px;'
+                document.getElementsByClassName("bord")[i].setAttribute("style",t)
+
+                var w=document.getElementsByClassName("bord")[i].clientWidth/2
+                var h=document.getElementsByClassName("bord")[i].clientHeight/2
+                var marginx=this.table[i].x-w
+                var m=marginx.toString()
+
+                var marginy=this.table[i].y-h
+                var y=marginy.toString()
+                var t='left:'+m+'px;'+'top:'+y+'px;'+'width:'+r.toString()+'px;'+'height:'+r.toString()+'px;'
+                // console.log(t)
+                document.getElementsByClassName("bord")[i].setAttribute("style",t)
+            }
             
         },
 
+        // 当窗口变化时清除所画的点线等
         clear(){
             this.top=[]
             this.right=[]
@@ -247,12 +275,15 @@ export default {
             this.tsnode=[]
             this.lsnode=[]
             this.lenode=[]
+            this.point=[]
+            this.drawdo=false
         },
+
+
+        // 画各连接点之间的线
         drawline(){
             this.demopoint=[]//暂时装每次输入的路径点
-            //起点
-            
-                
+            //起点    
             for (let i = 0; i < toplen; i++) {
                 var sx=this.top[i].x
                 var sy=this.top[i].y
@@ -262,13 +293,12 @@ export default {
                     
                 }
                 
-            }
-                
-                       
+            }              
         },
 
 
-        t(i){
+        //当被开启后的线条，要根据关系状态调整颜色
+        HandleOpen(i){
             this.demopoint=[]
             this.whichon.push(i)
             this.top.forEach(item => {
@@ -287,6 +317,7 @@ export default {
 
 
         },
+        //画表格时需要调整两边的点顺序，即重新排序，但重新排序的放入另一数组，不影响原数组
         Sort(property){
             return function(a,b){
                 var value1 = a[property];
@@ -294,6 +325,8 @@ export default {
                 return value1 - value2;
             }
         },
+
+        //当窗口变化时重新画线
         REON(){
             this.point=[]
             console.log(this.whichon)
@@ -311,29 +344,49 @@ export default {
                         this.demopoint.push(item.x,item.y)
                     }
                 });
-                this.point.push({path:this.demopoint})
-                
+                this.point.push({path:this.demopoint})    
             }
+        },
+        handlemodle(){
+            if(this.modlechange==false){
+                this.tablelength=8*8
+            }
+            else if(this.modlechange==true){
+                this.tablelength=this.inner*this.inner
+            }
+            
+        },
+        sure(){
+            alert("hao")
         }
-    }
+
+    }//这是方法函数的
 }
 
 </script>
 
 <style>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type="number"]{ -moz-appearance: textfield; }
+input{
+    outline: none;
+    
+}
+
+
 .top-left-box{
     width: 55%; 
     float: left;
     margin-left: 6%;
     z-index: 10;
     
+    
 }
 .insert-top-list{
     width: 100%;
     position: relative;
-    
-   
-   
+     
 }
 .insert-bottom-list{
     width: 100%;
@@ -346,11 +399,12 @@ export default {
 
 .insert-item{
     width: 21%;
-    border: 1px solid red;
+    border: 1px solid gray;
     display: inline-block;
-    
+    z-index: 10;
     position: relative;
     margin-right: 3.5%;  
+    background: rgb(238, 229, 247);
 }
 .insert-item:nth-child(4n + 4){
      margin-right: 0;  
@@ -368,6 +422,8 @@ export default {
    
 }
 
+
+
 .top-right-box{
     width: 31%;
     margin-left: 3.5%;
@@ -378,19 +434,52 @@ export default {
 }
 .top-right-con{
     width: 100%;
+    z-index: 10;
 }
 .con-top{
     width: 100%;
-    padding-bottom: 30%;
-    display: flex;
+    z-index: 10;
+    display:flex;
+    margin-top: 4%;
+   
+}
+.left-control{
+     width: 39%;
+     padding-bottom: 24.5%;
+     border: 1px solid gainsboro;
+     background: lavender;
+     margin-left: 7%;
+     position: relative;
+         
+}
+.left-control div{
+    z-index: 10;
+    position: absolute;
+   
+}
+.right-control{
+      width: 39%;
+      padding-bottom: 24.5%;
+      background: rgb(247, 241, 226);
+      margin-left: 7%;
+      position: relative;
+      
+}
+.right-control div{
+    z-index: 10;
+    position: absolute;
     
-
 }
 .con-bottom{
     width: 100%;
     padding-bottom: 12%;
+    background: honeydew;
+    margin-top: 1.5%;
    
 }
+
+
+
 
 
 .right-box{
@@ -422,8 +511,9 @@ export default {
 
 
 .out-item{
+    background: rgb(238, 229, 247);
     width: 100%;
-    border: 1px solid red;
+    border: 1px solid gray;
     position: relative;
     margin-bottom: 16%;
     
@@ -455,11 +545,22 @@ export default {
 .ticon{
    padding-bottom: 5%;
 }
-.on{
-    width: 100%;
-   
-    background: rgb(252, 239, 223);
+
+
+
+
+/* 交点小圆板 */
+.bord{
+    border-radius: 50%;
+    position: absolute;
+    border: 1px solid rgb(185, 184, 184);
+    z-index: 10;
+    text-align: center;
+    background: white;
+    
 }
+
+
 
 
 .animotion{
