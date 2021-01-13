@@ -17,36 +17,38 @@ li{
     list-style: none;
 }
 .buyrule{
-    width: 1200px;
-    height: 30px;
-    line-height: 30px;
+    width: 1720px;
+    height: 50px;
+    line-height: 50px;
     margin-left: 100px;
-    box-shadow: 0 0 5px rgb(180, 160, 170);
-    font-size: 12px;
+    box-shadow: 0 0 50px rgb(196, 191, 196);
+    font-size: 16px;
     font-weight: 450;
     color: rgba(139, 57, 98, 0.828);
     text-align: center;
     font-family: A;
     font-weight: 600;
+    z-index: 100;
+    border-radius: 0px 0px 3px 3px;
 }
 .back{
     position: absolute;
-    margin-left: 0px;
+    left: 140px;
     cursor: pointer;
     color:rgba(102, 12, 55, 0.746);
 }
 .rules{
-    margin-left: 230px;
+    margin-left: 450px;
     color: rgba(114, 21, 75, 0.849);
     cursor: pointer;
 }
 .showbox{
-    width: 1200px;
-    height: 700px;
-    box-shadow:0 0 2px rgb(167, 148, 157);
+    width: 1600px;
+    height: 900px;
+    box-shadow:0 0 50px rgb(175, 170, 172);
     border-radius: 5px;
-    margin-left: 100px;
-    margin-top: 50px;
+    margin-left: 160px;
+    margin-top: 70px;
 }
 .showtop{
     display: flex;
@@ -55,90 +57,93 @@ li{
 }
 .showfoot{
     display: flex;
-    width: 800px;
-    height: 30px;
-    margin-top: 15px;
-    background: rgb(255, 251, 255);
-    box-shadow:0 0 2px rgb(173, 139, 173);
+    width: 960px;
+    height: 50px;
+    margin-top: 110px;
+    background: rgb(250, 250, 250);
+    box-shadow:0 0 2px rgb(189, 183, 189);
     border-radius: 4px;
-    margin-left: 25px;
-    line-height: 30px;
+    margin-left: 85px;
+    line-height: 50px;
     
 }
 .showinfo{
     margin-left: 25px;
-    font-size: 13px;
+    font-size: 16px;
     display: flex;
-    color: rgb(83, 31, 83);
+    color: rgb(163, 148, 163);
     font-family:DZF;
 }
 .moreinfo{
-    font-size: 12px;
-    color: rgb(124, 75, 124);
-    margin-left: 80px;
+    font-size: 13px;
+    color: rgb(177, 167, 177);
+    margin-left: 90px;
     font-weight: 500;
     cursor: pointer;
     font-family:DZF;
 }
 .imgview{
-    width: 800px;
-    height: 580px;
-    margin-top: 20px;
-    margin-left: 25px;
+    width: 1020px;
+    height: 750px;
+    margin-top: 50px;
+    margin-left: 55px;
     box-shadow: 0 0 5px rgb(97, 60, 72);
     text-align: center;
 } 
 .imgview img{
-    width: 760px;
-    height: 540px;
-    margin-top: 20px;
+    width: 960px;
+    height: 610px;
+    margin-top: 30px;
+    border-radius: 2px;
 }
 .joinbox{
-    width: 320px;
-    height: 580px;
-    margin-top: 20px;
+    width: 400px;
+    height: 725px;
+    margin-top: 60px;
     margin-left: 30px;
     box-shadow:0 0 2px rgb(102, 48, 71);
 }
 .board{
-    width: 320px;
-    height: 30px;
+    width: 400px;
+    height: 40px;
     box-shadow:0 0 2px rgb(122, 94, 107);
-    font-size: 12px;
+    font-size: 15px;
     font-family: DZF;
-    color: rgb(75, 36, 43);
-    line-height: 30px;
+    color: rgb(167, 123, 131);
+    line-height: 40px;
     text-align: center;
     
 
 }
 .joincontent{
-    width: 320px;  
-    height: 490px;
+    width: 400px;  
+    height: 615px;
     margin-top: 2px;
-    background: rgb(253, 249, 251);
+    background: rgba(243, 241, 242, 0.342);
     overflow: scroll;
 }
 .nowcall{
-    width: 230px;
-    height: 60px;
+    width: 320px;
+    height: 80px;
     font-size: 12px;
-    color: rgb(102, 48, 71);
-    margin-left: 5px;
+    color: rgb(187, 173, 179);
+    margin-left: 10px;
     margin-top: 5px;
     margin-bottom: 10px;
-    display: flex;
-    
+    display: flex; 
 }
 .callprice{
-    width: 120px;
-    height: 25px;
+    width: 150px;
+    height: 35px;
     box-shadow: 0 0 2px rgb(146, 105, 112);
-    margin-top: 22px;
+    margin-top: 17px;
+    margin-left: 6px;
     border-radius: 2px;
     padding-left:5px;
-    line-height: 25px; 
+    line-height: 35px; 
     font-family: DZF;   
+    font-size: 16px;
+    background:rgb(253, 249, 251);
 }
 .parrow::before{
     content: '';
@@ -146,8 +151,8 @@ li{
     height: 0;
     border: 5px solid;
     position: absolute;
-    margin-left: -10px;
-    margin-top: 27px;
+    margin-left: -4px;
+    margin-top: 23px;
     transform: rotate(90deg);
     border-color: rgb(212, 188, 192) transparent transparent;
 }
@@ -157,8 +162,8 @@ li{
     height: 0;
     border: 5px solid;
     position: absolute;
-    margin-left: -9px;
-    margin-top: 27px;
+    margin-left: -3px;
+    margin-top: 23px;
     transform: rotate(90deg);
     border-color:  rgb(253, 249, 251) transparent transparent;
 
@@ -181,62 +186,67 @@ li{
     transform: scale(0.8);
     text-align: center;
     width: 60px;
-    margin-left: -12px;
+    margin-left: -10px;
+    font-size: 14px;
+    font-family: DZF;
 }
 .joinput{
-    width: 320px;  
-    height: 56px;
+    width: 400px;  
+    height: 66px;
     margin-top: 2px;
     box-shadow:0 0 2px rgb(122, 94, 107);
 }
 .inputboard{
     display: flex;
-    width: 320px;
-    height: 35px; 
+    width: 400px;
+    height: 45px; 
     position: absolute;
     margin-top: 15px; 
 }
 .inprice{
-    width: 130px;
-    height: 25px;
+    width: 150px;
+    height: 35px;
     border: none;
     box-shadow:0 0 2px rgb(102, 48, 71);
     border-radius: 4px;
-    color:rgb(172, 104, 133);
+    color:rgb(173, 145, 157);
     padding-left: 5px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     margin-left: 10px;
+    letter-spacing: 0.1em;
 }
 .inprice::-webkit-input-placeholder{
-    color:rgb(231, 214, 231);
-    font-size: 12px;   
+    color:rgb(209, 198, 209);
+    font-size: 14px;   
+    letter-spacing: 0.1em;
 }
 .priceicon{
-    color: rgb(207, 171, 187);
-    font-size: 14px;
-    width: 26px;
-    height: 26px;
+    color: rgb(199, 182, 189);
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
     text-align: center;
-    line-height: 26px;
+    line-height: 32px;
     background: white;
     border-radius: 4px;
     box-shadow:0 0 2px rgb(102, 48, 71);
-    margin-left: 2px;
+    margin-left: 5px;
+    margin-top: 2px;
     font-weight: 500;
 }
 .joinbuy{
-    width: 70px;
-    height: 25px;
+    width: 75px;
+    height: 35px;
     text-align: center;
     box-shadow: 0 0 2px rgb(185, 103, 128);
     background: rgb(253, 247, 249);
-    font-size:12px;
+    font-size:14px;
     border-radius: 5px;
     font-weight: 500;
-    color: rgb(168, 95, 128);
-    line-height: 25px;
-    margin-left: 66px;
+    color: rgb(214, 168, 189);
+    line-height: 35px;
+    margin-left: 106px;
     margin-top: 2px;
     cursor: pointer;
    

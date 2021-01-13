@@ -1,21 +1,21 @@
 <template>
     <div>
-        <div class="buyrule"><router-link to="/Homepage" class="back">返回画廊</router-link><span style="margin-left:200px;">! 为保证公平公正的拍卖过程 请用户在参与拍卖前仔细阅读拍卖规则 若未阅读并同意拍卖规则将不能参与拍卖</span><span class="rules">查看拍卖规则</span></div>
+        <div class="buyrule"><router-link to="/Homepage" class="back"><< 返回画廊</router-link><span style="margin-left:300px;">! 为保证公平公正的拍卖过程 请用户在参与拍卖前仔细阅读拍卖规则 若未阅读并同意拍卖规则将不能参与拍卖</span><span class="rules">查看拍卖规则</span></div>
         <div class="showbox">
             <div class="showtop">
-                <div class="imgview"><img src="../../assets/img/15.jpg"  /></div>
+                <div class="imgview"><img src="../../assets/img/16.jpg"  /></div>
                 <div class="joinbox">
                     <div class="board">
-                        <span style="margin-left:-10px;">当前最高出价：</span>
+                        <span style="margin-left:-15px;">当前最高出价：</span>
                         <span>1,000,000元</span>
-                        <span style="margin-left:10px;">出价者：</span>
+                        <span style="margin-left:25px;">出价者：</span>
                         <span>016号</span>
                     </div>
                     <div class="joincontent">
                         <div class="nowcall">
                             <div class="usercall">
                                 <div class="callnumber">0106号</div>
-                                <div><el-avatar class="callicon" size="medium" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div> 
+                                <div><el-avatar class="callicon" size="large" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div> 
                             </div>
                             <div class="pricecall">
                                 <!-- <div style="font-size:12px;transform:scale(0.8);margin-left:35px;">当前出价</div> -->
@@ -27,7 +27,7 @@
                         <div class="nowcall">
                             <div class="usercall">
                                 <div class="callnumber">0107号</div>
-                                <div><el-avatar class="callicon" size="medium" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div>    
+                                <div><el-avatar class="callicon" size="large" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div>    
                             </div>
                             <div class="pricecall">
                                 <!-- <div style="font-size:12px;transform:scale(0.8);margin-left:35px;">当前出价</div> -->
@@ -39,7 +39,7 @@
                         <div class="nowcall">
                             <div class="usercall">
                                 <div class="callnumber">0109号</div>
-                               <div><el-avatar class="callicon" size="medium" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div>   
+                               <div><el-avatar class="callicon" size="large" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div>   
                             </div>
                             <div class="pricecall">
                                 <!-- <div style="font-size:12px;transform:scale(0.8);margin-left:35px;">当前出价</div> -->
@@ -51,7 +51,7 @@
                         <div class="nowcall">
                             <div class="usercall">
                                 <div class="callnumber">0116号</div>
-                               <div><el-avatar class="callicon" size="medium" :src="circleUrl" @error="errorHandler"></el-avatar></div> 
+                               <div><el-avatar class="callicon" size="large" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div> 
                             </div>
                             <div class="pricecall">
                                 <!-- <div style="font-size:12px;transform:scale(0.8);margin-left:35px;">当前出价</div> -->

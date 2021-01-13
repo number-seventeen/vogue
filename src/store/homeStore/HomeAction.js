@@ -7,7 +7,6 @@ export default{
         
     },
     changetime({commit},data){
-        console.log("hao",data)
         commit(types.CHANGE_COUNT,data)
     },
 }

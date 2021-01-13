@@ -12,8 +12,8 @@ import Learn from '@/components/home/Learn.vue'
 import shareground from '@/components/home/shareground.vue'
 import User from '@/components/home/User.vue'
 import svg from '@/components/home/svgdemo.vue'
-import hao from '@/components/home/hao.vue'
-import go from '@/components/home/go.vue'
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -84,18 +84,7 @@ export default new Router({
       meta:{index:10},
       component: svg
     },
-    {
-      path: '/hao',
-      name: 'hao',
-      meta:{index:11},
-      component: hao
-    },
-    {
-      path: '/go',
-      name: 'go',
-      meta:{index:12},
-      component: go
-    },
+    
 
   ]
 })

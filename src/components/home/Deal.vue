@@ -30,7 +30,8 @@
 						<ul>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="works_img"><img src="../../assets/img/19.jpg" style="width:350px; height:260px; margin:10px 0px 0px 10px;"/></div>
+									<div class="point"></div>
+									<div class="works_img"><img src="../../assets/img/19.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -58,7 +59,8 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="works_img"> <img src="../../assets/img/18.jpg" style="width:350px; height:260px; margin:10px 0px 0px 10px;"/></div>
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/18.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -86,7 +88,8 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:350px; height:260px; margin:10px 0px 0px 10px;"/></div>
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -114,7 +117,8 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="works_img"> <img src="../../assets/img/19.jpg" style="width:350px; height:260px; margin:10px 0px 0px 10px;"/></div>
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/19.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -142,7 +146,8 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:350px; height:260px; margin:10px 0px 0px 10px;"/></div>
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -170,7 +175,8 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="works_img"> <img src="../../assets/img/19.jpg" style="width:350px; height:260px; margin:10px 0px 0px 10px;"/></div>
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/19.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -198,7 +204,8 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="works_img"> <img src="../../assets/img/19.jpg" style="width:350px; height:260px; margin:10px 0px 0px 10px;"/></div>
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/19.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -226,7 +233,8 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="works_img"> <img src="../../assets/img/18.jpg" style="width:350px; height:260px; margin:10px 0px 0px 10px;"/></div>
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/18.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -254,7 +262,8 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:350px; height:260px; margin:10px 0px 0px 10px;"/></div>
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -280,6 +289,94 @@
 									</div>	
 								</div>
 							</li>
+							<li class="deal-box">
+								<div class="works_card">
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
+									<div class="work_brief">
+										<ul>
+											<li>
+												<span>*作品名称:</span><div class="wcall" >《<span>群鸦飞舞的稻田</span>》</div>
+											</li>
+											<li>
+												<span>*创作年份:</span><div class="wtime"><span style="margin-left:6px;">2020.03.18</span></div>
+											</li>
+											<li>
+												<span>*画家姓名:</span><div class="wname"><span style="margin-left:6px;">{{Tname}}</span></div>
+											</li>
+											<li>
+												<span>*参与人数:</span><div class="wjoin"><span style="margin-left:6px;">{{counts}}</span></div>
+											</li>
+											<li>
+												<span>*剩余时间:</span><div class="wrest"><span style="margin-left:6px;">{{hr}}:{{min}}:{{sec}}</span></div>
+											</li>
+											<li>
+												<span>*当前价格:</span><div class="wprice"><span style="margin-left:6px;">2,000</span><span style="margin-left:5px;">RMB</span></div>
+											</li>	
+										</ul>
+										<div  class="join" @click="ToBuy()">查看详情</div>
+									</div>	
+								</div>
+							</li>
+							<li class="deal-box">
+								<div class="works_card">
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
+									<div class="work_brief">
+										<ul>
+											<li>
+												<span>*作品名称:</span><div class="wcall" >《<span>群鸦飞舞的稻田</span>》</div>
+											</li>
+											<li>
+												<span>*创作年份:</span><div class="wtime"><span style="margin-left:6px;">2020.03.18</span></div>
+											</li>
+											<li>
+												<span>*画家姓名:</span><div class="wname"><span style="margin-left:6px;">{{Tname}}</span></div>
+											</li>
+											<li>
+												<span>*参与人数:</span><div class="wjoin"><span style="margin-left:6px;">{{counts}}</span></div>
+											</li>
+											<li>
+												<span>*剩余时间:</span><div class="wrest"><span style="margin-left:6px;">{{hr}}:{{min}}:{{sec}}</span></div>
+											</li>
+											<li>
+												<span>*当前价格:</span><div class="wprice"><span style="margin-left:6px;">2,000</span><span style="margin-left:5px;">RMB</span></div>
+											</li>	
+										</ul>
+										<div  class="join" @click="ToBuy()">查看详情</div>
+									</div>	
+								</div>
+							</li>
+							<li class="deal-box">
+								<div class="works_card">
+									<div class="point"></div>
+									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
+									<div class="work_brief">
+										<ul>
+											<li>
+												<span>*作品名称:</span><div class="wcall" >《<span>群鸦飞舞的稻田</span>》</div>
+											</li>
+											<li>
+												<span>*创作年份:</span><div class="wtime"><span style="margin-left:6px;">2020.03.18</span></div>
+											</li>
+											<li>
+												<span>*画家姓名:</span><div class="wname"><span style="margin-left:6px;">{{Tname}}</span></div>
+											</li>
+											<li>
+												<span>*参与人数:</span><div class="wjoin"><span style="margin-left:6px;">{{counts}}</span></div>
+											</li>
+											<li>
+												<span>*剩余时间:</span><div class="wrest"><span style="margin-left:6px;">{{hr}}:{{min}}:{{sec}}</span></div>
+											</li>
+											<li>
+												<span>*当前价格:</span><div class="wprice"><span style="margin-left:6px;">2,000</span><span style="margin-left:5px;">RMB</span></div>
+											</li>	
+										</ul>
+										<div  class="join" @click="ToBuy()">查看详情</div>
+									</div>	
+								</div>
+							</li>
+
 						</ul>	
 					</div>	
 				</div>	

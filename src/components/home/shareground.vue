@@ -7,14 +7,14 @@
 				<div class="paixu">
 					<div>
 						<ul>
-								<li class="paixu_item"><div  class="p_pop">人物类</div></li>
-								<li class="paixu_item"><div  class="p_pop">风景类</div></li>
-								<li class="paixu_item"><div  class="p_end">建筑类</div></li>
-								<li class="paixu_item"><div  class="p_start">静物类</div></li>
-								<li class="paixu_item"><div  class="p_up">冷色调</div></li>
-								<li class="paixu_item"><div  class="p_down">暖色调</div></li>
-								<li class="paixu_item"><div  class="p_down">民俗类</div></li>
-								<li class="paixu_item"><div  class="p_down">历史类</div></li>
+								<li class="paixu_item"><div  class="p_person">人物类</div></li>
+								<li class="paixu_item"><div  class="p_view">风景类</div></li>
+								<li class="paixu_item"><div  class="p_build">建筑类</div></li>
+								<li class="paixu_item"><div  class="p_stay">静物类</div></li>
+								<li class="paixu_item"><div  class="p_cold">冷色调</div></li>
+								<li class="paixu_item"><div  class="p_warm">暖色调</div></li>
+								<li class="paixu_item"><div  class="p_coustom">民俗类</div></li>
+								<li class="paixu_item"><div  class="p_history">历史类</div></li>
 						</ul>
 					</div>
 					<div style="display:flex;margin-left:25px;">
@@ -95,6 +95,47 @@ export default {
 					url:require('../../assets/img/68.jpg'),
 					like:100,
 				},
+				{
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+				},
+				{
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+				},
+				{
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+				},
+				{
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+				},
+				{
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+				},
+				{
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+				},
+				{
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+				},
+				{
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+				},
+				{
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+				},
+				{
+					url:require('../../assets/img/68.jpg'),
+					like:100,
+				},
+
 				
 			]
 		}

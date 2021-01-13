@@ -61,12 +61,13 @@ export default {
   
   
 }
+html{
+  min-width: 1920px;
+  min-height: 1080px;
+}
 body{
   margin: 0;
-  /* min-width: 1439px; */
-  overflow: auto;
-  height: 100%;
- 
+  overflow: hidden; 
 }
 ::-webkit-scrollbar {
      width: 2 !important;
@@ -153,6 +154,9 @@ body{
 /* 注册页面radio样式 */
 .chooseblong .el-radio__inner{
 	border: 1px solid #bda5c8;
+}
+.chooseblong .el-radio__label{
+  font-size: 16px;
 }
 .chooseblong .el-radio__input.is-checked .el-radio__inner{
     border-color: #f6edfa;

@@ -17,8 +17,8 @@ a{
 	opacity: 0.99;	
 }
 .backimg{
-	width: 1440PX;
-	height: 821PX;
+	width: 100%;
+	height: 100%;
 }
 .appname{
 	width: 500px;

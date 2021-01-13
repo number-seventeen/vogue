@@ -20,12 +20,12 @@ a{
 	opacity: 0.5;	
 }
 .backimg{
-	width: 1440PX;
-	height: 821PX;
+	width: 100%;
+	height: 100%;
 }
 
 .item_fram{
-	width: 1390px;
+	width: 1820px;
 	height: 100%;
 	margin-left: 49px;
 	flex-flow: column;
@@ -33,38 +33,39 @@ a{
    
 }
 .card_wrap{
-	width: 1350px;
-	height: 760px;
+	width: 1800px;
+	height: 1080px;
     overflow: scroll;
     margin-left: -2px;
 	
 }
 .pic_show{
-	width: 1300px;
+	width: 1800px;
 	float: left;
-    margin-left: 20px;	
+	margin-left: 20px;	
 }
 	
 .toshow{
-	width: 360px;
-	height: 350px;
+	width: 380px;
+	height: 330px;
 	box-shadow: 0 0 2px rgb(78, 45, 51);
 	margin-left: 54px;
 	border-radius: 10px;
-	margin-bottom: 30px;
-    padding-top: 5px;
+	margin-bottom: 15px;
+    padding-top:5px;
     background: rgba(232, 239, 243, 0.931);
 }
 .pic_show li{
 	display: inline-block;
+	margin-top: 5px;
 }
 .to_pic{
-	width: 360px;
+	width: 380px;
 	height: 253px;
 	text-align: center;
 }
 .sharepic{
-	width: 345px;
+	width: 365px;
 	height: 251px;
 	border-radius: 4px;
 }
@@ -97,8 +98,8 @@ a{
 
 
 .paixu{
-	width:1300px;
-	height: 40px;
+	width:1800px;
+	height: 50px;
 	line-height: 40px;
 	margin-left: 17px;
 	background: rgb(238, 242, 246);
@@ -112,6 +113,7 @@ a{
 	display: flex;
 	margin: 0;
 	padding: 0;
+	margin-top: 7px;
 	
 }
 .paixu ul li{
@@ -119,17 +121,21 @@ a{
 	margin-right: 25px;	
 }
 .paixu_item{
-	font-size: 12px;
-	font-weight: 600;
+	font-size: 16px;
+	font-weight: bold;
 	cursor:pointer;
+	font-family: A;
+	letter-spacing: 0.2em;
+	color: #98bfd6;
 }
 .paixu_back a{
-	margin-left: 70px;
+	margin-left: 400px;
+	position: relative;
+	top:7px;
 	font-weight: 600;
-	font-size: 14px;
+	font-size: 17px;
 	color: rgba(53, 87, 131, 0.493);
 	cursor: pointer;
-	margin-top: 2px;
 }
 
 .paixu_serch input{
@@ -141,51 +147,19 @@ a{
 	padding: 5px;
 	caret-color:#D6CFE3;
 	padding-left: 5px;
-	color:#705499;
+	color:#82b2e9;
 	background:#dfe7f06c;
+	margin-top: 10px;
+	font-family:A;
+	font-weight: bold;
+	letter-spacing: 0.1rem;
 }
 .paixu_serch input::placeholder{
 	font-size: 10px;
-	color: rgb(197, 196, 196);
+	color: rgb(184, 214, 231);
 }
 .search_img{
 	cursor: pointer;
-	margin-top: 5px;
+	margin-top: 8px;
 }
-.p_go{
-	color: #BCBCEA;
-	border-radius: 12px;
 
-	
-}
-.p_pop{
-	
-	color:#BACEEF;
-	border-radius: 12px;
-
-	
-}
-.p_end{
-	color: #BCBCEA;
-	border-radius: 12px;
-	
-	
-}
-.p_start{
-	color:#9B9BCE;
-	border-radius: 12px;
-	
-	
-	
-}
-.p_up{
-	color: #8D91DC;
-	border-radius: 12px;
-	opacity: 0.8;
-	
-}
-.p_down{
-	color: #6f72be;
-	border-radius: 12px;
-	opacity: 0.8;
-}
