@@ -30,7 +30,7 @@
 						<ul>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"><img src="../../assets/img/19.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -59,7 +59,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/18.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -88,7 +88,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -117,7 +117,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/19.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -146,7 +146,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -175,7 +175,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/19.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -204,7 +204,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/19.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -233,7 +233,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/18.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -262,7 +262,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -291,7 +291,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -320,7 +320,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>
@@ -349,7 +349,7 @@
 							</li>
 							<li class="deal-box">
 								<div class="works_card">
-									<div class="point"></div>
+									
 									<div class="works_img"> <img src="../../assets/img/17.jpg" style="width:300px; height:190px; margin:10px 0px 0px 10px;"/></div>
 									<div class="work_brief">
 										<ul>

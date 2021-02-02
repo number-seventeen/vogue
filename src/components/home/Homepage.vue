@@ -144,10 +144,6 @@ export default {
 					head:'Sale'
 				},
 				{
-					name:'绘画指导',
-					head:'Learn'
-				},
-				{
 					name:'动态广场',
 					head:'Ground'
 				},

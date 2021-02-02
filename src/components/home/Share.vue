@@ -25,8 +25,10 @@
 						</el-dropdown>
 					</el-col>
 				</div>
-
 			</div>
+
+			<div class="sharebutton"><i class="el-icon-arrow-down" @click="handleShare()">添加分享</i></div>
+
 			<div class="items_nav">
 					<ul class="item_nav">
 						<li class="navlist" v-for="(nlist,index) in navs" :key="index" @click="ChangeCu(index)" :class="{cupage:index===pageid}">
@@ -35,71 +37,45 @@
 					</ul>	
 			</div>
 			<div class="content">
-		
 				<div class="item_fram">
 					<div class="scenery_auction">
 								<div class="works_card">
 									<div class="works_img">
-										<div class="history_img"><img src="../../assets/img/09.jpg" style="width:450px;height:340px;"/></div>
+										<div class="history_img"><img src="../../assets/img/09.jpg" style="width:700px;height:490px;"/></div>
 										<div class="history_list">
 											<div class="list_title">
 												历史分享
 											</div>
 											<div class="h_list">
-												<ul>
-													<li><div class="name">
-														<span>《</span>
-														群鸦飞舞的稻田
-														<span>》</span>
+												<el-collapse v-model="activeName" accordion>
+													<el-collapse-item name="1">
+														 <template slot="title">
+																作品名称：《星月夜》 上传时间：2020年12月25日
+														</template>
+														<div class="h_img">
+															<img src="../../assets/img/09.jpg" style="width:300px;height:200px;"/>
 														</div>
-														<div style="width:170px;"><span>上传时间：2020年1月29日</span></div>
-														<el-col :span="12" style="width:60px;height:20px; margin-top:-1px; margin-left:20px;">
-															<el-dropdown trigger="click" style="width:60px;height:20px;">
-																<span class="el-dropdown-link" style="font-size:12px; letter-spacing:0.1em;color:rgba(90, 120, 170, 0.63);" >更多详情</span>
-																<el-dropdown-menu slot="dropdown">
-																	<el-dropdown-item ><router-link to="/">查看详情</router-link></el-dropdown-item>
-																	<el-dropdown-item ><router-link to="/">删除</router-link></el-dropdown-item>
-																	
-																</el-dropdown-menu>
-															</el-dropdown>
-														</el-col>
-													</li>
-													<li><div class="name">
-														<span>《</span>
-														群鸦飞舞的稻田
-														<span>》</span>
-														</div>
-														<div style="width:170px;"><span>上传时间：2020年3月29日</span></div>
-														<el-col :span="12" style="width:60px;height:20px; margin-top:-1px; margin-left:20px;">
-															<el-dropdown trigger="click" style="width:60px;height:20px;">
-																<span class="el-dropdown-link" style="font-size:12px; letter-spacing:0.1em;color:rgba(90, 120, 170, 0.63);" >更多详情</span>
-																<el-dropdown-menu slot="dropdown">
-																	<el-dropdown-item ><router-link to="/">查看详情</router-link></el-dropdown-item>
-																	<el-dropdown-item ><router-link to="/">删除</router-link></el-dropdown-item>
-																	
-																</el-dropdown-menu>
-															</el-dropdown>
-														</el-col>
-													</li>
-													<li><div class="name">
-														<span>《</span>
-														群鸦飞舞的稻田
-														<span>》</span>
-														</div>
-														<div style="width:170px;"><span>上传时间：2020年3月29日</span></div>
-														<el-col :span="12" style="width:60px;height:20px; margin-top:-1px; margin-left:20px;">
-															<el-dropdown trigger="click" style="width:60px;height:20px;">
-																<span class="el-dropdown-link" style="font-size:12px; letter-spacing:0.1em;color:rgba(90, 120, 170, 0.63);" >更多详情</span>
-																<el-dropdown-menu slot="dropdown">
-																	<el-dropdown-item ><router-link to="/">查看详情</router-link></el-dropdown-item>
-																	<el-dropdown-item ><router-link to="/">删除</router-link></el-dropdown-item>
-																	
-																</el-dropdown-menu>
-															</el-dropdown>
-														</el-col>
-													</li>
-													
-												</ul>
+														
+													</el-collapse-item>
+													<el-collapse-item name="2">
+														 <template slot="title">
+																作品名称：《星月夜》 上传时间：2020年12月25日
+														</template>
+														<div class="h_img"><img src="../../assets/img/11.jpg" style="width:300px;height:200px;"/></div>
+													</el-collapse-item>
+													<el-collapse-item name="3">
+														 <template slot="title">
+																作品名称：《星月夜》 上传时间：2020年12月25日
+														</template>
+														<div class="h_img"><img src="../../assets/img/12.jpg" style="width:300px;height:200px;"/></div>
+													</el-collapse-item>
+													<el-collapse-item name="4">
+														 <template slot="title">
+																作品名称：《星月夜》 上传时间：2020年12月25日
+														</template>
+														<div class="h_img"><img src="../../assets/img/13.jpg" style="width:300px;height:200px;"/></div>
+													</el-collapse-item>
+												</el-collapse>
 											</div>
 										</div>
 									</div>
@@ -159,82 +135,20 @@
 								</div>
 					</div>	
 				</div>
-				<div class="hot">
-					<div class="add-img">
-						<!-- 上传图片组件 -->
-						<div class="add">
-							<el-upload
-							action="#"
-							list-type="picture"
-							:limit="1"
-							:auto-upload="false">
-								<span class="new"><i class="el-icon-plus" /></span>
-								<div slot="file" slot-scope="{file}">
-									<img
-										class="el-upload-list__item-thumbnail"
-										:src="file.url" alt=""/>
-								
-									<span class="el-upload-list__item-actions">
-										<span
-										class="el-upload-list__item-preview"
-										@click="handlePictureCardPreview(file)"
-										>
-										<i class="el-icon-zoom-in"></i>
-										</span>
-										<span
-										v-if="!disabled"
-										class="el-upload-list__item-delete"
-										@click="handleRemove(file)"
-										>
-										<i class="el-icon-delete"></i>
-										</span>
-									</span>
-								</div>	
-							</el-upload>
-							<el-dialog :visible.sync="dialogVisible">
-							<img width="100%" :src="dialogImageUrl" alt="">
-							</el-dialog>
-						</div>
-						<!-- 上传图片组件 -->
-					</div>	
-					<div class="share_info">
-						<ul>
-							<li>
-								<span style="font-size:15px; font-weight:600;">作品名称：</span><input type="text">
-							
-							</li>
-							<li>
-								<span style="font-size:15px; font-weight:600;">画作作者：</span><input type="text">
-							</li>
-							<li>
-								<span style="font-size:15px; font-weight:600;">创作年份：</span><input type="text">
-							</li>
-							<li>
-								<span style="font-size:15px; font-weight:600;">画作类型：</span><input type="text">
-							</li>
-							<li>
-								<span style="font-size:15px; font-weight:600;">画作简介：</span>
-							</li>
-							<li>
-								<textarea style="resize: none;"/>
-							</li>
-							<li>
-								<div class="submit"><p style="font-size:25px; margin:0;">上传</p></div>
-							</li>
-						</ul>
-					</div>
-				
-				</div>
 				<div class="pic_show">
 				</div>
 					
 			</div>
 			<!-- 内容盒子底部 -->
 		</div>
+
+		<ShareDawer ref="sharedawer"></ShareDawer>
 	</div>
 </template>
 <script>
+import ShareDawer from '../Dialog/ShareDawer.vue';
 export default {
+	components:{ShareDawer},
     data() {
       return {
         dialogImageUrl: '',
@@ -245,6 +159,7 @@ export default {
 		bk:require('../../assets/img/52.jpg'),
 		RouterHead:'',
 		RouterFoot:'',
+		activeName: '0',
 		navs:[
 			{
 				name:'艺术之廊',
@@ -259,28 +174,37 @@ export default {
 				head:'Sale'
 			},
 			{
-				name:'绘画指导',
-				head:'Learn'
-			},
-			{
 				name:'动态广场',
 				head:'Ground'
 			},
 		],
 		pageid:1,
       };
-    },
+	},
+	mounted(){
+		// this.pageid=this.$route.query.pageid
+		this.islogin=this.$route.query.islogin
+		if(this.islogin==true){
+			this.logined="退出登录"
+		}
+		else if(this.islogin==false){
+			this.logined="登录"
+		}
+
+	},
     methods: {
 		handleRemove(file) { 
 			console.log(file);
 		},
 		handlePictureCardPreview(file) {
 			this.dialogImageUrl = file.url;
-			this.dialogVisible = true;
-			
+			this.dialogVisible = true;	
 		},
 		handleDownload(file) {
 			console.log(file);
+		},
+		handleShare(){
+			this.$refs.sharedawer.sharebox=true
 		},
 		ChangeCu(i){
 			this.pageid=i
@@ -299,19 +223,13 @@ export default {
 
 	},
 
-
-	mounted(){
-		// this.pageid=this.$route.query.pageid
-		this.islogin=this.$route.query.islogin
-		if(this.islogin==true){
-			this.logined="退出登录"
-		}
-		else if(this.islogin==false){
-			this.logined="登录"
-		}
-
-	},
 }
 </script>
-<style src='../../assets/css/share.css' scoped>	
+<style  lang="scss" scoped>	
+@import "../../assets/css/share.scss";
+.el-collapse{
+	width: 1185px;
+	border-top: 1px solid rgb(204, 204, 187);
+	margin-left: 20px;
+}
 </style>

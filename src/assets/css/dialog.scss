@@ -1,0 +1,16 @@
+//分享模块的抽屉组件
+.sharebox{
+    background: transparent;
+    min-width: 500px !important;
+}
+.add .el-upload-list--picture .el-upload-list__item{
+    width:455px;
+    height: 290px;
+    border:none;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+.add .el-upload-list{
+    margin-top:-25px;
+}
+  
