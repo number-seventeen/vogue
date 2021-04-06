@@ -109,7 +109,6 @@ export default {
 .el-dialog__wrapper{
     margin-left: 200px;
 }
-
 .name{
 	width: 170px;
 	height: 20px;

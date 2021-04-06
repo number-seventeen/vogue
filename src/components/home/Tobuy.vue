@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="buyrule"><router-link to="/Homepage" class="back"><< 返回画廊</router-link><span style="margin-left:300px;">! 为保证公平公正的拍卖过程 请用户在参与拍卖前仔细阅读拍卖规则 若未阅读并同意拍卖规则将不能参与拍卖</span><span class="rules" @click="CheckRule()">查看拍卖规则</span></div>
+        <div class="buyrule"><router-link to="/Homepage" class="back">《 返回画廊</router-link><span style="margin-left:300px;">! 为保证公平公正的拍卖过程 请用户在参与拍卖前仔细阅读拍卖规则 若未阅读并同意拍卖规则将不能参与拍卖</span><span class="rules" @click="CheckRule()">查看拍卖规则</span></div>
         <div class="showbox">
             <div class="showtop">
                 <div class="imgview"><img src="../../assets/img/16.jpg"  /></div>
