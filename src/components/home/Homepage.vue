@@ -45,7 +45,7 @@
 											<router-link to="/Deal" style="color:rgb(129, 147, 167);font-weight:600;">查看更多拍卖</router-link>
 										</div>
 									</div>
-									<div class="works_img"><img src="../../assets/img/54.jpg" style="width:620px; height:420px;border:2px solid gray; margin:20px 0px 0px 10px;opacity:0.8;"/></div>
+									<div class="works_img"><img src="../../assets/img/54.jpg" style="width:740px; height:510px;border:2px solid gray; margin:22px 0px 0px 22px;opacity:0.8;"/></div>
 									<div class="work_brief">
 										<ul>
 											<li>
@@ -70,7 +70,7 @@
 										<div  class="join" @click="ToBuy()">查看详情</div>
 									</div>	
 								</div>
-								<div v-show="downshow" style="margin-top:-50px;margin-left:430px;font-size:12px;font-weight:600;font-family:A;color:rgba(114, 158, 206, 0.644);">下滑浏览热门画作分享</div>
+								<div v-show="downshow" style="margin-top:-50px;margin-left:532px;font-size:14px;font-weight:600;font-family:A;color:rgba(114, 158, 206, 0.644);">下滑浏览热门画作分享</div>
 								<div class="chevron" v-show="downshow"><img src="../../assets/img/downarrow.png" style="width:60px;height:40px;" /></div>
 							</li>	
 						</ul>
@@ -83,14 +83,14 @@
 						<li v-for="(hotlist,index) in 9" :key="index" @click="ChangeHot(index)" :class="{cuHot:index===hotid}">
 							<div class="hot_u">
 								<i>Top {{index+1}}</i>
-								<div class="user_icon"><el-avatar :src="uicon" :size="40" fit="scale-down" @error="errorHandler"></el-avatar></div>
-								<div class="user_name">梵高</div>
+								<div class="user_icon"><el-avatar :src="uicon" :size="52" fit="scale-down" @error="errorHandler"></el-avatar></div>
+								<div class="user_name">齐白石</div>
 							</div>
 						</li>	
 					</ul>
 				</div>
 				<div class="pic_show">
-					<div style="font-size:19px;font-weight:600;width:1215px;text-align:center;color:rgba(112, 95, 146, 0.63);">热 门 分 享 画 作 </div>
+					<div style="font-size:22px;font-weight:600;width:1615px;text-align:center;color:#6986b6a1;">热 门 分 享 画 作 </div>
 					<div>
 						<ul>
 							<li v-for="(shareimg,index) in sharebest" :key="index">
@@ -121,7 +121,9 @@
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'
+import Rules from '../Dialog/Rules.vue'
 export default {
+	components:{Rules},
 	data(){
 		return{
 			downshow:true,
@@ -142,10 +144,6 @@ export default {
 				{
 					name:'拍卖画作',
 					head:'Sale'
-				},
-				{
-					name:'绘画指导',
-					head:'Learn'
 				},
 				{
 					name:'动态广场',
@@ -206,7 +204,26 @@ export default {
 					url:require('../../assets/img/61.jpg'),
 					like:100,
 					
-
+				},
+				{	shareid:12,
+					url:require('../../assets/img/61.jpg'),
+					like:100,
+					
+				},
+				{	shareid:15,
+					url:require('../../assets/img/61.jpg'),
+					like:100,
+					
+				},
+				{	shareid:17,
+					url:require('../../assets/img/61.jpg'),
+					like:100,
+					
+				},
+				{	shareid:19,
+					url:require('../../assets/img/61.jpg'),
+					like:100,
+					
 				},
 				{	shareid:5,
 					url:require('../../assets/img/69.jpg'),
@@ -243,10 +260,8 @@ export default {
 	mounted(){
 		this.imgHeight = document.documentElement.clientHeight || document.body.clientHeight;
 		window.addEventListener('mousewheel',this.handleScroll)
-		console.log("df",this.counts)
-		console.log("ms",this.msec)
 		this.countdown()
-		for (let i = 0; i <=8; i++) {
+		for (let i = 0; i <8; i++) {
 			var best=this.shareimgs[i]
 			this.sharebest.push(best)
 		}

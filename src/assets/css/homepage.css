@@ -28,8 +28,8 @@ button{
 	
 }
 .backimg{
-	width: 1440PX;
-	height: 821PX;
+	width: 100%;
+	height: 100%;
 }
 .main_head{
 	width: 100%;
@@ -104,48 +104,49 @@ button{
 	line-height: 45px;
 }
 .items_nav{
-	width: 130px;
-	height: 660px;
+	width: 1350px;
+	height: 65px;
 	font-size: 20px;
 	font-weight: 600;
 	text-align: center;
-	float: left;
+	position: absolute;
+	top: 0;
+	left: 270px;
 	z-index: 10;
 	font-family: A;
-	box-shadow: 0 0 5px gray;
-	margin-top: 35px;
-	margin-left: 1px;
+	margin-top: 10px;
+	/* box-shadow: 0 0 5px gray; */
 	border-radius:15px 15px 15px 15px; 
 
 }
 .item_nav li{
-	margin-top: 70px;
-	height: 30px;
-	margin-left: -2px;
+	margin-left: 70px;
 	font-size: 17px;
 	color: rgb(129, 147, 167);
 	cursor: pointer;
 	transition: .25s linear;
+	display: inline;
 }
 .cupage{
 	color: #0840818f !important;  
 	font-size: 24px !important; 
 }
 .item_fram{
-	width: 1000px;
-	height: 650px;
+	width: 1230px;
+	height: 830px;
 	margin-top: 10px;
 	float: left;
 	margin-left: 15px;
+	
 
 }
 .viewmore{
-	font-size:12px;
+	font-size:16px;
 	font-family:A;
 	margin-top:-28px;
-	margin-left:20px;
+	margin-left:27px;
 	height:25px;
-	width:930px; 
+	width:1110px; 
 	padding-top:25px;
 	padding-left:12px;
 	box-shadow: 0px 5px 5px -5px gray;
@@ -153,56 +154,55 @@ button{
 
 .scenery_auction{
 	margin-left: 10px;
-	width: 760px;
-	height: 640px;
-	
-
+	width: 1200px;
+	height: 830px;
 }
 .works_card{
-	width: 980px;
-	height: 663px;
+	width: 1180px;
+	height: 800px;
 	box-shadow: 0 0 5px rgba(114, 115, 116, 0.644);
 	border-radius: 20px 20px 10px 10px;
-	margin-top:50px; 
+	margin-top:70px; 
 	
 
 }
 .works_img{
 	float: left;
-	width: 640px;
-	height: 460px;
+	width: 790px;
+	height: 560px;
 	box-shadow: 0 0 5px rgba(3, 3, 3, 0.644);
 	margin-left: 35px;
-	margin-top: 45px;
+	margin-top: 60px;
 	background: rgba(240, 240, 230, 0.479);
 	
 }
 .work_brief{
 	float: left;
-	width: 240px;
-	height: 420px;
+	width: 290px;
+	height: 510px;
 	margin-left: 25px;
-	margin-top: 61px;
+	margin-top: 80px;
 	box-shadow: 0 0 5px rgba(116, 114, 114, 0.644);
 	color:  rgb(144, 165, 189);
 	padding-left: 5px;
 	
 }
 .work_brief ul li{
-	margin-top: 32px;
+	margin-top: 42px;
 	margin-left: 11px;
-	font-size: 14px;
+	font-size: 16px;
 	font-family:A;
 	font-weight: 600;
 	display: flex;
+	letter-spacing: 0.1em;
 }
 .join{
-	margin-left: 65px;
-	margin-top: 65px;
-	height: 30px;
-	width: 100px;
+	margin-left: 76px;
+	margin-top: 90px;
+	height: 40px;
+	width: 130px;
 	text-align: center;
-	line-height:30px;
+	line-height:42px;
 	box-shadow: 0 0 4px rgb(93, 123, 156);
 	color: rgba(84, 133, 185, 0.644);
 	/* background: #ecebeb; */
@@ -210,14 +210,14 @@ button{
 	font-family: A;
 	outline: none;
 	cursor: pointer;
-	font-size: 14px;
+	font-size: 17px;
 	font-weight: 600;
 }
 .hot{
-	width: 230px;
-	margin-top: 30px;
+	width: 280px;
+	margin-top: 52px;
 	margin-left:27px;
-	height: 665px;
+	height: 795px;
 	box-shadow: 0 0 3px rgba(114, 115, 116, 0.644);
 	float: left;
 	border-radius: 10px;
@@ -232,6 +232,7 @@ button{
 }
 .hot li{
 	display: flex;
+	margin-top: 12px;
 }
 
 .hot_head{
@@ -239,17 +240,17 @@ button{
 	color: rgba(62, 107, 155, 0.644);
 	font-family: A;
 	margin-bottom: 12px;
-	margin-left:20px;
-	font-size: 17px;
+	margin-left:27px;
+	font-size: 20px;
 	font-weight: 600;
 
 }
 .user_icon{
-	box-shadow: 0 0 3px rgba(122, 151, 199, 0.644);
+	box-shadow: 0 0 5px rgba(108, 139, 189, 0.644);
 	border-radius: 50px;
-	width: 40px;
-	height: 40px;
-	margin-left: 15px;
+	width: 52px;
+	height: 52px;
+	margin-left: 22px;
 	margin-top: 6px;	
 }
 .el-avatar{
@@ -258,7 +259,7 @@ button{
 }
 .hot_u{
 	margin-top: 8px;
-	width: 180px;
+	width: 240px;
 	height: 60px;
 	display: flex;
 	line-height: 60px;
@@ -267,39 +268,37 @@ button{
 .user_name{
 	height: 45px;
 	position: relative;
-	margin-left: 10px;
+	margin-left: 17px;
 	letter-spacing: 0.15em;
-	top: -3px;
-	color: rgba(135, 156, 190, 0.63);
+	top: 5px;
+	color: #6986b6a1;
 	cursor: pointer;
 	font-family: A;
 	font-weight: 600;
-	font-size: 13px;
-	
-}
-.hot_u i{
-	 position: relative;
-	 top:-5px;
-	 color: rgba(13, 80, 153, 0.644);
-	 
-	 font-family: B;
-}
-.content{
-	width: 1300px;
-	margin-left: 142px;
-	height: 720px;
-	overflow: scroll;
-	
+	font-size: 17px;
 	
 }
 
+.hot_u i{
+	 position: relative;
+	 top:3px;
+	 color: #0d5099a4;
+	 font-size: 19px;
+	 font-family: B;
+}
+.content{
+	width: 1920px;
+	margin-top: 30px;
+	padding-left: 170px;
+	height: 920px;
+	overflow: scroll;	
+}
+
 .pic_show{
-	margin-top: 40px;
-	width: 1215px;
+	margin-top: 80px;
+	width: 1600px;
 	float: left;
-	margin-left: 20px;
-	
-	
+	margin-left: -20px;	
 }
 
 .toshow{
@@ -314,6 +313,7 @@ button{
 }
 .pic_show li{
 	display: inline-block;
+	margin-top: 10px;
 }
 .to_pic{
 	width: 360px;
@@ -326,7 +326,7 @@ button{
 	border-radius: 4px;
 }
 .to_user{
-	margin-top: 10px;
+	margin-top: 20px;
 	display: flex;
 	width: 360px;
 	height: 60px;
@@ -363,12 +363,14 @@ button{
 	height: 45px;
 }
 .sharemore{
-	margin-left:590px;
+	margin-left:768px;
 	margin-top:-10px;
 	font-family:A;
+	font-size: 17px;
 	color:rgba(112, 95, 146, 0.63);
 	font-weight:600;
 	cursor: pointer;
+	letter-spacing: 0.2rem;
 }
 
 .chevron {

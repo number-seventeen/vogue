@@ -20,6 +20,7 @@ export default {
       isRouterShow: true
     }
   },
+  
   watch: {//使用watch 监听$router的变化
     $route(to, from) {
       //如果to索引大于from索引,判断为前进状态,反之则为后退状态
@@ -55,28 +56,31 @@ export default {
 
 <style>
 @import './assets/common/font/font.css';
+@import "./assets/css/dialog.scss";
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   
   
 }
+html{
+  min-width: 1920px;
+  min-height: 1080px;
+}
 body{
   margin: 0;
-  /* min-width: 1439px; */
-  overflow: auto;
-  height: 100%;
- 
+  overflow: hidden; 
 }
 ::-webkit-scrollbar {
-     width: 2 !important;
+     width: 0 !important;
 }
 ::-webkit-scrollbar {
-     width: 2 !important;height: 0;
+     width: 0 !important;height: 0;
 }
 .learnad .el-carousel__button{
 	background: rgb(52, 26, 77);
 }
+
 .slide{
 	width: 700px;
 	height: 500px;
@@ -87,12 +91,7 @@ body{
 .learnad .el-carousel__container{
     height:680px !important;
 }
-.add .el-upload-list--picture .el-upload-list__item{
-    width:275px;
-    height: 190px;
-    border:none;
-    margin-bottom: 10px;
-}
+
 .paimai .el-upload-list--picture .el-upload-list__item{
   height: 290px;
   width:450px;
@@ -101,18 +100,6 @@ body{
 .paimai .el-upload-list{
   margin-top:-8px;
 }
-.add .el-upload-list{
-  margin-top:-30px;
-}
-/* .show .el-dialog__header {
-  background: #494949;
-} 
-.show .el-dialog__body{
-  background: #494949;
-}
-.show .el-dialog__headerbtn .el-dialog__close{
-	color: rgb(167, 167, 167);
-} */
 
 
 
@@ -154,6 +141,9 @@ body{
 .chooseblong .el-radio__inner{
 	border: 1px solid #bda5c8;
 }
+.chooseblong .el-radio__label{
+  font-size: 16px;
+}
 .chooseblong .el-radio__input.is-checked .el-radio__inner{
     border-color: #f6edfa;
     background: #3f4347;
@@ -164,4 +154,25 @@ body{
 .chooseblong .el-radio__input.is-checked+.el-radio__label{
   color: #e7dcec;
 }
+.h_list .el-collapse-item__header{
+  font-size: 15px;
+  font-weight: bold;
+  color: #9bb0be;
+  background: rgba(245, 245, 245, 0.39);
+  padding-left: 20px;
+  border-bottom: 1px solid rgb(204, 204, 187);
+}
+.h_list .el-collapse-item__wrap{
+  background: rgba(245, 245, 245, 0.39);
+  padding: 20px;
+  border-bottom: 1px solid rgb(204, 204, 187);
+}
+.h_list .el-collapse-item__content{
+  padding-bottom: 0;
+}
+
+.el-form-item__label{
+	color: white !important;
+}
+
 </style>

@@ -8,12 +8,12 @@ import Share from '@/components/home/Share.vue'
 import Sale from '@/components/home/Sale.vue'
 import Deal from '@/components/home/Deal.vue'
 import Tobuy from '@/components/home/Tobuy.vue'
-import Learn from '@/components/home/Learn.vue'
+import Ground from '@/components/home/Ground.vue'
 import shareground from '@/components/home/shareground.vue'
 import User from '@/components/home/User.vue'
 import svg from '@/components/home/svgdemo.vue'
-import hao from '@/components/home/hao.vue'
-import go from '@/components/home/go.vue'
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -61,10 +61,10 @@ export default new Router({
       component: Tobuy
     },
     {
-      path: '/Learn',
-      name: 'Learn',
+      path: '/Ground',
+      name: 'Ground',
       meta:{index:7},
-      component: Learn
+      component: Ground
     },
     {
       path: '/shareground',
@@ -84,18 +84,7 @@ export default new Router({
       meta:{index:10},
       component: svg
     },
-    {
-      path: '/hao',
-      name: 'hao',
-      meta:{index:11},
-      component: hao
-    },
-    {
-      path: '/go',
-      name: 'go',
-      meta:{index:12},
-      component: go
-    },
+    
 
   ]
 })

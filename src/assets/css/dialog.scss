@@ -1,0 +1,96 @@
+//分享模块的抽屉组件
+.sharebox{
+    min-width: 500px !important;
+}
+.drawers .el-drawer{
+    background:rgba(248, 248, 246, 0.925) !important;
+    box-shadow: 0 0 20px rgba(114, 115, 116, 0.644);
+    border-radius: 0px 20px 20px 0px;
+}
+.add .el-upload-list--picture .el-upload-list__item{
+    width:455px;
+    height: 290px;
+    border:none;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+.add .el-upload-list{
+    margin-top:-25px;
+}
+  
+//拍卖模块的翻页组件
+.salepages .el-pagination .btn-next, .el-pagination .btn-prev{
+    background: rgba(255, 255, 255, 0) !important;
+}
+.salepages .el-pagination .el-icon{
+    color:rgb(147, 166, 192) !important;
+    font-size: 18px !important;
+}
+.salepages .el-pager li{
+    background: rgba(255, 255, 255, 0); 
+    color:rgb(147, 166, 192); 
+    font-size: 18px;
+}
+.salepages .el-pager li.active{
+    color: rgb(125, 144, 165);
+}
+.salepages .el-pagination--small .el-pager li:last-child{
+    font-size: 18px; 
+}
+.salepages .el-pagination--small .el-pager li.btn-quicknext{
+    font-size: 18px; 
+    font-weight: bold;
+    color:rgb(170, 185, 204); 
+}
+
+//提示框
+.el-tooltip__popper {
+   background: rgb(252, 252, 244) !important; 
+}
+.el-tooltip__popper.is-light{
+    color:rgb(114, 114, 114);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    border: 1px solid gray;
+}
+
+.UserMessage.el-drawer{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 836px;
+    margin-top: 10px;
+    border-radius: 0px 10px 10px 0px;
+    background: #f0f6fa;
+    box-shadow: 0 0 10px #a9bac2;
+    z-index: 10;
+    
+}
+.el-drawer__wrapper{
+    height: 856px !important;
+    width: 625px;
+    margin-top: 141px;
+    z-index: 10;    
+}
+.UserMessage .el-menu{
+    border-right: 0px solid white ;
+    background: #f0f6fa;
+    
+}
+.UserMessage.el-drawer:focus{
+    outline: none;
+    
+}
+.UserMessage input{
+    width: 240px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    font-size: 16px;
+    color: #5e8ab4;
+    outline: none;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid gainsboro;
+}
+.UserMessage .el-input:focus{
+    border: none;
+}

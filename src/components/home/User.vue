@@ -5,15 +5,14 @@
 	</div>
     <div class="content">
         <div class="usernav">
-            <div class="nlist" v-for="(item,index) in navlist " :key="index"><i :class="item.icon" ></i>{{item.name}}</div>  
-            <div><router-link to="/Homepage" style="color:rgb(87, 120, 180);font-family:DZF;position:absolute;margin-top:18px;margin-left:450px;"><i class="el-icon-arrow-left"  style="font-weight:600;font-size:12px;position:absolute;margin-left:-12px;margin-top:2px;" />返回画廊</router-link></div>
+            <div class="Navs"><div class="nlist" :class="{cuNav:index==Navnum}" v-for="(item,index) in navlist " :key="index" @click="ChangeNav(index)"><i :class="item.icon" ></i>{{item.name}}</div> </div>
+            <div class="backbox"><router-link to="/Homepage" style="color:rgb(87, 120, 180);font-family:DZF;position:relative;top:12px;left:60px;"><i class="el-icon-arrow-left"  style="font-weight:600;font-size:12px;" />返回画廊</router-link></div>
         </div>
         <div class="center">
             <div class="leftcenter">
-
                 <div class="uinfo">
                     <div class="uicon">
-                        <div style="border:1px solid rgb(236, 236, 236); width:90px;height:90px;margin-left:85px; border-radius:50px;"><el-avatar :size="90" :src="usericon" class="icons"></el-avatar></div>
+                        <div style="border:1px solid rgb(236, 236, 236); width:90px;height:90px;margin-left:120px; border-radius:50px;"><el-avatar :size="90" :src="usericon" class="icons"></el-avatar></div>
                         <div class="editicon"><i class="el-icon-edit-outline"></i></div>
                     </div> 
                     <div class="infos">
@@ -40,12 +39,12 @@
                         
                     </div>  
                     <div class="response">
-                        <div style="text-align:center;margin-top:16px;margin-bottom:12px;font-size:14px;"><i class="el-icon-collection" style="margin-right:5px;"></i>代表作品</div>
-                            <div v-for="(resp,index) in resps" :key="index" style="margin-top:6px;text-align:center;font-size:12px;transform:scale(0.92);"><span>《</span> {{resp.name}} <span>》</span></div>
+                        <div style="text-align:center;margin-top:16px;margin-bottom:12px;font-size:19px;"><i class="el-icon-collection" style="margin-right:5px;"></i>代表作品</div>
+                            <div v-for="(resp,index) in resps" :key="index" style="margin-top:12px;text-align:center;font-size:17px;transform:scale(0.92);"><span>《</span> {{resp.name}} <span>》</span></div>
                         </div>
                     <div class="profileset">
-                         <i class="el-icon-setting" style="margin-top:10px;margin-left:10px;"></i>
-                             <span style="font-size:13px;margin-top:14px;margin-left:5px;">修改资料</span> 
+                         <i class="el-icon-setting" style="margin-top:10px;margin-left:10px;font-size:25px;"></i>
+                             <span style="font-size:17px;margin-top:13px;margin-left:5px;">修改资料</span> 
                     </div> 
                 </div>
                 <div class="life">
@@ -75,33 +74,37 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+    <Message ref="message"></Message>
+    <CheckUser ref="checkuser"></CheckUser>
+    <Collection ref="collection"></Collection>
+    <Golden ref="golden"></Golden>
   </div>
 </template>
 
 <script>
+import Message from '../Dialog/Message.vue'
+import CheckUser from '../Dialog/CheckUser.vue'
+import Collection from '../Dialog/Collection.vue'
+import Golden from '../Dialog/Golden.vue'
 export default {
+    components:{Message,CheckUser,Collection,Golden},
     data(){
         return{
             bk:require('../../assets/img/52.jpg'),
             usericon:require('../../assets/img/69.jpg'),
+            Navnum:null,
             navlist:[
                 {
                     name:"消息通知",
                     icon:"el-icon-message"
-
+                    
                 },
                 {
                     name:"实名认证",
-                    icon:"el-icon-user"
-                },
-            
-                {
-                    name:"我的积分",
-                    icon:"el-icon-star-off"
+                    icon:"el-icon-postcard"
                 },
                 {
                     name:"我的收藏",
@@ -167,6 +170,13 @@ export default {
 
             ]
         }
+    },
+    methods:{
+        ChangeNav(index){
+            this.Navnum=index
+            this.$refs.message.ToMessage=true
+            this.$refs.message.messagetype=index
+        } 
     }
 
 }

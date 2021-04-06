@@ -16,16 +16,23 @@
 					<div class="navs" v-for="(inav,index) in indexnav" :key="index" :class="{cuinav:index==navid}" @click="Changeindex(index)" @mouseover="Changeinav(index)" @mouseout="moveinav()">{{inav.name}}</div>
 				</div>
 			</div>
-			
 			<div class="show" v-show="logindialog" :class="{out:this.isout==true}">
 					<div class="login_box"  v-show='showbox=="loginbox" '>
 						<div class="login_pic">
 							login
 						</div>
 						<div class="flogin_box">
-								<div><label style="font-size: 15px;">用户昵称:</label><input type="text" name="uname" v-model="userName" autocomplete="off"></div>
-								<div><label style="font-size: 15px;">登录密码:</label><input type="password" name="pwd" v-model="password" autocomplete="off"></div>				
-								<div class="login_botton" @click="submit()"  style="color:#686669;font-size:13px;font-family:A;">登录</div>
+								<el-form :model="userform" status-icon :rules="loginrule" ref="loginForm" label-width="100px" class="demo-ruleForm">
+									<el-form-item label="用户昵称" prop="username">
+										<el-input type="name" v-model="userform.username" autocomplete="off"></el-input>
+									</el-form-item>
+									<el-form-item label="用户密码" prop="password">
+										<el-input type="password" v-model="userform.password" autocomplete="off"></el-input>
+									</el-form-item>
+									<el-form-item>
+										<el-button type="primary" @click="Login()">登录</el-button>
+									</el-form-item>
+								</el-form>
 						</div>
 						<div class="pwd_forgot">
 							<div><router-link to="/"><span style="color:white;font-weight:600;">忘记密码</span></router-link></div>
@@ -38,19 +45,20 @@
 							<span style="margin-left:10px;">register</span>
 						</div>
 						<div class="form_box">
-							<form>
-								<!-- <div class="usericon"><el-avatar :src="uicon" :size="50" fit="scale-down" @error="errorHandler"></el-avatar></div> -->
-								<div><label style="font-size: 15px;">用户昵称:</label><input type="text" name="userName" v-model="userName" autocomplete="off"></div>
-								<div><label style="font-size: 15px;">登录密码:</label><input type="text" name="password" v-model="password" autocomplete="off"></div>
-								<div><label style="font-size: 15px;">确认密码:</label><input type="text" name="supassword" v-model="supassword" autocomplete="off"></div>
-								<div class="chooseblong" style="cursor: pointer; display:flex; width:260px;height:40px;">
-									<el-radio-group v-model="blong">
-										<el-radio label="个人用户"></el-radio>
-										<el-radio label="工作室"></el-radio>
-									</el-radio-group>
-								</div>				
-								<div class="input_botton" @click="Rsuc()" :class="{joins:rtrue==true}" style="color:#554b4b;font-size:13px;font-family:A;">注册</div>
-							</form>
+							<el-form :model="rigestform" status-icon :rules="rigestrule" ref="rigesterForm" label-width="100px" class="demo-ruleForm">
+								<el-form-item label="用户昵称" prop="username">
+									<el-input type="name" v-model="rigestform.userName" autocomplete="off"></el-input>
+								</el-form-item>
+								<el-form-item label="用户密码" prop="password">
+									<el-input type="password" v-model="rigestform.password" autocomplete="off"></el-input>
+								</el-form-item>
+								<el-form-item label="确认密码" prop="checkpassword">
+									<el-input type="password" v-model="rigestform.checkpassword" autocomplete="off"></el-input>
+								</el-form-item>
+								<el-form-item>
+									<el-button type="primary" @click="Rigester()">注册</el-button>
+								</el-form-item>
+							</el-form>
 						</div>
 					</div>
 
@@ -60,16 +68,12 @@
 						<div class="about three">-点击了解更多关于high light的使用tips-</div>
 					</div>
 				
-					<div class="close"><i class="el-icon-arrow-down" @click="movelogin()"  /></div>
+					<div class="close" ><i class="el-icon-arrow-down" @click="movelogin()" /></div>
 			</div>
 
 
-			<div class="company">
-				<!-- <div class="server">腾讯云服务</div>
-				<div class="server">阿里巴巴</div>
-				<div class="server">暴雪娱乐</div> -->
-			</div>
-			<footer>
+			
+			<div class="footer">
 				<div class="connect">
 					<ul>
 						<li style="font-size: 13px; margin-right: 10px;">Copyright©high light  all rights reserved</li>
@@ -79,7 +83,7 @@
 					</ul>		
 				</div>
 				<div style="font-family:A;">地址: 四川省成都市金堂县西南交通大学希望学院</div>
-			</footer>
+			</div>
 		</div>
 
 	</div>	
@@ -100,6 +104,39 @@ export default {
 			blong:'',
 			supassword:'',
 			rtrue:false,
+			userform:{
+				username:'',
+				password:''
+			},
+			rigestform:{
+				username:'',
+				password:'',
+				checkpassword:''
+			},
+			loginrule:{
+				userName:[
+					{ message: '请输入用户昵称', trigger: 'blur' },
+            		{ min: 2, max: 8, message: '长度在 2 ～ 8 个字符', trigger: 'blur' }
+				],
+				password:[
+					{  message: '请输入用户密码', trigger: 'blur' },
+            		{ min: 6, max: 12, message: '长度在 6 ～ 12 个字符', trigger: 'blur' }
+				]
+			},
+			rigestrule:{
+				userName:[
+					{  message: '请输入用户昵称', trigger: 'blur' },
+            		{ min: 2, max: 8, message: '长度在 2 ～ 8 个字符', trigger: 'blur' }
+				],
+				password:[
+					{  message: '请输入用户密码', trigger: 'blur' },
+            		{ min: 6, max: 12, message: '长度在 6 ～ 12 个字符', trigger: 'blur' }
+				],
+				checkpassword:[
+					{  message: '请输入用户密码', trigger: 'blur' },
+            		{ min: 6, max: 12, message: '长度在 6 ～ 12 个字符', trigger: 'blur' }
+				]
+			},
 			showbox:'noshow',
             pic:[
                {
@@ -139,22 +176,6 @@ export default {
 		   
         }
 	},
-	watch:{
-            password:function(){
-                if(this.password!=this.password.replace(/[\W]/g,'')){
-					this.$message({
-						message: '密码请设置为字母加数字!',
-						type: 'warning',
-						duration:1500,
-					});
-					this.password=this.password.replace(/[\W]/g,'')
-					return false	
-				};
-			},
-			supassword:function(){
-				this.supassword=this.supassword.replace(/[\W]/g,'');
-			}
-    }, 
 	methods:{
 		Changeinav(i){
 			this.navid=i
@@ -191,29 +212,6 @@ export default {
 			this.isout=false
 			this.logindialog=false
 		},
-		submit(){
-			if (!this.userName) {
-				this.$message({
-					message: '请输入用户昵称!',
-					type: 'warning',
-					duration:1500,
-				});
-				return false
-			}
-			if (!this.password) {
-				this.$message({
-					message: '请输入密码!',
-					type: 'warning',
-					duration:1500,
-				});
-				return false
-			}
-			this.islogin=true
-			this.RouterHead='Homepage'
-			this.RouterFoot=''
-			this.ChangeRouter()
-		},
-
 		Rsuc(){
 			this.rtrue=true
 			if (!this.userName) {
@@ -271,12 +269,39 @@ export default {
 				duration:3000,
 			});
 		},
-		// errorHandler() {
-    //     	return true
-    // },
+
+		Login(){
+			console.log(this.userform.password)
+			this.$refs.loginForm.validate(async vaild=>{
+				const {data:res}=await this.$http.post("login",this.userform)
+				if(res.flag=="ok"){
+					console.log(res.user)
+					this.islogin=true
+					this.RouterHead='Homepage'
+					this.RouterFoot=''
+					console.log("登录成功")
+					this.ChangeRouter()
+				}
+			})
+		},
+		
+		Rigester(){
+
+		},
+
+		async GetWorklist(){
+			var queryinfo={
+				query:'人物'
+			}
+			const {data:res}=await this.$http.get("getworklist",{param:queryinfo})
+			console.log(res)
+		}
+		
 	},
 	
 	mounted(){
+		this.GetWorklist()
+		
 		// this.logindialog=this.$route.query.logindialog
 	}
 	
@@ -284,7 +309,6 @@ export default {
 
 }
 </script>
-<style src="../../assets/css/index.scss" scoped>
-
+<style  src="../../assets/css/index.scss" scoped>
 </style>
 

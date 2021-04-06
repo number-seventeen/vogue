@@ -20,22 +20,24 @@ a{
 	opacity: 0.3;	
 }
 .backimg{
-	width: 1440PX;
-	height: 821PX;
+	width: 100%;
+	height: 100%;
 }
 
 .item_fram{
-	width: 1390px;
-	height: 100%;
+	width: 1820px;
+	height: 1060px;
 	margin-left: 45px;
 	flex-flow: column;
 	display: flex;
+	// background: plum;
    
 }
 .card_wrap{
-	width: 1350px;
-	height: 780px;
+	width: 1850px;
+	height: 1080px;
 	overflow: scroll;
+	margin-top: 20px;
 	
 }
 .scenery_auction{
@@ -49,21 +51,21 @@ a{
     display: inline-block;
 }
 .works_card{
-	width: 620px;
-	height: 360px;
+	width: 570px;
+	height: 280px;
 	box-shadow: 0 0 5px rgb(127, 125, 128);
 	border-radius: 20px 20px 10px 10px;
 	margin-bottom:20px ;
-	background: rgba(232, 239, 245, 0.438);
-	
+	background: rgb(232, 239, 245);
+	margin-top: 15px;	
 
 }
 .works_img{
 	float: left;
-	width: 370px;
-	height: 280px;
+	width: 320px;
+	height: 210px;
 	margin-left: 17px;
-	margin-top: 35px;
+	margin-top: 37px;
 	background: rgba(245, 245, 245, 0.534);
 	box-shadow: 0 0 8px gray;
 	opacity: 0.8;
@@ -74,16 +76,16 @@ a{
 .work_brief{
 	float: left;
 	width: 200px;
-	height: 280px;
+	height: 230px;
 	margin-left: 15px;
-	margin-top: 35px;
+	margin-top: 30px;
 	box-shadow: 0 0 5px rgba(116, 114, 114, 0.644);
 	color:  rgb(144, 165, 189);
 	padding-left: 5px;
 }
 
 .work_brief ul li{
-	margin-top: 20px;
+	margin-top: 15px;
 	margin-left: 11px;
 	font-size: 12px;
 	font-family:A;
@@ -109,8 +111,8 @@ a{
 }
 
 .paixu{
-	width:1300px;
-	height: 40px;
+	width:1800px;
+	height: 50px;
 	line-height: 40px;
 	margin-left: 17px;
 	background: rgb(232, 239, 245);
@@ -128,75 +130,48 @@ a{
 .paixu ul li{
 	margin-left: 21px;
 	margin-right: 25px;	
+	margin-top: 7px;
 }
 .paixu_item{
-	font-size: 12px;
+	font-size: 15px;
 	font-weight: 600;
 	cursor:pointer;
+	font-family: A;
+	font-weight: bold;
+	color: rgb(143, 199, 229);
 }
 .paixu_back a{
-	margin-left: 70px;
+	margin-left: 430px;
 	font-weight: 600;
-	font-size: 14px;
-	color: rgba(53, 87, 131, 0.493);
+	font-size: 15px;
+	color: rgba(87, 123, 170, 0.493);
 	cursor: pointer;
-	margin-top: 2px;
+	position: relative;
+	top:7px;
 }
 
 .paixu_serch input{
 	/* border:1px solid #D6CFE3; */
 	outline: none;
-	border:1px solid #c6d1e2;
+	border:1px solid #bacae4;
 	height: 18px;
 	border-radius: 5px;
 	padding: 5px;
 	caret-color:#D6CFE3;
 	padding-left: 5px;
-	color:#705499;
-	background:#dfe7f06c;
+	color:#6799b6;
+	background:#d5e4f56c;
+	margin-top: 10px;
+	font-family: A;
+	font-weight: bold;
 }
 .paixu_serch input::placeholder{
 	font-size: 10px;
-	color: rgb(197, 196, 196);
+	color: rgb(174, 208, 221);
 }
 .search_img{
 	cursor: pointer;
-	margin-top: 5px;
+	margin-top: 8px;
 }
-.p_go{
-	color: #BCBCEA;
-	border-radius: 12px;
 
-	
-}
-.p_pop{
-	
-	color:#BACEEF;
-	border-radius: 12px;
 
-	
-}
-.p_end{
-	color: #BCBCEA;
-	border-radius: 12px;
-	
-	
-}
-.p_start{
-	color:#9B9BCE;
-	border-radius: 12px;
-	
-	
-	
-}
-.p_up{
-	color: #8D91DC;
-	border-radius: 12px;
-	opacity: 0.8;
-	
-}
-.p_down{
-	color: #6f72be;
-	border-radius: 12px;
-	opacity: 0.8;
-}

@@ -1,4 +1,6 @@
 body{
+	width: 1920px;
+	height: 1080px;
 	margin: 0;
 	padding: 0;	
 }
@@ -26,8 +28,8 @@ ul{
 	
 }
 .backimg{
-	width: 1440PX;
-	height: 821PX;
+	width: 100%;
+	height: 100%;
 }
 .appname{
 	width: 500px;
@@ -61,12 +63,12 @@ ul{
 	color: rgb(251, 251, 251);
 }
 .show{
-	width: 100%;
+	width: 1920px;
 	height: 320px;
 	display: flex;	
 	position: absolute;
-	margin-top:381px;
-	background: rgba(65, 65, 65, 0.548);	
+	bottom: 0;
+	background: rgba(65, 65, 65, 0.568);	
 	animation: move 1s ease-in-out 0s 1 alternate forwards;
 	box-shadow: 0 0 10px rgb(85, 85, 85);
 	opacity: 0.7;
@@ -75,19 +77,17 @@ ul{
 	width: 365px;
 	height: 310px;
 	border-radius: 4px;
-	opacity: 0.65;
+	opacity: 0.75;
 	border-radius: 20px;
 	overflow: hidden;
 	animation: moves 2.5s ease-out;
 }
 @keyframes move {
 	0%{
-		margin-top: 600px;
-		opacity: 0;
+		bottom:-310px;
 	}
     100%{
-		margin-top: 381px;
-		opacity: 0.65;
+		bottom:0px;
 	}
 }
 .out{
@@ -97,21 +97,18 @@ ul{
 	0%{
 	}
     100%{
-		margin-top: 700px;
-
+		bottom:-310px;
 	}
 }
 .close{
 	height: 25px;
-	width: 300px;
+	width: 100%;
 	position: absolute;
 	border-radius: 5px;
-	margin-left: 580px;
 	text-align: center;
+	cursor: pointer;
 }
 .close .el-icon-arrow-down{
-	// margin-left: 350px;
-	margin-right: 17px;
 	font-weight: 800;
 	color: rgba(238, 238, 238, 0.602);
 	font-size: 27px;
@@ -176,7 +173,7 @@ ul{
 	width: 100px;
 	height: 20px;
 	margin-left: 125px;
-	margin-top: -32px;
+	// margin-top: -32px;
 	font-size: 13px;
 	transform: scale(0.75);
 	font-family: A;
@@ -193,7 +190,7 @@ ul{
 	width: 360px;
 	height: 320px;
 	border-radius: 4px;
-	opacity: 0.65;
+	opacity: 0.75;
 	border-radius: 15px;
 	overflow: hidden;
 	animation:moves 2.5s ease-out;
@@ -205,7 +202,7 @@ ul{
 	}
     100% {
         
-        opacity: 0.65;
+        opacity: 0.75;
     }
 }
 .register_pic{
@@ -278,9 +275,8 @@ ul{
 
 /*注册盒子样式的尾巴 */
 
-
 .abouts{
-	width: 490px;
+	width:65%;
 	height: 200px;
 	color:rgb(245, 245, 245);
 	opacity: 0.65;
@@ -288,7 +284,7 @@ ul{
 	font-family: A;
 	text-indent:20px;
 	border-radius: 8px;
-	margin-left: 145px;
+	padding-left: 20%;
 	margin-top: 67px;
 	font-weight: 600;
 	animation:moves 2.5s ease-out;
@@ -310,48 +306,55 @@ ul{
 .abouts .three:hover{
 	color: #f3ce84;
 } 
-.company{
-	width: 1440PX;
-	height: 70px;
-	float: left;
-	text-align: center;
-	color:rgb(233, 233, 233);
-	font-weight: 500;
-	font-size: 22px;
-	letter-spacing: 0.2em;
-	font-family: DZF;
-	line-height: 70px;
-	margin-top: 560px;
 
-}
-.server{
-	display: inline-block;
-	margin-right: 25px;
-	cursor: pointer;
-}
-footer{
-	width: 1440px;
-	height: 40PX;
-	float: left;
+
+.footer{
+	width: 1920px;
 	font-size: 16px;
 	text-align: center;
 	color: rgb(233, 233, 233);
 	font-family: DZF;
 	font-family:B;
+	position: absolute;
+	bottom: 0;
+	
 	
 }
-footer li{
+.footer li{
 	display: inline-block;
 }
-footer div{
-	margin: 2px;
+.connect{
+	width: 100%;
+	height: 30px;
+	margin-left: 30px;
+}
+.connect div{
+	width: 100%;
 	padding: 0px;
 	font-size: 13px;
 
 }
-.connect{
-	height: 30px;
-	line-height: 30px;
-	margin-left: 30px;
+.connect ul{
+	width: 100%;
+}
 
+
+
+
+.el-form-item{
+	margin-bottom: 0 !important;
+}
+.el-input{
+	width: 200px;
+	height: 10px;
+	
+}
+.el-input__inner{
+	background: pink;
+}
+.el-button{
+	margin-top: 20px;
+}
+.el-form-item__label{
+	color: white !important;
 }
