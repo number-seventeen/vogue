@@ -30,7 +30,7 @@
 										<el-input type="password" v-model="userform.password" autocomplete="off"></el-input>
 									</el-form-item>
 									<el-form-item>
-										<el-button type="primary" @click="Login()">登录</el-button>
+										<el-button class="loginbutton" type="primary" @click="Login()">登录</el-button>
 									</el-form-item>
 								</el-form>
 						</div>
@@ -47,13 +47,13 @@
 						<div class="form_box">
 							<el-form :model="rigestform" status-icon :rules="rigestrule" ref="rigesterForm" label-width="100px" class="demo-ruleForm">
 								<el-form-item label="用户昵称" prop="username">
-									<el-input type="name" v-model="rigestform.userName" autocomplete="off"></el-input>
+									<el-input type="name" v-model="rigestform.username" autocomplete="off"></el-input>
 								</el-form-item>
 								<el-form-item label="用户密码" prop="password">
 									<el-input type="password" v-model="rigestform.password" autocomplete="off"></el-input>
 								</el-form-item>
-								<el-form-item label="确认密码" prop="checkpassword">
-									<el-input type="password" v-model="rigestform.checkpassword" autocomplete="off"></el-input>
+								<el-form-item label="用户邮箱" prop="email">
+									<el-input type="email" v-model="rigestform.email" autocomplete="off"></el-input>
 								</el-form-item>
 								<el-form-item>
 									<el-button type="primary" @click="Rigester()">注册</el-button>
@@ -84,12 +84,20 @@
 				</div>
 				<div style="font-family:A;">地址: 四川省成都市金堂县西南交通大学希望学院</div>
 			</div>
+			
 		</div>
 
 	</div>	
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
+	computed: {
+        ...mapState({
+			LoginState: (state) => state.loginStore.LoginState,
+			Tname: (state) => state.loginStore.Tname,
+        }),
+    },
 	data(){
         return{
 			RouterHead:'',
@@ -111,30 +119,36 @@ export default {
 			rigestform:{
 				username:'',
 				password:'',
-				checkpassword:''
+				uicon:'',
+				truename:'',
+				email:'',
+				address:'',
+				workyear:'',
+				breif:'',
+				
 			},
 			loginrule:{
 				userName:[
 					{ message: '请输入用户昵称', trigger: 'blur' },
-            		{ min: 2, max: 8, message: '长度在 2 ～ 8 个字符', trigger: 'blur' }
+            		// { min: 2, max: 8, message: '长度在 2 ～ 8 个字符', trigger: 'blur' }
 				],
 				password:[
 					{  message: '请输入用户密码', trigger: 'blur' },
-            		{ min: 6, max: 12, message: '长度在 6 ～ 12 个字符', trigger: 'blur' }
+            		// { min: 6, max: 12, message: '长度在 6 ～ 12 个字符', trigger: 'blur' }
 				]
 			},
 			rigestrule:{
 				userName:[
 					{  message: '请输入用户昵称', trigger: 'blur' },
-            		{ min: 2, max: 8, message: '长度在 2 ～ 8 个字符', trigger: 'blur' }
+            		// { min: 2, max: 8, message: '长度在 2 ～ 8 个字符', trigger: 'blur' }
 				],
 				password:[
 					{  message: '请输入用户密码', trigger: 'blur' },
-            		{ min: 6, max: 12, message: '长度在 6 ～ 12 个字符', trigger: 'blur' }
+            		// { min: 6, max: 12, message: '长度在 6 ～ 12 个字符', trigger: 'blur' }
 				],
-				checkpassword:[
-					{  message: '请输入用户密码', trigger: 'blur' },
-            		{ min: 6, max: 12, message: '长度在 6 ～ 12 个字符', trigger: 'blur' }
+				email:[
+					{  message: '请输入用户邮箱', trigger: 'blur' },
+            		// { min: 6, max: 12, message: '长度在 6 ～ 12 个字符', trigger: 'blur' }
 				]
 			},
 			showbox:'noshow',
@@ -188,13 +202,22 @@ export default {
 				this.RouterHead=this.indexnav[i].RouterHead
 				this.RouterFoot=''
 				this.ChangeRouter()
-				// this.$loading.show()
 			}
 			if(i==0){
+				this.userform.username=''
+				this.userform.password=''
+				this.rigestform.username=''
+				this.rigestform.password=''
+				this.rigestform.email=''
 				this.logindialog=true
 				this.showbox='loginbox'
 			}
 			if(i==1){
+				this.userform.username=''
+				this.userform.password=''
+				this.rigestform.username=''
+				this.rigestform.password=''
+				this.rigestform.email=''
 				this.logindialog=true
 				this.showbox='registerbox'
 			}
@@ -271,7 +294,7 @@ export default {
 		},
 
 		Login(){
-			console.log(this.userform.password)
+			console.log("登录状态",this.LoginState,this.Tname)
 			this.$refs.loginForm.validate(async vaild=>{
 				const {data:res}=await this.$http.post("login",this.userform)
 				if(res.flag=="ok"){
@@ -286,7 +309,16 @@ export default {
 		},
 		
 		Rigester(){
-
+			console.log("填写的值",this.rigestform)
+			this.$refs.rigesterForm.validate(async vaild=>{
+				const {data:res}=await this.$http.post("addUser",this.rigestform)
+					if(res!='success'){
+						return this.$message.error("注册失败")
+					}
+					else{
+						this.$message.success("注册成功")
+					}
+			})
 		},
 
 		async GetWorklist(){
@@ -309,6 +341,11 @@ export default {
 
 }
 </script>
-<style  src="../../assets/css/index.scss" scoped>
+<style  lang="scss" scoped>
+@import  "../../assets/css/index.scss";
+.el-input{
+	width: 200px;
+	height: 10px;
+}
 </style>
 

@@ -37,25 +37,25 @@ ul{
 	float: left;
 	font-family:B;
 	font-size: 35px;
-	margin-top: 4px;	
+	margin-top: 10px;	
 	color: rgba(236, 236, 236, 0.883);
 	margin-left: 80px;
 }
 .login{
-	width: 260px;
+	width: 320px;
 	height: 50px;
 	float: right;
 	display: flex;
 	margin-top: 25px;
 	cursor: pointer;
-	color: rgba(238, 238, 238, 0.917);
+	color: rgba(237, 236, 236, 0.975);
 	font-family: A;
 	font-weight: 600;
 }
 .navs{
 	transition: 0.3s ease-out;
-	margin-right: 40px;
-	font-size: 17px;
+	margin-right: 50px;
+	font-size: 20px;
 }
 .cuinav{
 	transform: scale(1.32);
@@ -117,7 +117,7 @@ ul{
 
 /* 登录盒子的样式*/
 .login_pic{
-	width: 200px;
+	width: 270px;
 	height: 50px;
 	text-align: center;
 	font-family: B;
@@ -132,25 +132,12 @@ ul{
 .flogin_box{
 	width: 260px;
 	margin-left: 50px;
+	div{
+		font-family: A;
+		font-weight: bold;
+	}
 }
-.flogin_box input{
-	border-radius: 10px;
-	border: 1px solid rgb(150, 150, 150);
-	background: rgba(209, 209, 209, 0.719);
-	outline: none;
-	height: 23px;
-	width:130px;
-	margin-left: 5px;
-	padding-left:5px;
-	color: #3b3838;
-	font-family: A;
-	font-weight: 600;
-}
-.flogin_box div{
-	margin-bottom: 35px;
-	color: rgb(251, 251, 251);
-	font-family: DZF;
-}
+
 .login_botton{
 	cursor: pointer;
 	margin-top: -5px;
@@ -172,9 +159,9 @@ ul{
 	text-align: center;
 	width: 100px;
 	height: 20px;
-	margin-left: 125px;
-	// margin-top: -32px;
-	font-size: 13px;
+	margin-left: 155px;
+	margin-top: -15px;
+	font-size: 14px;
 	transform: scale(0.75);
 	font-family: A;
 }
@@ -187,14 +174,14 @@ ul{
 
 /*注册盒子的样式 */
 .rigister_box{
-	width: 360px;
+	width: 390px;
 	height: 320px;
 	border-radius: 4px;
 	opacity: 0.75;
 	border-radius: 15px;
 	overflow: hidden;
+	z-index: 2;
 	animation:moves 2.5s ease-out;
-
 }
 @keyframes moves {
 	0%{
@@ -206,13 +193,13 @@ ul{
     }
 }
 .register_pic{
-	width: 350px;
+	width: 300px;
 	height: 70px;
 	text-align: center;
 	font-family: B;
 	font-size: 35px;
 	margin-top: 10px;
-	margin-left:70px;
+	margin-left:120px;
 	letter-spacing: 2px;
 	display: flex;
 	color: rgb(236, 236, 236);
@@ -221,6 +208,7 @@ ul{
 .form_box{
 	width: 260px;
 	margin-left: 50px;
+	font-size: 15px;
 }
 .usericon{
 	margin-left: 100px;
@@ -252,6 +240,7 @@ ul{
 	margin-bottom: 20px;
 	color: #fbfbfb;
 	font-family: DZF;
+	z-index: 2;
 }
 .input_botton{
 	cursor: pointer;
@@ -317,6 +306,7 @@ ul{
 	font-family:B;
 	position: absolute;
 	bottom: 0;
+	z-index: -1;
 	
 	
 }
@@ -338,22 +328,22 @@ ul{
 	width: 100%;
 }
 
-
-
-
-.el-form-item{
-	margin-bottom: 0 !important;
-}
-.el-input{
-	width: 200px;
-	height: 10px;
-	
-}
-.el-input__inner{
-	background: pink;
-}
-.el-button{
-	margin-top: 20px;
+.demo-ruleForm {
+	.el-button{
+		width: 125px;
+		border-radius: 15px;
+		background: rgba(212, 208, 203, 0.534);
+		outline: none;
+		border: 1px solid rgb(92, 92, 92); 
+		color: rgb(255, 255, 255);
+		text-align: center;
+		letter-spacing: 0.5em;
+		font-family: A;
+		font-weight: bold;
+		padding: 10px;
+		font-size: 15px;
+		z-index: 2;
+	}
 }
 .el-form-item__label{
 	color: white !important;

@@ -138,12 +138,10 @@
 					</div>	
 				</div>
 				<div class="pic_show">
-				</div>
-					
+				</div>		
 			</div>
 			<!-- 内容盒子底部 -->
 		</div>
-
 		<ShareDawer ref="sharedawer"></ShareDawer>
 	</div>
 </template>
@@ -206,6 +204,7 @@ export default {
 			console.log(file);
 		},
 		handleShare(){
+			this.$refs.sharedawer.titles='新建分享'
 			this.$refs.sharedawer.sharebox=true
 		},
 		ChangeCu(i){

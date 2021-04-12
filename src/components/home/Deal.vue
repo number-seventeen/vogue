@@ -5,24 +5,19 @@
 		</div>
      	<div class="item_fram">
 				<div class="paixu">
-					<div>
+					<div class="paixucard">
 						<ul>
-								<li class="paixu_item"><div  class="p_go">最受欢迎</div></li>
-								<li class="paixu_item"><div  class="p_pop">最受欢迎</div></li>
-								<li class="paixu_item"><div  class="p_pop">最受欢迎</div></li>
-								<li class="paixu_item"><div  class="p_end">即将结束</div></li>
-								<li class="paixu_item"><div  class="p_start">默认排序</div></li>
-								<li class="paixu_item"><div  class="p_up">年代升序</div></li>
-								<li class="paixu_item"><div  class="p_down">年代降序</div></li>
-								<li class="paixu_item"><div  class="p_down">年代降序</div></li>
-								<li class="paixu_item"><div  class="p_down">年代降序</div></li>
-								<li class="paixu_item"><div  class="p_down">年代降序</div></li>
+							<li class="paixu_item"><div  class="p_go">人物类</div></li>
+							<li class="paixu_item"><div  class="p_pop">风景类</div></li>
+							<li class="paixu_item"><div  class="p_pop">静物类</div></li>
+							<li class="paixu_item"><div  class="p_end">抽象类</div></li>
+							<li class="paixu_item"><div  class="p_start">民俗类</div></li>
 						</ul>
 					</div>
-					<div style="display:flex;margin-left:25px;">
+					<div class="paixusearch" style="display:flex;margin-left:25px;">
 						<div class="paixu_serch"><input placeholder="输入相关标签"/></div>
-						<div class="search_img"><img src="../../assets/img/search.png" style="width:25px; height:25px; margin:4px 0px 0px 6px;"/></div>
-						<div class="paixu_back"><router-link to="/Homepage">返回画廊</router-link></div>
+						<div class="search_img"><i class="el-icon-search"></i></div>
+						<div class="paixu_back"><router-link to="/Homepage"><i class="el-icon-arrow-left"></i>返回画廊</router-link></div>
 					</div>
 				</div>
 				<div class="card_wrap"  >
@@ -388,7 +383,7 @@
 export default {
 	data(){
 		return{
-			bk:require('../../assets/img/62.jpg'),
+			bk:require('../../assets/img/75.jpg'),
 		}
 	},
 	methods: {

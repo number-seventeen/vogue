@@ -120,7 +120,7 @@ li{
     height: 615px;
     margin-top: 2px;
     background: rgba(243, 241, 242, 0.342);
-    overflow: scroll;
+    overflow: auto;
 }
 .nowcall{
     width: 320px;

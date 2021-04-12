@@ -12,62 +12,25 @@
                         <span>016号</span>
                     </div>
                     <div class="joincontent">
-                        <div class="nowcall">
+                        <div class="nowcall" v-for="(item,index) in jonnerlist" :key="index">
                             <div class="usercall">
-                                <div class="callnumber">0106号</div>
+                                <div class="callnumber">0{{item.playid}}号</div>
                                 <div><el-avatar class="callicon" size="large" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div> 
                             </div>
                             <div class="pricecall">
                                 <!-- <div style="font-size:12px;transform:scale(0.8);margin-left:35px;">当前出价</div> -->
                                 <div class="parrow"></div>
-                                <div class="callprice"><span>1,000</span><span style="margin-left:2px;">¥</span></div>
+                                <div class="callprice"><span>{{item.playprice}}</span><span style="margin-left:2px;">¥</span></div>
                             </div>
-                        </div>
-
-                        <div class="nowcall">
-                            <div class="usercall">
-                                <div class="callnumber">0107号</div>
-                                <div><el-avatar class="callicon" size="large" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div>    
-                            </div>
-                            <div class="pricecall">
-                                <!-- <div style="font-size:12px;transform:scale(0.8);margin-left:35px;">当前出价</div> -->
-                                <div class="parrow"></div>
-                                <div class="callprice"><span>2,000</span><span style="margin-left:2px;">¥</span></div>
-                            </div>
-                        </div>
-
-                        <div class="nowcall">
-                            <div class="usercall">
-                                <div class="callnumber">0109号</div>
-                               <div><el-avatar class="callicon" size="large" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div>   
-                            </div>
-                            <div class="pricecall">
-                                <!-- <div style="font-size:12px;transform:scale(0.8);margin-left:35px;">当前出价</div> -->
-                                <div class="parrow"></div>
-                                <div class="callprice"><span>2,500</span><span style="margin-left:2px;">¥</span></div>
-                            </div>
-                        </div>
-                        
-                        <div class="nowcall">
-                            <div class="usercall">
-                                <div class="callnumber">0116号</div>
-                               <div><el-avatar class="callicon" size="large" icon="el-icon-s-custom" @error="errorHandler"></el-avatar></div> 
-                            </div>
-                            <div class="pricecall">
-                                <!-- <div style="font-size:12px;transform:scale(0.8);margin-left:35px;">当前出价</div> -->
-                                <div class="parrow"></div>
-                                <div class="callprice"><span>3,000</span><span style="margin-left:2px;">¥</span></div>
-                            </div>
-                        </div>
-                        
+                        </div>    
                     </div>
                     
                     <div class="joinput">
                         <div class="inputboard">
-                            <div><input type="text" class="inprice" placeholder="请输入加价金额"/></div>
+                            <div><input type="number" class="inprice" v-model="addnumber" placeholder="请输入加价金额"/></div>
                             <div class="priceicon">¥</div>
                             <div class="autobuy"></div>
-                            <div class="joinbuy">参与竞拍</div>
+                            <div class="joinbuy" @click="Tocall()">参与竞拍</div>
                         </div>
                     </div>
                 </div>
@@ -116,10 +79,79 @@ export default {
     components:{Rules},
     data(){
         return{
+            userName:'wang',
+            websocket:null,
             circleUrl: require('../../assets/img/15.jpg'),
+            addnumber:null,
+            jonnerlist:[
+                {
+                    playid:160,
+                    playprice:1000000,
+                },
+                {
+                    playid:161,
+                    playprice:1000500,
+                },
+                {
+                    playid:162,
+                    playprice:1001000,
+                },
+                {
+                    playid:163,
+                    playprice:1001500,
+                },
+                {
+                    playid:164,
+                    playprice:1002000,
+                },
+            ],
         }
     },
+    created() { // 页面创建生命周期函数
+        console.log("hao")
+            this.websocket = new WebSocket("ws://localhost:9000/websocket/"+ this.userName);
+            this.initWebSocket()
+    },
+    beforeDestroy() { // 离开页面生命周期函数
+            this.onbeforeunload()
+    },
     methods:{
+        initWebSocket () {
+            // 连接错误
+            this.websocket.onerror = this.setErrorMessage
+    
+            // 连接成功
+            this.websocket.onopen = this.setOnopenMessage
+    
+            // 收到消息的回调
+            this.websocket.onmessage = this.setOnmessageMessage
+    
+            // 连接关闭的回调
+            this.websocket.onclose = this.setOncloseMessage
+    
+            // 监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+            window.onbeforeunload = this.onbeforeunload
+        },
+        setErrorMessage () {
+            console.log('WebSocket连接发生错误   状态码：' + this.websocket.readyState)
+        },
+        setOnopenMessage () {
+            console.log('WebSocket连接成功    状态码：' + this.websocket.readyState)
+        },
+        setOnmessageMessage (event) {
+            // 根据服务器推送的消息做自己的业务处理
+            console.log('服务端返回：' + event.data)
+        },
+        setOncloseMessage () {
+            console.log('WebSocket连接关闭    状态码：' + this.websocket.readyState)
+        },
+        onbeforeunload () {
+            this.closeWebSocket()
+        },
+        closeWebSocket () {
+            this.websocket.close()
+        },
+
         errorHandler() {
             return true
         },
@@ -127,7 +159,25 @@ export default {
         },
         CheckRule(){
             this.$refs.rules.RuleDialog=true
-        }
+        },
+        Tocall(){
+            let param={
+                playid:160,
+                playprice:this.jonnerlist[this.jonnerlist.length-1].playprice+this.addnumber, 
+            }
+            this.jonnerlist.push(param)
+            console.log("hhhh",typeof(this.jonnerlist[this.jonnerlist.length-1].playprice))
+            this.addnumber=null
+            this.GetWorklist()
+        },
+        async GetWorklist(){
+			var queryinfo={
+				query:'人物'
+			}
+			const {data:res}=await this.$http.get("/news/sendAllWebSocket")
+		}
+        
+
     },
 }
 </script>

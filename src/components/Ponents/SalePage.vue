@@ -1,6 +1,7 @@
 <template>
   <div  class="salepages">
     <el-pagination
+    
         small
         layout="prev, pager, next"
         :total="5"

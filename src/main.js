@@ -9,6 +9,7 @@ import * as util from "./util/util.js"
 import 'element-ui/lib/theme-chalk/index.css';
 import store from './store'
 import Loading from '@/router/Loading/loading.js'
+
 Vue.use(ElementUI);
 Vue.use(Loading);
 Vue.config.productionTip = false

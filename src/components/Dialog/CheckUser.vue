@@ -11,57 +11,44 @@
         :modal-append-to-body="true"
         >
         <div class="leftcontent">
-            <el-menu
-                :default-openeds='menu'
-                class="el-menu-vertical-demo"
-                @open="handleOpen"
-                @close="MenueClose">
-                <el-submenu index="1">
-                    <template slot="title">
-                        <i class="el-icon-monitor" style="position:relative;top:-3px;"></i>
-                        <span style="font-family:'A';font-weight:bold;color:gray;">系统通知 (6)</span>
-                    </template>
-                    <div class="message-inner">
-                        <el-menu-item index="1-1">选项1</el-menu-item>
-                        <el-menu-item index="1-2">选项2</el-menu-item>
-                        <el-menu-item index="1-3">选项3</el-menu-item>
-                        <el-menu-item index="1-4">选项4</el-menu-item>
-                        <el-menu-item index="1-5">选项5</el-menu-item>
-                        <el-menu-item index="1-6">选项6</el-menu-item>
-                    </div>
-                </el-submenu>
-                <el-submenu index="2">
-                    <template slot="title">
-                        <i class="el-icon-chat-dot-square" style="position:relative;top:-1px;"></i>
-                        <span style="font-family:'A';font-weight:bold;color:gray;">动态通知 (7)</span>
-                    </template>
-                    <div class="message-inner">
-                        <el-menu-item index="2-1">选项1</el-menu-item>
-                        <el-menu-item index="2-2">选项2</el-menu-item>
-                        <el-menu-item index="2-3">选项3</el-menu-item>
-                        <el-menu-item index="2-4">选项4</el-menu-item>
-                        <el-menu-item index="2-5">选项5</el-menu-item>
-                        <el-menu-item index="2-6">选项6</el-menu-item>
-                        <el-menu-item index="2-7">选项7</el-menu-item>
-                    </div>
-                </el-submenu>
-                 <el-submenu index="3">
-                    <template slot="title">
-                        <i class="el-icon-bank-card" style="position:relative;top:-2px;"></i>
-                        <span style="font-family:'A';font-weight:bold;color:gray;">交易通知 (8)</span>
-                    </template>
-                     <div class="message-inner">
-                        <el-menu-item index="3-1">选项1</el-menu-item>
-                        <el-menu-item index="3-2">选项2</el-menu-item>
-                        <el-menu-item index="3-3">选项3</el-menu-item>
-                        <el-menu-item index="3-4">选项4</el-menu-item>
-                        <el-menu-item index="3-5">选项5</el-menu-item>
-                        <el-menu-item index="3-6">选项6</el-menu-item>
-                        <el-menu-item index="3-7">选项7</el-menu-item>
-                        <el-menu-item index="3-8">选项8</el-menu-item>
-                    </div>
-                </el-submenu>
-            </el-menu>
+            <el-form :label-position="labelPosition" ref="updataform" label-width="135px" :model="editform">
+                <el-form-item label="个人笔名：">
+                    <el-input v-model="editform.truename"></el-input>
+                </el-form-item>
+                <el-form-item label="个人昵称：">
+                    <el-input v-model="editform.username"></el-input>
+                </el-form-item>
+                <el-form-item label="个人邮箱：">
+                    <el-input v-model="editform.email"></el-input>
+                </el-form-item>
+                <el-form-item label="现居地址：">
+                    <el-input v-model="editform.address"></el-input>
+                </el-form-item>
+                <el-form-item label="创作经验：">
+                    <el-input v-model="editform.workyear"></el-input>
+                </el-form-item>
+                <el-form-item label="用户密码：">
+                    <el-input type="password" v-model="editform.password"></el-input>
+                </el-form-item>
+                <!-- <el-form-item
+                    v-for="(domain, index) in dynamicValidateForm.domains"
+                    :label="'个人作品：'"
+                    :key="domain.key"
+                    :prop="'domains.' + index + '.value'"
+                >
+                    <el-input v-model="domain.value"></el-input><el-button @click.prevent="removeDomain(domain)">删除</el-button>
+                </el-form-item> -->
+                <el-form-item  label="个人简介：">
+                </el-form-item>
+                <el-form-item >
+                    <el-input type="textarea" v-model="editform.breif"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button class="savebutton" type="primary" @click="submitForm()">保存修改</el-button>
+                    <!-- <el-button class="addbutton" @click="addDomain">添加作品</el-button> -->
+                    <!-- <el-button @click="resetForm('dynamicValidateForm')">重置</el-button> -->
+                </el-form-item>
+            </el-form>
         </div>
         <div class="rightcontent" @click="CloseDrawer()">
             <i class="el-icon-d-arrow-left"></i>
@@ -74,22 +61,70 @@ export default {
     data(){
         return{
             ToCheck:false,
-            menu:['1','2','3']
+            labelPosition: 'right',
+            editform: {
+                username:'',
+				password:'',
+				uicon:'',
+				truename:'',
+				email:'',
+				address:'',
+				workyear:'',
+                breif:'',
+                id:1,
+            },
+            dynamicValidateForm: {
+            domains: [{
+                value: ''
+            }],
+            email: ''
+            }
         }
     },
     methods: {
-      handleClose(done) {
-        done()
-      },
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      MenueClose(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      CloseDrawer(){
-          this.ToCheck=false
-      }
+        handleClose(done) {
+            done()
+        },
+        CloseDrawer(){
+            this.ToCheck=false
+        },
+        submitForm() {
+            console.log("头像",this.$parent.usericon)
+            this.editform.uicon=this.$parent.usericon
+            this.getuserInfo(1)
+            this.$refs.updataform.validate(async vaild=>{
+                if(!vaild) return;
+                console.log("资源---",this.editform)
+                const {data:res}=await this.$http.put("edituser",this.editform)
+                if(res!="success") return this.$message.error("操作失败")
+                else{
+                    this.$message.success("修改成功")
+                    this.$parent.getUserlist() 
+                }
+            })
+            
+        },
+
+        async getuserInfo(id){
+            const {data:res}=await this.$http.get("getupdata?id="+id);
+            // console.log("资源",res)
+            this.editform=res;    
+        },
+        resetForm(formName) {
+            this.$refs[formName].resetFields();
+        },
+        removeDomain(item) {
+            var index = this.dynamicValidateForm.domains.indexOf(item)
+            if (index !== -1) {
+            this.dynamicValidateForm.domains.splice(index, 1)
+            }
+        },
+        addDomain() {
+            this.dynamicValidateForm.domains.push({
+            value: '',
+            key: Date.now()
+            });
+        },
       
     }
 }
@@ -98,8 +133,9 @@ export default {
 <style lang="scss" scoped>
 .leftcontent{
     width: 560px;
-    height: 100%;
+    height: 800px;
     float: left;
+    overflow: auto;
 }
 .rightcontent{
     width: 50px;
@@ -118,5 +154,67 @@ export default {
     height: 210px;
     overflow: auto;
     font-family:A;
+}
+
+
+/deep/ .el-form-item{
+    margin-top: 20px;
+    .el-form-item__label{
+        font-family: A;
+        font-weight: bold;
+        font-size: 16px;
+        color: rgba(135, 162, 196, 0.774) !important;
+    }
+    .el-input{
+        width: 320px;
+    }
+    .el-button{
+        border-radius: 20px;
+        border: 1px solid rgb(202, 219, 224);
+        background:rgba(250, 254, 255, 0.644);
+        outline: none;
+        color:rgba(135, 162, 196, 0.774);
+        font-family: A;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+    }
+    .el-input__inner:focus{
+        outline: none;
+        border: 1px solid rgb(202, 219, 224);
+    }
+    .el-input__inner{
+        width: 300px;
+        border: 1px solid rgb(202, 219, 224);
+        height: 40px;
+        background:rgba(250, 254, 255, 0.452);
+        font-family: A;
+        
+    }
+    .el-textarea__inner:focus{
+        outline: none;
+        border: 1px solid rgb(202, 219, 224);
+    }
+    .el-textarea__inner{
+        resize: none;
+        width: 475px;
+        border: 1px solid rgb(202, 219, 224);
+        height: 150px;
+        background:rgba(250, 254, 255, 0.452);
+        color:rgba(135, 162, 196, 0.774);
+        font-family: A;
+        font-weight: bold;
+        font-size: 16px;
+        letter-spacing: 0.1em;
+    }
+    .el-textarea{
+        margin-left: -90px;
+        margin-top: -10px;
+    }
+    .savebutton{
+        margin-left: 30px;
+    }
+    .addbutton{
+       margin-left: 25px; 
+    }
 }
 </style>

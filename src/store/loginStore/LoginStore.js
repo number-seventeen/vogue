@@ -9,7 +9,9 @@ const state={
         usericon:'',
         isidentify:0,
 
-    }
+    },
+    LoginState:false,
+    
 
 }
 

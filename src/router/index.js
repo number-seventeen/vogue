@@ -11,7 +11,6 @@ import Tobuy from '@/components/home/Tobuy.vue'
 import Ground from '@/components/home/Ground.vue'
 import shareground from '@/components/home/shareground.vue'
 import User from '@/components/home/User.vue'
-import svg from '@/components/home/svgdemo.vue'
 
 
 Vue.use(Router)
@@ -78,12 +77,7 @@ export default new Router({
       meta:{index:9},
       component: User
     },
-    {
-      path: '/svg',
-      name: 'svg',
-      meta:{index:10},
-      component: svg
-    },
+    
     
 
   ]

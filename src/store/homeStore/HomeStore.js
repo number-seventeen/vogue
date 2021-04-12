@@ -3,6 +3,7 @@ import mutations from './HomeMutation.js';
 const state={
     msec:0,
     counts:0,
+    LoginState:false,
 
 }
 

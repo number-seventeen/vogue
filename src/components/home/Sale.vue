@@ -162,6 +162,7 @@ export default {
         console.log(file);
       },
       handleShare(){
+        this.$refs.sharedawer.titles='新建拍卖'
 			  this.$refs.sharedawer.sharebox=true
       },
      

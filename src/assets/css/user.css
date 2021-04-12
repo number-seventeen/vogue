@@ -33,6 +33,10 @@ ul{
     width: 220px;
     height: 50px;
 }
+.el-icon-arrow-left{
+    position: relative;
+    top:-2px;
+}
 .cuNav{
     text-shadow: 0 0 6px rgb(106, 176, 223);
 }
@@ -89,8 +93,8 @@ ul{
     border-radius: 50px;
     text-align: center;
     position: absolute;
-    margin-top: -15px;
-    margin-left: 156px;
+    margin-top: -12px;
+    margin-left: 36px;
     box-shadow: 0 0 2px #24353dd2;
     color: rgb(129, 129, 129);
 }
@@ -243,5 +247,5 @@ ul{
     line-height: 55px;
     color: rgb(169, 182, 190);
     display: flex;
-   
+    
 }

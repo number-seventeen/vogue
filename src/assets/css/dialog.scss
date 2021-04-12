@@ -1,10 +1,27 @@
+.demo-ruleForm .el-input__inner{
+    background: rgba(212, 208, 203, 0.383) !important;
+    color: rgb(255, 255, 255);
+    font-family: A;
+    font-weight: bold;
+    letter-spacing: 0.1em;  
+    border: 1px solid rgb(155, 155, 155); 
+    font-size: 16px;
+    border-radius: 15px;
+}
+.demo-ruleForm .el-input__inner:focus{
+    border: 1px solid rgb(155, 155, 155); 
+}
+.demo-ruleForm .el-form-item__label{
+    font-family: A;
+    font-weight: bold;
+}
 //分享模块的抽屉组件
 .sharebox{
     min-width: 500px !important;
 }
 .drawers .el-drawer{
     background:rgba(248, 248, 246, 0.925) !important;
-    box-shadow: 0 0 20px rgba(114, 115, 116, 0.644);
+    box-shadow: 0 0 1px rgba(219, 215, 192, 0.644);
     border-radius: 0px 20px 20px 0px;
 }
 .add .el-upload-list--picture .el-upload-list__item{
@@ -19,9 +36,7 @@
 }
   
 //拍卖模块的翻页组件
-.salepages .el-pagination .btn-next, .el-pagination .btn-prev{
-    background: rgba(255, 255, 255, 0) !important;
-}
+
 .salepages .el-pagination .el-icon{
     color:rgb(147, 166, 192) !important;
     font-size: 18px !important;
@@ -41,6 +56,20 @@
     font-size: 18px; 
     font-weight: bold;
     color:rgb(170, 185, 204); 
+}
+.salepages .el-pagination{
+    color:gray !important;
+}
+.el-pagination .btn-next, .el-pagination .btn-prev{
+    background: transparent;
+    color:  rgb(170, 185, 204);
+}
+.el-pagination button:disabled{
+    color: rgb(170, 185, 204);
+    background: transparent;
+}
+.el-pagination .btn-next .el-icon, .el-pagination .btn-prev .el-icon{
+    font-size: 20px;
 }
 
 //提示框
@@ -66,7 +95,7 @@
     
 }
 .el-drawer__wrapper{
-    height: 856px !important;
+    height: 876px !important;
     width: 625px;
     margin-top: 141px;
     z-index: 10;    
@@ -76,9 +105,8 @@
     background: #f0f6fa;
     
 }
-.UserMessage.el-drawer:focus{
-    outline: none;
-    
+.el-drawer:focus{
+    outline: none;    
 }
 .UserMessage input{
     width: 240px;
@@ -94,3 +122,7 @@
 .UserMessage .el-input:focus{
     border: none;
 }
+
+
+
+
