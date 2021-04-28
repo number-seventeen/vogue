@@ -143,12 +143,13 @@ a{
 	height: 1000px;
 }
 .item_fram{
-	width: 1500px;
+	width: 1300px;
 	height: 930px;
 	margin-top: 35px;
 	float: left;
 	margin-left: 320px;
 	overflow: hidden;
+	// background: gray;
 	 
 
 }
@@ -156,15 +157,17 @@ a{
 	margin-left: 10px;
 	width: 1480px;
 	height: 910px;
+	// background: greenyellow;
 	
 
 }
 .works_card{
 	width: 1265px;
-	height: 900px;
+	height: 870px;
 	box-shadow: 0 0 5px rgba(114, 115, 116, 0.644);
 	border-radius: 20px 20px 10px 10px;
-	margin-top:20px; 
+	margin-top:20px;
+	// background: pink; 
 }
 .tag-head{
 	width: 100%;
@@ -190,11 +193,11 @@ a{
 	box-shadow: 0px 5px 5px -5px #3e5a6b;
 }
 .tag-content{
-	width: 95%;
-	height: 800px;
-	box-shadow: 0px 0px 5px #b7bec2;
+	width: 95.5%;
+	height: 762px;
+	box-shadow: 0px 0px 5px #a5a8aa;
 	margin-top: 30px;
-	margin-left: 30px;
+	margin-left: 27px;
 	display: flex;
 	overflow: auto;
 	animation: change 1s ease-in ;
@@ -249,10 +252,9 @@ a{
 	background:rgba(246, 247, 244, 0.377);
 }
 .sale-page{
-	width: 1160px;
+	width: 1260px;
 	height: 50px;
-	position: absolute;
-	bottom: 80px;
+	margin-top: 17px;
 	text-align: center;
 	
 }
@@ -374,14 +376,6 @@ a{
     z-index: 10;
 }
 @keyframes change{
-	0%{
-		opacity: 0;
-	}
-	50%{
-		opacity: 0.5;
-	}
-	100%{
-		opacity: 1;
-	}
+	
 }
 

@@ -165,8 +165,16 @@ a{
     float: right;
     right: 20px;
 }
+.comment{
+	font-size: 40px;
+	color: rgb(153, 153, 153);
+	position: relative;
+    top:10px;
+    float: right;
+    right: 30px;
+}
 .el-carousel__item:nth-child(2n) {
-    background-color: #f3f2edec;
+    background-color: #f3f2ed;
     box-shadow: 0 0 5px gray;
     border-radius: 10px;
     margin-top: 15px;
@@ -174,7 +182,7 @@ a{
 }
 
 .el-carousel__item:nth-child(2n+1) {
-    background-color: #f3f2edea;
+    background-color: #f3f2ed;
     box-shadow: 0 0 5px gray;
     border-radius: 8px;
     margin-top: 15px;

@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
     data(){
         return{
@@ -81,6 +82,12 @@ export default {
             }
         }
     },
+    computed: {
+      ...mapState({
+        LoginState:state=>state.loginStore.LoginState,
+        Loginid:state=>state.loginStore.Loginid,
+      }) 
+    },
     methods: {
         handleClose(done) {
             done()
@@ -91,7 +98,7 @@ export default {
         submitForm() {
             console.log("头像",this.$parent.usericon)
             this.editform.uicon=this.$parent.usericon
-            this.getuserInfo(1)
+            this.getuserInfo(this.Loginid)
             this.$refs.updataform.validate(async vaild=>{
                 if(!vaild) return;
                 console.log("资源---",this.editform)

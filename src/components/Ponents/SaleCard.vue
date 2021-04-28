@@ -1,35 +1,63 @@
 <template>
   <div class="salecards">
     <el-row>
-        <el-col :span="7" v-for="(o, index) in 9" :key="index" :class="[index%3==0?'side':'center']" >
+        <el-col :span="7" v-for="(item, index) in StoreData" :key="index" :class="[index%3==0?'side':'center']" >
             <el-card :body-style="{ padding: '8px' }">
-                <img src="../../assets/img/52.jpg" class="image">
+                <img :src="item.workurl" class="image">
                 <div style="padding-left: 10px;padding-right:10px;padding-top:10px;">
                    <div class="card-info">
-                       <span>作品名称: 丰收</span>
-                       <span style="float:right;">作品作者:梵高</span>
+                       <span>作品名称: {{item.workname}}</span>
+                       <span style="float:right;">作品作者:{{item.author}}</span>
                     </div>
                    <div class="card-time">
-                       <span>起拍时间: 2021-02-04</span>
-                       <span style="float:right;">起拍价格: 1,000 RMB</span>
+                       <span>起拍时间: {{getTime(item.loadtime)}}</span>
+                       <span style="float:right;">当前价格: {{item.tempprice}} RMB</span>
                    </div>
                    <div class="card-more">
-                       <span>查看详情</span>
+                       <span class="detail" @click="ToBuy(index)">查看详情</span>
+                       <span @click="handlecancel(index)" class="cancel">取消关注</span>
                    </div>
-                    
                 </div>
             </el-card>
         </el-col>
     </el-row>
+    <Tobuy ref="cardtobuy"></Tobuy>
   </div>
 </template>
 <script>
+import Tobuy from '../home/Tobuy'
 export default {
-  data() {
-    return {
-      currentDate: new Date()
-    };
-  }
+    data() {
+        return {
+            StoreData:[],
+            currentDate: new Date()
+        };
+    },
+    components:{Tobuy},
+    methods:{
+        //转换时间戳
+        getTime (time) {
+            var date = new Date(time)
+            var y = date.getFullYear()
+            var m = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
+            var d = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate())
+            return y + '-' + m + '-' + d
+        },
+        ToBuy(index){
+            this.$refs.cardtobuy.routetype='card'
+            this.$refs.cardtobuy.WorkData=this.StoreData[index]
+            this.$refs.cardtobuy.storecontent=true
+        },
+        async handlecancel(i){
+            const {data:delres}=await this.$http.get("deletenetbox?Netboxid="+this.StoreData[i].netboxid);
+            if(delres!='success'){
+                return this.$message.error("取消失败")
+            }
+            else{
+                this.StoreData.splice(i,1)
+            }
+        }
+    }
 }
 </script>
 <style scoped>
@@ -37,7 +65,7 @@ export default {
     margin-left: 75px;
 }
 .el-col{
-    margin-bottom: 52px;
+    margin-bottom: 30px;
 }
 .el-card{
     background: rgba(255, 255, 255, 0.486);
@@ -69,18 +97,23 @@ export default {
 }
 .card-more{
     width: 100%;
+    padding-left: 1px;
     margin-top:15px;
     color:rgb(173, 187, 202);
     font-family: A;
     font-weight: bold;  
     height: 20px;
     line-height: 20px;
-    text-align: center;
+    display: flex;
     cursor: pointer;
     letter-spacing: 0.1em;
-
 }
-
+.cancel{
+    flex: 1;
+}
+.detail{
+    flex:4.3;
+}
 
 
 .bottom {
@@ -95,6 +128,7 @@ export default {
 
 .image {
     width: 100%;
+    height: 245px;
     display: block;
 }
 

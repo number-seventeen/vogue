@@ -19,120 +19,37 @@
                     <el-submenu index="1">
                         <template slot="title">
                             <i class="el-icon-monitor" style="position:relative;top:-3px;"></i>
-                            <span style="font-family:'A';font-weight:bold;color:gray;">系统通知 (6)</span>
+                            <span style="font-family:'A';font-weight:bold;color:gray;">系统通知 (2)</span>
                         </template>
                         <div class="message-inner">
-                            <el-menu-item index="1-1">选项1</el-menu-item>
-                            <el-menu-item index="1-2">选项2</el-menu-item>
-                            <el-menu-item index="1-3">选项3</el-menu-item>
-                            <el-menu-item index="1-4">选项4</el-menu-item>
-                            <el-menu-item index="1-5">选项5</el-menu-item>
-                            <el-menu-item index="1-6">选项6</el-menu-item>
+                            <el-menu-item index="1-1">欢迎注册成为High Light的新用户</el-menu-item>
+                            <el-menu-item index="1-2">请及时完善您的个人信息</el-menu-item>
+                            
                         </div>
                     </el-submenu>
                     <el-submenu index="2">
                         <template slot="title">
                             <i class="el-icon-chat-dot-square" style="position:relative;top:-1px;"></i>
-                            <span style="font-family:'A';font-weight:bold;color:gray;">动态通知 (7)</span>
+                            <span style="font-family:'A';font-weight:bold;color:gray;">动态通知 (3)</span>
                         </template>
                         <div class="message-inner">
-                            <el-menu-item index="2-1">选项1</el-menu-item>
-                            <el-menu-item index="2-2">选项2</el-menu-item>
-                            <el-menu-item index="2-3">选项3</el-menu-item>
-                            <el-menu-item index="2-4">选项4</el-menu-item>
-                            <el-menu-item index="2-5">选项5</el-menu-item>
-                            <el-menu-item index="2-6">选项6</el-menu-item>
-                            <el-menu-item index="2-7">选项7</el-menu-item>
+                            <el-menu-item index="2-1">你的动态收到一条评论，快去查看吧</el-menu-item>
+                            <el-menu-item index="2-2">你的动态收到一条评论，快去查看吧</el-menu-item>
+                            <el-menu-item index="2-3">你的动态收到一条点赞，快去查看吧</el-menu-item>
                         </div>
                     </el-submenu>
                     <el-submenu index="3">
                         <template slot="title">
                             <i class="el-icon-bank-card" style="position:relative;top:-2px;"></i>
-                            <span style="font-family:'A';font-weight:bold;color:gray;">交易通知 (8)</span>
+                            <span style="font-family:'A';font-weight:bold;color:gray;">交易通知 (0)</span>
                         </template>
                         <div class="message-inner">
-                            <el-menu-item index="3-1">选项1</el-menu-item>
-                            <el-menu-item index="3-2">选项2</el-menu-item>
-                            <el-menu-item index="3-3">选项3</el-menu-item>
-                            <el-menu-item index="3-4">选项4</el-menu-item>
-                            <el-menu-item index="3-5">选项5</el-menu-item>
-                            <el-menu-item index="3-6">选项6</el-menu-item>
-                            <el-menu-item index="3-7">选项7</el-menu-item>
-                            <el-menu-item index="3-8">选项8</el-menu-item>
+                            
                         </div>
                     </el-submenu>
                 </el-menu>
             </div>
-
-            <div class="IDbox" v-show="messagetype==1">
-              <div class="id-info">
-                   <label>真实姓名:</label>  
-                    <input
-                        placeholder=""
-                        v-model="Tname" />
-              </div>
-               <div class="id-info">
-                   <label>身份证号:</label>  
-                    <input
-                        placeholder=""
-                        v-model.number="Tnumber" 
-                    />
-              </div>
-             
-            </div>
-                
-            <div class="collectbox" v-show="messagetype==2">
-                <el-menu
-                    :default-openeds='collectmenu'
-                    class="el-menu-vertical-demo"
-                    @open="handleOpen"
-                    @close="MenueClose">
-                    <el-submenu index="1">
-                        <template slot="title">
-                            <i class="el-icon-monitor" style="position:relative;top:-3px;"></i>
-                            <span style="font-family:'A';font-weight:bold;color:gray;">已收藏的分享 (9)</span>
-                        </template>
-                        <div class="collectBox"> 
-                            <el-col :span="10" v-for="(o, index) in 9" :key="index" style="margin-left:32px;margin-bottom:15px;">
-                                <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                                    <img :src="collectImg" class="image">
-                                    <div style="padding: 10px;">
-                                        <div>
-                                            <span>《丰收》</span>
-                                        </div>
-                                        <div>
-                                            <span>《丰收》</span>
-                                        </div>
-                                    </div>
-                                </el-card>
-                            </el-col>
-                        </div>
-                    </el-submenu>
                     
-                    <el-submenu index="2">
-                        <template slot="title">
-                            <i class="el-icon-chat-dot-square" style="position:relative;top:-1px;"></i>
-                            <span style="font-family:'A';font-weight:bold;color:gray;">已收藏的拍卖 (6)</span>
-                        </template>
-                        <div class="collectBox"> 
-                            <el-col :span="10" v-for="(o, index) in 9" :key="index" style="margin-left:32px;margin-bottom:15px;">
-                                <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                                    <img :src="collectImg" class="image">
-                                    <div style="padding: 10px;">
-                                        <div>
-                                            <span>《丰收》</span>
-                                        </div>
-                                        <div>
-                                            <span>《丰收》</span>
-                                        </div>
-                                    </div>
-                                </el-card>
-                            </el-col>
-                        </div>
-                    </el-submenu>
-                </el-menu>
-            </div>
-                
             <div class="goldenbox" v-show="messagetype==3">
                 
             </div>
@@ -158,7 +75,6 @@ export default {
             collectImg:require('../../assets/img/60.jpg'),
             saleImg:require('../../assets/img/65.jpg'),
             collecttype:0,
-            Tname:'',
             Tnumber:null,
         }
     },
@@ -247,5 +163,7 @@ export default {
     width: 100%;
     display: block;
 }
+
+
 
 </style>

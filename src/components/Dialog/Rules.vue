@@ -4,13 +4,16 @@
         title="提示"
         :visible.sync="RuleDialog"
         width="50%"
-        center>
+        :modal="false"
+        top="9.9%"
+        center
+        custom-class="rulewarpper">
         <div class="rulecontent">
-            <div style="border-bottom:1px solid gray;">
+            <div >
                 <p>感谢您成为High Light的注册用户</p>
                 <p>本协议是您与High Light网站（简称"本站"，网址：www.pecoo.com）所有者（以下简称为"High Light"）之间就High Light网站服务等相关事宜所订立的契约，请您仔细阅读本注册协议，您点击"同意并继续"按钮后，本协议即构成对双方有约束力的法律文件。</p>
             </div>
-            <div style="border-bottom:1px solid gray;">
+            <div >
                 <p >第1条 本站服务条款的确认和接纳</p>
 
                 <p>1.1本站的各项电子服务的所有权和运作权归High Light所有。用户同意所有注册协议条款并完成注册程序，才能成为本站的正式用户。用户确认：本协议条款是处理双方权利义务的契约，始终有效，法律另有强制性规定或双方另有特别约定的，依其规定。
@@ -22,7 +25,7 @@
                 <p>1.4High Light保留在中华人民共和国大陆地区法施行之法律允许的范围内独自决定拒绝服务、关闭用户账户、清除或编辑内容或取消订单的权利。
                 </p>
             </div>
-            <div style="border-bottom:1px solid gray;">
+            <div >
                 <p>第2条 本站服务
                 </p>
                 <p>2.1High Light通过互联网依法为用户提供互联网信息等服务，用户在完全同意本协议及本站规定的情况下，方有权使用本站的相关服务。
@@ -34,7 +37,7 @@
                 <p>（2）上网开支，包括并不限于网络接入费、上网设备租用费、手机流量费等。
                 </p>
             </div>
-            <div style="border-bottom:1px solid gray;">
+            <div >
                 <p>第3条 用户信息
                 </p>
                 <p>3.1用户应自行诚信向本站提供注册资料，用户同意其提供的注册资料真实、准确、完整、合法有效，用户注册资料如有变动的，应及时更新其注册资料。如果用户提供的注册资料不合法、不真实、不准确、不详尽的，用户需承担因此引起的相应责任及后果，并且High Light保留终止用户使用High Light各项服务的权利。
@@ -50,7 +53,7 @@
                 <p>3.6用户同意，High Light有权使用用户的注册信息、用户名、密码等信息，登录进入用户的注册账户，进行证据保全，包括但不限于公证、见证等。
                 </p>
             </div>
-            <div style="border-bottom:1px solid gray;">
+            <div >
                 <p>第4条 用户依法言行义务
                 </p>
                 <p>本协议依据国家相关法律法规规章制定，用户同意严格遵守以下义务：
@@ -83,7 +86,7 @@
         </div>
         <span slot="footer" class="dialog-footer">
             <el-button @click="RuleDialog = false">取 消</el-button>
-            <el-button type="primary" @click="RuleDialog = false">同意</el-button>
+            <el-button type="primary" @click="checksure()">同意</el-button>
         </span>
     </el-dialog>
   </div>
@@ -94,7 +97,14 @@ export default {
     data() {
       return {
         RuleDialog: false,
+        rulecheck:false,
       };
+    },
+    methods:{
+        checksure(){
+            this.$store.dispatch('ChangeReadRule',true)
+            this.RuleDialog=false
+        }  
     }
 }
 </script>
@@ -102,9 +112,13 @@ export default {
 .rulecontent{
     overflow: auto;
     width: 100%;
-    height: 500px;
+    height: 625px;
 }
 p{
     font-size: 14px;
 }
+/deep/ .rulewarpper{
+    box-shadow: 0 0 20px rgb(219, 198, 198);
+}
+
 </style>

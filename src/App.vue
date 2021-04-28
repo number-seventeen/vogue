@@ -32,17 +32,17 @@ export default {
       }
     }
   },
-  // created() {
-  //     //在页面加载时读取sessionStorage里的状态信息
-  //     if (sessionStorage.getItem('store')) {
-  //         this.$store.replaceState(Object.assign({}, this.$store.state, JSON.parse(sessionStorage.getItem('store'))))
-  //     }
+  created() {
+      //在页面加载时读取sessionStorage里的状态信息
+      if (sessionStorage.getItem('store')) {
+          this.$store.replaceState(Object.assign({}, this.$store.state, JSON.parse(sessionStorage.getItem('store'))))
+      }
 
-  //     //在页面刷新时将vuex里的信息保存到sessionStorage里
-  //     window.addEventListener('beforeunload', () => {
-  //         sessionStorage.setItem('store', JSON.stringify(this.$store.state))
-  //     })
-  // },
+      //在页面刷新时将vuex里的信息保存到sessionStorage里
+      window.addEventListener('beforeunload', () => {
+          sessionStorage.setItem('store', JSON.stringify(this.$store.state))
+      })
+  },
   methods:{
     async reload () {
       this.isRouterShow = false
@@ -161,14 +161,7 @@ input[type="number"]{ -moz-appearance: textfield; }
 .chooseblong .el-radio__input.is-checked+.el-radio__label{
   color: #e7dcec;
 }
-.h_list .el-collapse-item__header{
-  font-size: 15px;
-  font-weight: bold;
-  color: #9bb0be;
-  background: rgba(245, 245, 245, 0.39);
-  padding-left: 20px;
-  border-bottom: 1px solid rgb(204, 204, 187);
-}
+
 .h_list .el-collapse-item__wrap{
   background: rgba(245, 245, 245, 0.39);
   padding: 20px;

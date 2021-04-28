@@ -40,7 +40,7 @@
 					</div>
 
 					<!-- 注册盒子 -->
-					<div class="rigister_box" v-show=' showbox=="registerbox" '>
+					<div class="rigister_box" v-show='showbox=="registerbox" '>
 						<div class="register_pic">
 							<span style="margin-left:10px;">register</span>
 						</div>
@@ -95,7 +95,6 @@ export default {
 	computed: {
         ...mapState({
 			LoginState: (state) => state.loginStore.LoginState,
-			Tname: (state) => state.loginStore.Tname,
         }),
     },
 	data(){
@@ -103,7 +102,6 @@ export default {
 			RouterHead:'',
 			RouterFoot:'',
 			navid:5,
-			islogin:false,
 			logindialog:false,
 			isout:false,
 			bk:require('../../assets/img/70.jpg'),
@@ -125,7 +123,6 @@ export default {
 				address:'',
 				workyear:'',
 				breif:'',
-				
 			},
 			loginrule:{
 				userName:[
@@ -199,9 +196,19 @@ export default {
 		},
 		Changeindex(i){
 			if(i==2){
-				this.RouterHead=this.indexnav[i].RouterHead
-				this.RouterFoot=''
-				this.ChangeRouter()
+				if(this.LoginState==true){
+					this.RouterHead=this.indexnav[i].RouterHead
+					this.RouterFoot=''
+					this.ChangeRouter()
+				}
+				else{
+					this.$message({
+						type:'error',
+						message:"请先登录！",
+						duration:1000
+					})
+				}
+				
 			}
 			if(i==0){
 				this.userform.username=''
@@ -223,7 +230,7 @@ export default {
 			}
 		},
 		ChangeRouter(){
-			this.$router.push({ path: `/${this.RouterHead}/${this.RouterFoot}`,query:{pageid:this.pageid,islogin:this.islogin}})
+			this.$router.push({ path: `/${this.RouterHead}/${this.RouterFoot}`,query:{pageid:this.pageid}})
 		},
 		movelogin(){
 			this.isout=true
@@ -294,16 +301,24 @@ export default {
 		},
 
 		Login(){
-			console.log("登录状态",this.LoginState,this.Tname)
+			console.log("登录状态",this.userform)
 			this.$refs.loginForm.validate(async vaild=>{
 				const {data:res}=await this.$http.post("login",this.userform)
 				if(res.flag=="ok"){
 					console.log(res.user)
-					this.islogin=true
 					this.RouterHead='Homepage'
 					this.RouterFoot=''
-					console.log("登录成功")
+					this.$store.dispatch('ChangeLoginState',true)
+					this.$store.dispatch('ChangeLoginId',res.user.id)
+					console.log("登录成功",res.user)
 					this.ChangeRouter()
+				}
+				else{
+					this.$message({
+						type:'error',
+						message:"登录失败 请检查用户名或密码是否错误！",
+						duration:1200
+					})
 				}
 			})
 		},
@@ -317,24 +332,15 @@ export default {
 					}
 					else{
 						this.$message.success("注册成功")
+						this.showbox='loginbox'
 					}
 			})
-		},
-
-		async GetWorklist(){
-			var queryinfo={
-				query:'人物'
-			}
-			const {data:res}=await this.$http.get("getworklist",{param:queryinfo})
-			console.log(res)
-		}
-		
+		},	
 	},
 	
 	mounted(){
-		this.GetWorklist()
 		
-		// this.logindialog=this.$route.query.logindialog
+		
 	}
 	
 	

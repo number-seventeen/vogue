@@ -16,7 +16,9 @@
                     action="#"
                     list-type="picture"
                     :limit="1"
-                    :auto-upload="false">
+                    :auto-upload="false"
+                    :on-change="handleChange"
+                    >
                         <span class="new"><i class="el-icon-plus" /></span>
                         <div slot="file" slot-scope="{file}">
                             <img
@@ -45,38 +47,41 @@
                     </el-dialog>
                 </div>   
             </div>	
+
             <div class="share_info">
                 <ul v-show="titles=='新建分享'">
                     <li>
                         <span style="font-size:19px; font-weight:600;">添加留言：</span>
                     </li>
                     <li>
-                        <textarea class="sharetext" style="resize: none;"/>
+                        <textarea class="sharetext" v-model="ideaword" style="resize: none;"/>
                     </li>
                     <li>
-                        <div class="submit"><p style="font-size:25px; margin:0;">上传</p></div>
+                        <div class="submit" @click="Addsharework"><p style="font-size:25px; margin:0;">上传</p></div>
                     </li>
                 </ul>
                 <ul v-show="titles=='新建拍卖'">
                     <li>
-                        <span style="font-size:19px; font-weight:600;">作品名称：</span><input :v-model="Workinfo.workname" type="text">
+                        <span style="font-size:19px; font-weight:600;">作品名称：</span><input v-model="workname" type="text">
                     </li>
                     <li>
-                        <span style="font-size:19px; font-weight:600;">画作作者：</span><input :v-model="Workinfo.author" type="text">
+                        <span style="font-size:19px; font-weight:600;">画作作者：</span><input v-model="author" type="text">
                     </li>
                     <li>
-                        <span style="font-size:19px; font-weight:600;">创作年份：</span><input :v-model="Workinfo.maketime" type="number">
+                        <span style="font-size:19px; font-weight:600;">创作年份：</span><input v-model="maketime" type="number">
                     </li>
                     <li>
-                        <span style="font-size:19px; font-weight:600;">起拍价格：</span><input :v-model="Workinfo.workprice" type="number">
+                        <span style="font-size:19px; font-weight:600;">起拍价格：</span><input v-model="workprice" type="number">
                     </li>
                     <li>
-                        <span style="font-size:19px; font-weight:600;">开拍时间：</span>
+                        <span style="font-size:19px; font-weight:600;">截止时间：</span>
                         <el-date-picker
-                            v-model="startime"
-                            type="date"
-                            format="yyyy 年 MM 月 dd 日"
-                            value-format="timestamp"
+                            v-model="endtime"
+                            type="datetime"
+                            default-time="23:59:59"
+                            format="yyyy-MM-dd HH:mm:ss"
+                            value-format="yyyy-MM-dd HH:mm:ss"
+                           :picker-options="pickerOptions"
                         >
                         </el-date-picker>
                     </li>
@@ -84,7 +89,7 @@
                         <span style="font-size:19px; font-weight:600;">画作类型：</span>
                         <el-select v-model="value" placeholder="请选择类型" >
                             <el-option
-                            v-for="item in Workinfo.Worktype"
+                            v-for="item in Worktype"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -98,7 +103,7 @@
                         <textarea  class="saletext" style="resize: none;"/>
                     </li>
                     <li>
-                        <div class="submit"><p style="font-size:25px; margin:0;">上传</p></div>
+                        <div class="submit" @click="Addsalework()"><p style="font-size:25px; margin:0;">上传</p></div>
                     </li>
                 </ul>
             </div>        
@@ -111,40 +116,54 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
+    computed: {
+		...mapState({
+			LoginState:state=>state.loginStore.LoginState,
+			Loginid:state=>state.loginStore.Loginid,
+			
+		})	
+	},
     data(){
         return{
             sharebox:false,
+            imageUrl:'', 
             dialogImageUrl: '',
             dialogVisible: false,
             disabled: false,
-            titles:'',
-            startime:'',
-            Workinfo:{
-                workname:'',
-                author:'',
-                maketime:null,
-                workprice:null,
-                Worktype: [
-                    {
-                        value: '选项1',
-                        label: '人物'
-                    }, 
-                    {
-                        value: '选项2',
-                        label: '风景'
-                    }, 
-                    {
-                        value: '选项3',
-                        label: '静物'
-                    }, 
-                    {
-                        value: '选项4',
-                        label: '建筑'
-                    }
-                ]
+            pickerOptions: {
+                disabledDate(time) {
+                    return time.getTime() < Date.now() - 8.64e7;   //禁用以前的日期，今天不禁用
+                    // return date.getTime() <= Date.now();    //禁用今天以及以前的日期
+                }
             },
-            value: ''
+            titles:'',
+            ideaword:'',
+            endtime:'',
+            workname:'',
+            author:'',
+            maketime:'',
+            workprice:null,
+            Worktype: [
+                {
+                    value: '人物',
+                    label: '人物'
+                }, 
+                {
+                    value: '风景',
+                    label: '风景'
+                }, 
+                {
+                    value: '静物',
+                    label: '静物'
+                }, 
+                {
+                    value: '建筑',
+                    label: '建筑'
+                }
+            ],
+            value: ''//作品绘画类型值
         }
     },
     methods:{
@@ -156,14 +175,97 @@ export default {
         },
         handleRemove(file) { 
 			console.log(file);
-		},
+        },
 		handlePictureCardPreview(file) {
+            console.log("visivisi",file.url)
 			this.dialogImageUrl = file.url;
 			this.dialogVisible = true;	
-		},
-		handleDownload(file) {
-			console.log(file);
-		},
+        },
+        handleChange(file){
+            this.imageUrl=file.url
+            console.log(file)
+        },
+        changeTime(time){
+				var date = new Date(time);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+		        var Y = date.getFullYear() + '-';
+		        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+		        var D = date.getDate() + ' ';
+		        var h = date.getHours() + ':';
+		        var m = date.getMinutes() + ':';
+		        var s = date.getSeconds();
+		        return Y+M+D+h+m+s 
+        },  
+        
+        async Addsharework(){
+            console.log(this.imageUrl)
+            var date=new Date()
+            var time=date.getTime()
+            console.log(this.workname)
+            let form={
+				owntype:'分享',
+				worktype:'',
+				workname:'',
+				maketime:'',
+				storetotal:0,
+				ideaword:this.ideaword,
+				loadtime:this.changeTime(time),
+				endtime:this.changeTime(time),
+				salecompany:'',
+				author:'',
+				ownnerid:this.Loginid,
+				workurl:this.imageUrl,
+				workprice:0,
+				tempownner:this.Loginid,
+				tempprice:0,
+				tempstore:false,
+				tempmind:false
+            }
+            
+            console.log("拍卖作品参数",form)
+            const {data:res}=await this.$http.put("addworklist",form)
+            if(res!='success'){
+				return this.$message.error("发布失败")
+			}
+			else{
+                this.$message.success("发布成功")
+                this.sharebox=false
+			}
+        },
+        async Addsalework(){
+            var date=new Date()
+            var time=date.getTime()
+            console.log(this.workname)
+            let form={
+				owntype:'出售',
+				worktype:this.value,
+				workname:this.workname,
+				maketime:this.maketime,
+				storetotal:0,
+				ideaword:'',
+				loadtime:this.changeTime(time),
+				endtime:this.endtime,
+				salecompany:'星宇',
+				author:this.author,
+				ownnerid:this.Loginid,
+				workurl:this.imageUrl,
+				workprice:this.workprice,
+				tempownner:this.Loginid,
+				tempprice:this.workprice,
+				tempstore:false,
+				tempmind:false
+            }
+            
+            console.log("拍卖作品参数",form)
+            const {data:res}=await this.$http.put("addworklist",form)
+            if(res!='success'){
+				return this.$message.error("发布失败")
+			}
+			else{
+                this.$message.success("发布成功")
+                this.sharebox=false
+			}
+            
+        }
     },
 }
 </script>

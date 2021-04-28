@@ -20,8 +20,8 @@ li{
     width: 1720px;
     height: 50px;
     line-height: 50px;
-    margin-left: 100px;
-    box-shadow: 0 0 50px rgb(196, 191, 196);
+    margin-left: 80px;
+    box-shadow: 0 0 40px rgb(196, 191, 196);
     font-size: 16px;
     font-weight: 450;
     color: rgba(139, 57, 98, 0.828);
@@ -47,8 +47,8 @@ li{
     height: 900px;
     box-shadow:0 0 50px rgb(175, 170, 172);
     border-radius: 5px;
-    margin-left: 160px;
-    margin-top: 70px;
+    margin-left: 140px;
+    margin-top: 60px;
 }
 .showtop{
     display: flex;
@@ -67,21 +67,39 @@ li{
     line-height: 50px;
     
 }
+.infos{
+    display: flex;
+    width: 800px;
+}
 .showinfo{
     margin-left: 25px;
-    font-size: 16px;
+    font-size: 17px;
     display: flex;
-    color: rgb(163, 148, 163);
+    color: rgb(136, 125, 136);
     font-family:DZF;
+
 }
 .moreinfo{
-    font-size: 13px;
-    color: rgb(177, 167, 177);
-    margin-left: 90px;
+    width: 100px;
+    font-size: 15px;
+    color: rgb(136, 125, 136);
     font-weight: 500;
     cursor: pointer;
     font-family:DZF;
+    padding-top: 2px;
 }
+.likeinfo{
+    .heart{
+        width: 30px;
+        height: 30px;
+        position: relative;
+        top:10px;
+        left: 10px;
+        cursor: pointer;
+    }
+}
+
+
 .imgview{
     width: 1020px;
     height: 750px;
@@ -223,8 +241,8 @@ li{
 }
 .priceicon{
     color: rgb(199, 182, 189);
-    font-size: 20px;
-    width: 32px;
+    font-size: 15px;
+    width: 37px;
     height: 32px;
     text-align: center;
     line-height: 32px;

@@ -198,7 +198,7 @@ button{
 }
 .join{
 	margin-left: 76px;
-	margin-top: 90px;
+	margin-top: 70px;
 	height: 40px;
 	width: 130px;
 	text-align: center;
@@ -342,32 +342,32 @@ button{
 }
 .to_name{
 	margin-left: 10px;
-	height: 45px;
+	width: 300px;
+	height: 35px;
 	position: relative;
 	letter-spacing: 0.15em;
-	top: 12px;
+	top: 15px;
 	color: rgba(112, 95, 146, 0.63);
 	cursor: pointer;
 	font-size: 14px;
 }
 .heart{
-	width: 25px;
-	height: 25px;
+	width: 27px;
+	height: 27px;
 	opacity: 0.5;
-	margin-top:8px;
+	margin-top:10px;
 }
 .to_like{
-	margin-left: 225px;
+	margin-left: 35px;
 	text-align: center;
-	width: 35px;
+	width: 65px;
 	height: 45px;
 }
 .sharemore{
 	margin-left:768px;
 	margin-top:-10px;
-	font-family:A;
 	font-size: 17px;
-	color:rgba(112, 95, 146, 0.63);
+	color:rgba(84, 128, 175, 0.507);
 	font-weight:600;
 	cursor: pointer;
 	letter-spacing: 0.2rem;

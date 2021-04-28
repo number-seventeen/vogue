@@ -39,15 +39,15 @@
 
 .salepages .el-pagination .el-icon{
     color:rgb(147, 166, 192) !important;
-    font-size: 18px !important;
+    font-size: 19px !important;
 }
 .salepages .el-pager li{
     background: rgba(255, 255, 255, 0); 
-    color:rgb(147, 166, 192); 
-    font-size: 18px;
+    color:rgb(117, 136, 163); 
+    font-size: 19px;
 }
 .salepages .el-pager li.active{
-    color: rgb(125, 144, 165);
+    color: rgb(62, 91, 100);
 }
 .salepages .el-pagination--small .el-pager li:last-child{
     font-size: 18px; 
@@ -55,17 +55,17 @@
 .salepages .el-pagination--small .el-pager li.btn-quicknext{
     font-size: 18px; 
     font-weight: bold;
-    color:rgb(170, 185, 204); 
+    color:rgb(65, 83, 92); 
 }
 .salepages .el-pagination{
     color:gray !important;
 }
 .el-pagination .btn-next, .el-pagination .btn-prev{
     background: transparent;
-    color:  rgb(170, 185, 204);
+    color:  rgb(118, 139, 167);
 }
 .el-pagination button:disabled{
-    color: rgb(170, 185, 204);
+    color: rgb(117, 136, 160);
     background: transparent;
 }
 .el-pagination .btn-next .el-icon, .el-pagination .btn-prev .el-icon{
@@ -89,8 +89,8 @@
     height: 836px;
     margin-top: 10px;
     border-radius: 0px 10px 10px 0px;
-    background: #f0f6fa;
-    box-shadow: 0 0 10px #a9bac2;
+    background: #eeeeeb;
+    box-shadow: 0 0 10px #c9c8c2;
     z-index: 10;
     
 }
@@ -102,7 +102,7 @@
 }
 .UserMessage .el-menu{
     border-right: 0px solid white ;
-    background: #f0f6fa;
+    background: #eeeeeb;
     
 }
 .el-drawer:focus{
@@ -113,7 +113,7 @@
     letter-spacing: 0.1em;
     text-align: center;
     font-size: 16px;
-    color: #5e8ab4;
+    color: #7a93aa;
     outline: none;
     height: 30px;
     border-radius: 10px;
