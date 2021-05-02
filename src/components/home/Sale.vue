@@ -46,24 +46,27 @@
                 <div class="tag-box" :class="[TagName=='first'?'Tagactive':'']" @click="Changetag(1)">我的拍卖({{Worklist.length}})</div>
                 <div class="tag-box" :class="[TagName=='second'?'Tagactive':'']" @click="Changetag(2)">我的关注({{StoreData.length}})</div>
               </div>
-              <div class="tag-content" :class="changeclass" v-show="TagName=='first'" id="mine" >
-                <div class="sale-img">
-                  <img class="sale-image" :src="ChoosedData.workurl" />
-                </div>
-                <div class="sale-info">
-                  <div class="sale-name">
-                    <span>作品名称:<span>《</span>{{ChoosedData.workname}}<span></span>》</span>
+              <div class="tag-content"  v-show="TagName=='first'" id="mine" >
+                <div class="top-content">
+                  <div class="sale-img">
+                    <img class="sale-image" :src="ChoosedData.workurl" />
                   </div>
-                  <div class="sale-company">
-                    <span style="margin-left:-10px;">拍卖行:{{ChoosedData.salecompany}}</span>
-                    <span style="margin-left:20px;">开拍时间:{{getTime(ChoosedData.loadtime)}}</span>
+                  <div class="sale-info">
+                    <div class="sale-name">
+                      <span>作品名称:<span>《</span>{{ChoosedData.workname}}<span></span>》</span>
+                    </div>
+                    <div class="sale-company">
+                      <span style="margin-left:-10px;">拍卖行:{{ChoosedData.salecompany}}</span>
+                      <span style="margin-left:20px;">开拍时间:{{getTime(ChoosedData.loadtime)}}</span>
+                    </div>
                   </div>
-                </div>
-                
-                <div class="sale-progress">
+                  
+                  <div class="sale-progress">
                     <div class="sale-time">
                       <i class="el-icon-alarm-clock"></i>
-                      <span>出价倒计时：01时30分</span>
+                      <span>出价倒计时：</span>
+                      <span  v-show="Dhours!=0||Dminutes!=0||Dseconds!=0">{{Dhours}}:{{Dminutes}}:{{Dseconds}}</span>
+                      <span  v-show="Dhours==0&&Dminutes==0&&Dseconds==0">拍卖已结束</span>
                       <span style="margin-left:10px;">关注人数: {{ToStoreData.length}}</span>
                     </div>
                     <div class="sale-price">
@@ -82,22 +85,25 @@
                         <div class="call-list" v-for="(u,index) in SaleData " :key="index">
                           <el-avatar class="call-icon" icon="el-icon-user-solid"></el-avatar>
                           <span class="call-price">{{u.comment}} RMB</span>
-                          <!-- <span class="call-tag" v-show="index==0" >领先</span>
-                          <span class="call-tag" v-show="index!=0">出局</span> -->
+                          <span class="call-tag" v-show="index==(SaleData.length-1)" >领先</span>
+                          <span class="call-tag" v-show="index<(SaleData.length-1)">出局</span>
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                <div class="bottom-content">
+                  <div class="page"><SalePage ref="salepage" :total="Worklist.length"></SalePage></div>
+                  <div class="del" @click="DelSale(ChoosedData.workid)"><i class="el-icon-delete"></i></div>
                 </div>
               </div>
 
+              <!-- 我的关注 -->
               <div class="tag-content" v-show="TagName=='second'" id="concer">
                 <SaleCard ref="salecard"></SaleCard>
               </div>
-            </div>
-
-            <div class="sale-page" v-show="TagName=='first'">
-              <SalePage ref="salepage"></SalePage>
-            </div>     
+            </div>   
 					</div>	
 				</div>
 				<div class="pic_show">
@@ -128,18 +134,15 @@ export default {
     },
     mounted(){
       this.getsalework()
+      this.salecountimer=setInterval(() => {
+        this.Watchtime()
+      }, 1000);
     },
     watch:{
       activeWork:{
         handler:function(newval){
           console.log("haohao",newval)
-          
-            this.changeclass='bianhua'
-            setTimeout(() => {
-              this.getAllSaleData()
-            }, 500);
-            
-          
+            this.getAllSaleData()
         }
       }
     },
@@ -160,6 +163,10 @@ export default {
         RouterHead:'',
         RouterFoot:'',
         TagName:'first',
+        salecountimer:null,
+        Dhours:0,
+        Dminutes:0,
+        Dseconds:0,
         navs:[
           {
             name:'艺术之廊',
@@ -181,6 +188,9 @@ export default {
 
         pageid:2,
       };
+    },
+    beforeDestroy(){
+      clearInterval(this.salecountimer)
     },
     methods: {
       handleRemove(file) { 
@@ -210,6 +220,7 @@ export default {
         }
         else if(number==2){
           this.TagName='second'
+          console.log("s",this.StoreData)
           this.$refs.salecard.StoreData=this.StoreData
         }
       },
@@ -226,7 +237,39 @@ export default {
       },
       ChangeRouter(){
         this.$router.push({ path: `/${this.RouterHead}/${this.RouterFoot}`,query:{pageid:this.pageid}})
+        },
+        Watchtime(){
+        var m=this.ChoosedData.endtime
+        var dateend=new Date(m);
+        var datenow=new Date();
+        let timestampend = dateend.getTime()
+        let timestampnow = datenow.getTime()
+        if(timestampend>timestampnow){
+          this.ChangeStamp(timestampnow,timestampend)
+        }
+        else{
+          
+        }
       },
+      ChangeStamp(beginTime,endTime){
+        var dateBegin = new Date(beginTime);
+        var dateEnd = new Date(endTime);
+        var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+        var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+        var dayhour=dayDiff*24
+        var leave1 = dateDiff % (24 * 3600 * 1000);    //计算天数后剩余的毫秒数
+        var hours = Math.floor(leave1 / (3600 * 1000))+dayhour;//计算出小时数
+        //计算相差分钟数
+        var leave2 = leave1 % (3600 * 1000);   //计算小时数后剩余的毫秒数
+        var minutes = Math.floor(leave2 / (60 * 1000)); //计算相差分钟数
+        //计算相差秒数
+        var leave3 = leave2 % (60 * 1000);     //计算分钟数后剩余的毫秒数
+        var seconds = Math.round(leave3 / 1000);
+        this.Dhours=hours
+        this.Dminutes=minutes
+        this.Dseconds=seconds
+      },
+
       //转换时间戳
       getTime (time) {
         var date = new Date(time)
@@ -237,14 +280,24 @@ export default {
       },
 
 
+      // 删除该条拍卖记录
+      async DelSale(workid){
+        console.log(workid)
+        const {data:delres}=await this.$http.get("deletework?workid="+workid);
+        if(delres!='success'){
+            return this.$message.error("取消失败")
+        }
+        else{
+          this.$message.error("删除成功")
+          this.Worklist.splice(this.activeWork,1)
+
+        }
+      },
+
+
       //调用数据
       getAllSaleData(){
-        this.Allwork=[]
-        this.Worklist=[]
-        this.ChoosedData=[]
-        this.ToStoreData=[]
-        this.StoreData=[]
-        this.SaleData=[]
+        console.log("diaoyong")
         this.getsalework()
         this.changeclass=''
       },
@@ -268,8 +321,8 @@ export default {
         this.ChoosedData=JSON.parse(JSON.stringify(salearr[num]))
         this.Worklist=JSON.parse(JSON.stringify(salearr))
         this.getnetsale()
-        
       },
+
 
       //获取用户的相关拍卖数据
       async getnetsale(){
@@ -277,6 +330,8 @@ export default {
         let storearr=[]
         let setarr=[]
         let worknetarr=[]
+        let salearr=[]
+        let tostore=[]
         var queryWorkInfo={
           workquery:this.ChoosedData.workid
         }
@@ -289,21 +344,23 @@ export default {
             setarr.push(res.networkdata[i])
           }
         }
+        console.log("关注数据",netarr)
 
         //存入和作品有出价关系的用户
         for (let j = 0; j < netarr.length; j++) {
           const {data:userres}=await this.$http.get("getupdata?id="+netarr[j].netuserid);
           worknetarr=Object.assign(netarr[j],userres)
-          this.SaleData.push(worknetarr)
+          salearr.push(worknetarr)
         }
+        this.SaleData=JSON.parse(JSON.stringify(salearr))
 
         //存入和作品有关注关系的用户
         for (let b = 0; b < setarr.length; b++) {
           const {data:storeres}=await this.$http.get("getupdata?id="+setarr[b].netuserid);
           storearr=Object.assign(setarr[b],storeres)
-          this.ToStoreData.push(storearr)
+          tostore.push(storearr)
         }
-
+        this.ToStoreData=JSON.parse(JSON.stringify(tostore))
         this.getuserstore()
       },
 
@@ -312,6 +369,7 @@ export default {
       async getuserstore(){
         var userarr=[]
         var netarr=[]
+        var sdata=[]
         var querynetInfo={
           netquery:this.Loginid
         }
@@ -321,16 +379,15 @@ export default {
             userarr.push(res.netdata[i])
           }
         }
-        console.log("关注数据",userarr)
         for (let j = 0; j < this.Allwork.length; j++) {
           for (let a = 0; a < userarr.length; a++) {
             if((this.Allwork[j].workid==userarr[a].networkid)&&this.Allwork[j].owntype=='出售'){
               netarr=Object.assign(this.Allwork[j],userarr[a])
-              this.StoreData.push(netarr)
+              sdata.push(netarr)
             }
           }
         }
-        // console.log("关注数据",this.StoreData)
+        this.StoreData=JSON.parse(JSON.stringify(sdata))
       }
     },
 }
@@ -338,7 +395,7 @@ export default {
 <style lang="scss" scoped>	
 @import '../../assets/css/sale.scss';
 .bianhua{
-  animation: move 1s ease-in-out alternate;
+  animation: move 2s ease-in alternate;
 }
 @keyframes move {
   0%{

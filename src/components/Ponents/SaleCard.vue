@@ -26,12 +26,29 @@
 </template>
 <script>
 import Tobuy from '../home/Tobuy'
+import { mapState, mapMutations } from 'vuex'
 export default {
     data() {
         return {
             StoreData:[],
-            currentDate: new Date()
+            currentDate: new Date(),
+            price:100,
+            cunumber:0
         };
+    },
+    computed: {
+      ...mapState({
+        LoginState:state=>state.loginStore.LoginState,
+        Loginid:state=>state.loginStore.Loginid,
+      })  
+    },
+    watch:{
+        price:{
+            handler:function(newval){
+                console.log("发起变化")
+                this.StoreData[this.cunumber].tempprice=this.price
+            }
+        }
     },
     components:{Tobuy},
     methods:{
@@ -47,6 +64,7 @@ export default {
             this.$refs.cardtobuy.routetype='card'
             this.$refs.cardtobuy.WorkData=this.StoreData[index]
             this.$refs.cardtobuy.storecontent=true
+            this.cunumber=index
         },
         async handlecancel(i){
             const {data:delres}=await this.$http.get("deletenetbox?Netboxid="+this.StoreData[i].netboxid);
@@ -56,7 +74,12 @@ export default {
             else{
                 this.StoreData.splice(i,1)
             }
-        }
+        },
+        async Resetwork(data){
+            this.price=data.tempprice
+            
+        },
+        
     }
 }
 </script>

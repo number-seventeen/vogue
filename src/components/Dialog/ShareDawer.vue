@@ -100,7 +100,7 @@
                         <span style="font-size:19px; font-weight:600;">画作简介：</span>
                     </li>
                     <li>
-                        <textarea  class="saletext" style="resize: none;"/>
+                        <textarea v-model="ideaword" class="saletext" style="resize: none;"/>
                     </li>
                     <li>
                         <div class="submit" @click="Addsalework()"><p style="font-size:25px; margin:0;">上传</p></div>
@@ -241,7 +241,7 @@ export default {
 				workname:this.workname,
 				maketime:this.maketime,
 				storetotal:0,
-				ideaword:'',
+				ideaword:this.ideaword,
 				loadtime:this.changeTime(time),
 				endtime:this.endtime,
 				salecompany:'星宇',
@@ -262,6 +262,7 @@ export default {
 			}
 			else{
                 this.$message.success("发布成功")
+                this.$parent.getAllSaleData()
                 this.sharebox=false
 			}
             

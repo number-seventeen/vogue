@@ -133,15 +133,23 @@ export default {
     beforeDestroy() { // 离开页面生命周期函数
             this.onbeforeunload()
     },
+    watch:{
+        storecontent:{
+            handler:function(newval){
+                if(newval==true){
+                    var jonarr=[]
+                    console.log("接收接收",this.WorkData)
+                    jonarr.push(this.WorkData)
+                    this.jonnerlist=JSON.parse(JSON.stringify(jonarr))
+                    this.maxPrice=this.jonnerlist[0].tempprice
+                    this.maxbelong=this.jonnerlist[0].tempownner
+                    this.Getnetlike()
+                }
+            }
+        }
+    },
     methods:{
         handleopen(){
-            console.log("接收接收",this.WorkData)
-            // this.websocket = new WebSocket("ws://localhost:9000/websocket/"+ this.userName);
-            // this.initWebSocket()
-            this.jonnerlist.push(this.WorkData)
-            this.maxPrice=this.jonnerlist[0].tempprice
-            this.maxbelong=this.jonnerlist[0].tempownner
-            this.Getnetlike()
         },
         initWebSocket () {
             // 连接错误
@@ -200,12 +208,9 @@ export default {
                 this.$parent.GetWorklist()
             }
             else if(this.routetype=='card'){
-                console.log(this.$parent)
-                this.$parent.$parent.getAllSaleData()
-                this.$parent.$parent.Changetag(2)
+                console.log("返回过去的作品数据",this.WorkData)
+                this.$parent.$parent.$refs.salecard.Resetwork(this.WorkData)
             }
-            this.WorkData=[]
-            this.jonnerlist=[]
             this.addnumber=null
             this.storecontent=false
         },
@@ -245,24 +250,24 @@ export default {
 
         //获取与当前登录用户有关的数据
         async Getnetlike(){
+            this.WorkData.tempmind=false
 			var likelist=[]
 			var querynetInfo={
 				netquery:this.Loginid
 			}
 			const {data:res}=await this.$http.get("getnetbox",{params:querynetInfo})
-			console.log("这是关系表数据",this.WorkData)
             this.NetData=JSON.parse(JSON.stringify(res.netdata))
-            for (let i = 0; i < this.WorkData.length; i++) {
-				for (let a = 0; a < this.NetData.length; a++) {
-					if((this.WorkData[i].workid==this.NetData[a].networkid)&&this.NetData[a].nettype=='关注'){
-						this.WorkData[i].tempmind=true
-					}
-					else{
-						this.WorkData[i].tempmind=false
-					} 
-				}
+            console.log("这是作品关系表数据",this.WorkData,this.NetData)
+            for (let a = 0; a < this.NetData.length; a++) {
+				if(this.NetData[a].nettype=='关注'){
+                    if(this.WorkData.workid==(this.NetData[a].networkid)){
+                        this.WorkData.tempmind=true
+                    }
+				}	
 			}
         },
+
+        
         //向数据库中添加对应的收藏关系
         async Setlike(){
 			let form={
@@ -339,21 +344,33 @@ export default {
             this.WorkData=res; 
             this.Getnetlike()
             this.jonnerlist.push(this.WorkData)
-            this.maxPrice=this.jonnerlist[0].tempprice
-            this.maxbelong=this.jonnerlist[0].tempownner
+            console.log("出价记录",this.jonnerlist)
+            this.maxPrice=this.jonnerlist[this.jonnerlist.length-1].tempprice
+            this.maxbelong=this.jonnerlist[this.jonnerlist.length-1].tempownner
         },
         async Changedata(){
             var arr=JSON.parse(JSON.stringify(this.WorkData))
             arr.tempprice=arr.tempprice+Number(this.addnumber)
             arr.tempownner=this.Loginid   
             arr.loadtime=this.changeTime(arr.loadtime)
+            arr.endtime=this.changeTime(arr.endtime),
             console.log("传的参数",arr)
             const {data:res}=await this.$http.put("editwork",arr)
             if(res!="success") return ;
             else{
+                this.Addsalenet(arr.tempprice)
                 this.GetWorksocket()
                 // this.getidwork()//根据id查找到油画数据
             }
+        },
+        async Addsalenet(price){
+            let form={
+                netuserid:this.Loginid,
+                networkid:this.WorkData.workid,
+                nettype:'出价',
+                comment:price.toString()
+            }
+            const {data:res}=await this.$http.post("addnetbox",form)
         },
         async GetWorksocket(){
             let para=this.WorkData.workid.toString()

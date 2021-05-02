@@ -172,7 +172,7 @@ export default {
 			sharebest:[],
 			shareimgs:[],
 			bestUser:[],
-			Netdata:[],
+			NetData:[],
 			
 
 		}
@@ -184,8 +184,8 @@ export default {
 		this.imgHeight = document.documentElement.clientHeight || document.body.clientHeight;
 		window.addEventListener('mousewheel',this.handleScroll)
 		this.GetWorklist()
-		this.GetUser()
-		this.Getnetlike()
+		// this.GetUser()
+		// this.Getnetlike()
 
 		this.countimer=setInterval(() => {
 			this.Watchtime()
@@ -201,7 +201,7 @@ export default {
 	},
 	methods:{
 		async GetWorklist(){
-			this.shareimgs=[]
+			var simg=[]
 			var savelike=[]
 			var sharearrs=[]
 			var arr=[]
@@ -232,11 +232,19 @@ export default {
 			sortarr.sort(this.compare('storetotal'));
 			for (let i = 0; i < sortarr.length; i++) {
 				if(i<=7){
-					this.shareimgs.push(sortarr[i])
+					simg.push(sortarr[i])
 				}
 				
 			}
-			console.log("fenxiangfenxiang",this.shareimgs)
+			this.shareimgs=JSON.parse(JSON.stringify(simg))
+			//重置点赞关系
+			for (let i = 0; i < this.shareimgs.length; i++) {
+				this.shareimgs[i].tempstore=false
+				this.shareimgs[i].tempmind=false
+			}
+
+
+			this.GetUser()
 		},
 		async GetUser(){
 			var queryUserInfo={
@@ -249,6 +257,7 @@ export default {
 				}
 				
 			}
+			this.Getnetlike()
 		},
 
 		async Getnetlike(){
@@ -257,24 +266,25 @@ export default {
 				netquery:this.Loginid
 			}
 			const {data:res}=await this.$http.get("getnetbox",{params:querynetInfo})
-			console.log("这是关系表数据",this.shareimgs)
 			this.NetData=JSON.parse(JSON.stringify(res.netdata))
-
-			for (let i = 0; i < this.shareimgs.length; i++) {
-				for (let a = 0; a < this.NetData.length; a++) {
-					if((this.shareimgs[i].workid==this.NetData[a].networkid)&&this.NetData[a].nettype=='收藏'){
-						this.shareimgs[i].tempstore=true
-					}
-					else{
-						this.shareimgs[i].tempstore=false
-					} 
-					if((this.shareimgs[i].workid==this.NetData[a].networkid)&&this.NetData[a].nettype=='关注'){
-						this.shareimgs[i].tempmind=true
-					}
-					else{
-						this.shareimgs[i].tempmind=false
-					} 
+			console.log("动态喜欢关系数据",this.NetData)
+			for (let a = 0; a < this.NetData.length; a++) {
+				if(this.NetData[a].nettype=='收藏'){
+					this.shareimgs.forEach(img => {
+						if(img.workid==(this.NetData[a].networkid)){
+							console.log("dis",img.workid)
+							img.tempstore=true
+						}
+					});
 				}
+				if(this.NetData[a].nettype=='关注'){
+					this.shareimgs.forEach(img => {
+						if(img.workid==(this.NetData[a].networkid)){
+							img.tempmind=true
+						}
+					});
+				}
+				
 			}
 			console.log("作品数据",this.shareimgs)
 		},
@@ -304,7 +314,7 @@ export default {
 		async Delike(index){
 			for (let i = 0; i < this.NetData.length; i++) {
 				if((this.NetData[i].networkid==this.shareimgs[index].workid)&&this.NetData[i].nettype=='收藏'){
-					console.log("需要取消的关系ID为：",this.NetData[i].netboxid)
+					// console.log("需要取消的关系ID为：",this.NetData[i].netboxid)
 					const {data:delres}=await this.$http.get("deletenetbox?Netboxid="+this.NetData[i].netboxid);
 					if(delres!='success'){
 						return this.$message.error("取消失败")
@@ -331,8 +341,8 @@ export default {
 				maketime:this.shareimgs[index].maketime,
 				storetotal:this.shareimgs[index].storetotal+num,
 				ideaword:this.shareimgs[index].ideaword,
-				loadtime:this.shareimgs[index].loadtime,
-				endtime:this.shareimgs[index].endtime,
+				loadtime:this.changeDateTime(this.shareimgs[index].loadtime),
+				endtime:this.changeDateTime(this.shareimgs[index].endtime),
 				salecompany:this.shareimgs[index].salecompany,
 				author:this.shareimgs[index].author,
 				ownnerid:this.shareimgs[index].ownnerid,
@@ -459,13 +469,25 @@ export default {
 			this.Dseconds=seconds
 		},
 
+		//将时间戳转化为日期时间格式
+		changeDateTime(time){
+            var date = new Date(time);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var Y = date.getFullYear() + '-';
+            var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+            var D = date.getDate() + ' ';
+            var h = date.getHours() + ':';
+            var m = date.getMinutes() + ':';
+            var s = date.getSeconds();
+            return Y+M+D+h+m+s 
+        },   
+
 		Clear(){
 			this.WorkList=[],
 			this.choosedWork=[],
 			this.sharebest=[],
 			this.shareimgs=[],
 			this.bestUser=[],
-			this.Netdata=[]
+			this.NetData=[]
 		},
 		
 

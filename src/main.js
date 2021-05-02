@@ -18,6 +18,9 @@ Vue.config.productionTip = false
 Vue.prototype.$http = axios
 //设置访问根路径
 axios.defaults.baseURL="http://localhost:9000"
+
+
+
 Vue.prototype.$util = util
 Vue.prototype.validForbid=util.validForbid
 /* eslint-disable no-new */
