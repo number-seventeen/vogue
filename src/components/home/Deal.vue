@@ -17,7 +17,7 @@
 					<div class="paixusearch" style="display:flex;margin-left:25px;">
 						<div class="paixu_serch"><input v-model="serchcondition" placeholder="输入相关标签"/></div>
 						<div class="search_img" @click="Getsearch()"><i class="el-icon-search"></i></div>
-						<div class="clear" @click="Clearsearch()" v-show="choosetype!=''"><i class="el-icon-circle-close"></i>清除筛选</div>
+						<div class="clear" @click="Clearsearch()" v-show="choosetype!=''||serchcondition!=''"><i class="el-icon-circle-close"></i>清除筛选</div>
 						<div class="paixu_back"><router-link to="/Homepage"><i class="el-icon-arrow-left"></i>返回画廊</router-link></div>
 					</div>
 				</div>
@@ -43,9 +43,9 @@
 										<li>
 											<span>*当前价格:</span><div class="wprice"><span style="margin-left:6px;">{{item.tempprice}}</span><span style="margin-left:5px;">RMB</span></div>
 										</li>	
-										<li>
+										<!-- <li>
 											<span>*剩余时间:</span><div class="wrest"><span style="margin-left:6px;">{{ChangeStamp(item.endtime)}}</span></div>
-										</li>
+										</li> -->
 									</ul>
 									<div  class="join" @click="ToBuy(index)">查看详情</div>
 								</div>	
@@ -62,6 +62,7 @@
 <script>
 import Tobuy from './Tobuy'
 import Rules from '../Dialog/Rules.vue'
+import { mapState, mapMutations } from 'vuex'
 export default {
 	components:{Rules,Tobuy},
 	data(){
@@ -73,11 +74,30 @@ export default {
 			recordtimer:null,
 		}
 	},
+	computed: {
+		...mapState({
+			LoginState:state=>state.loginStore.LoginState,
+            Loginid:state=>state.loginStore.Loginid,
+            Readrule:state=>state.loginStore.Readrule,
+            websocktData:state=>state.loginStore.websocktData,
+		})
+		
+    },
 	mounted(){
 		this.GetWorklist()
 	},
 	beforeDestroy(){
 		clearInterval(this.recordtimer)
+	},
+	watch:{
+		websocktData:{
+            handler:function(newval,oldval){
+                // console.log("fff",newval)
+                if(newval.type=='结束通知'){
+                    this.RESETWEB()
+                }
+            }
+        },
 	},
 	methods: {
 		async GetWorklist(){
@@ -121,7 +141,9 @@ export default {
 
 		ChangeStamp(end){
 			var m=end
-			var dateend=new Date(m);
+			var offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+            var nowDate = new Date(m).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+            var dateend = new Date(nowDate + offset_GMT * 60 * 1000  );
 			var datenow=new Date();
 			let endTime = dateend.getTime()
 			let beginTime = datenow.getTime()
@@ -156,6 +178,9 @@ export default {
 			this.$refs.dealbuy.routetype='deal'
 			this.$refs.dealbuy.storecontent=true
 			this.$refs.dealbuy.WorkData=this.Worklist[i]
+		},
+		RESETWEB(){
+			this.GetWorklist()
 		}
 		
 			

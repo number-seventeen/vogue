@@ -29,9 +29,9 @@
                                     list-type="picture-card"
                                     :limit="1"
                                     :show-file-list="false"
-                                    :on-success="handleAvatarSuccess"
-                                    :on-change="handleChange" 
+                                    :on-change="getFile" 
                                     :auto-upload="false"
+                                    
                                     >
                                     <div slot="trigger" class="editicon" v-show="Catchtype=='right'"><i  class="el-icon-edit-outline "></i></div>
                                 </el-upload>
@@ -80,10 +80,10 @@
                                             </div>
                                         </div>
                                         <div class="htime">
-                                            <div style="width:250px;"><span style="font-size:12px;">订单创建时间：{{getTime(deal.endtime)}}</span></div>
-                                            <div style="width:60px;" >
-                                                <span style="margin-left:0px;">详情</span>
-                                                <span style="margin-left:9px;">删除</span>
+                                            <div style="width:270px;"><span style="font-size:12px;margin-left:3px;">订单创建时间：{{getTime(deal.endtime)}}</span></div>
+                                            <div style="width:40px;" >
+                                                <!-- <span style="margin-left:0px;">详情</span> -->
+                                                <span style="margin-left:14px;" @click="Delorder(index)">删除</span>
                                             </div>
                                         </div>
                                     </div>
@@ -100,10 +100,9 @@
                                             </div>
                                         </div>
                                         <div class="htime">
-                                            <div style="width:250px;"><span style="font-size:12px;">上传时间：{{getTime(action.loadtime)}}</span></div>
-                                            <div style="width:60px;" >
-                                                <span style="margin-left:0px;">详情</span>
-                                                <span style="margin-left:9px;">删除</span>
+                                            <div style="width:270px;"><span style="font-size:12px;">上传时间：{{getTime(action.loadtime)}}</span></div>
+                                            <div style="width:40px;" >
+                                                <span style="margin-left:14px;"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -131,19 +130,25 @@ export default {
       ...mapState({
         LoginState:state=>state.loginStore.LoginState,
         Loginid:state=>state.loginStore.Loginid,
+        websocktData:state=>state.loginStore.websocktData,
       }) 
     },
     data(){
         return{
             userdialog: false,
             bk:require('../../assets/img/52.jpg'),
+            fileList:[],
             usericon:'',
+            imgFile:'',
+            fileName:'',
+            proofImage:'',
             Navnum:null,
             upurl:"https://jsonplaceholder.typicode.com/posts/",
             Catchtype:'',
             Catchid:0,
             NetData:[],
             UserInfo:{},
+            Messagedata:[],
             navlist:[
                 {
                     name:"消息通知",
@@ -160,9 +165,16 @@ export default {
             handler:function(){
                 if(this.userdialog==true){
                     this.getUserlist()  
+                    this.GetMessage()
                 }
             }
-        }
+        },
+        websocktData:{
+            handler:function(newval,oldval){
+                this.RESETWEB(newval)
+               
+            }
+        },
     },
     methods:{
         async getUserlist(){
@@ -170,15 +182,7 @@ export default {
             const {data:userres}=await this.$http.get("getupdata?id="+this.Catchid);
             this.usericon=userres.uicon
             this.UserInfo=userres
-            this.$refs.checkuser.editform.truename=this.UserInfo.truename
-            this.$refs.checkuser.editform.username=this.UserInfo.username
-            this.$refs.checkuser.editform.password=this.UserInfo.password
-            this.$refs.checkuser.editform.email=this.UserInfo.email
-            this.$refs.checkuser.editform.uicon=this.UserInfo.uicon
-            this.$refs.checkuser.editform.address=this.UserInfo.address
-            this.$refs.checkuser.editform.workyear=this.UserInfo.workyear
-            this.$refs.checkuser.editform.breif=this.UserInfo.breif
-            this.$refs.checkuser.editform.id=this.UserInfo.id
+            
             console.log("查询到了用户信息",this.UserInfo)
             this.getShare()
         },
@@ -203,6 +207,70 @@ export default {
 
         },
 
+        async Delorder(index){
+            const confirmResult =await this.$confirm('确认删除该订单吗',{
+				confirmButtonText: '确定',
+				cancelButtonText: '取消',
+				type: 'info'
+			}).catch(err => err)
+			if(confirmResult!='confirm'){//取消
+				return;
+            }
+            else{
+                var netarr=[]
+                var queryWorkInfo={
+                    workquery:this.dealist[index].workid
+                }
+                console.log(this.dealist[index].workid)
+                const {data:res}=await this.$http.get("getnetwork",{params:queryWorkInfo}) 
+                this.delnetwork(res.networkdata,this.dealist[index].workid)
+            }
+        },
+        async delnetwork(data,workid){
+            console.log("sss",data)
+            for (let i = 0; i < data.length; i++) {
+                const {data:delres}=await this.$http.get("deletenetbox?Netboxid="+data[i].netboxid);
+                if(delres!='success'){
+                    console.log("分享板块历史动态删除失败")
+                } 
+                
+            }
+            this.delwork(workid)
+            
+        },
+        async delwork(id){
+            const {data:workres}=await this.$http.get("deletework?workid="+id)
+			if(workres!='success'){
+				return this.$message.error("删除失败")
+			}
+			else{
+                this.$message.info("删除成功")
+                this.getShare()
+			}
+        },
+
+        async UpdateUser(params){
+            var info=params[0]+','+params[1]
+            console.log(typeof(info))
+            this.UserInfo.uicon=info
+            console.log("传入的用户信息",info)
+            const {data:res}=await this.$http.put("edituser",this.UserInfo)
+            if(res!="success") return this.$message.error("操作失败")
+            else{
+                this.$message.info("修改成功")
+            }
+        },
+
+        async GetMessage(){
+            var queryMessageInfo={
+                messagequery:this.Loginid
+            }
+            const {data:res}=await this.$http.get("allmessage",{params:queryMessageInfo})
+            this.Messagedata=JSON.parse(JSON.stringify(res.messagedata))
+            console.log("信息信息",res.messagedata)
+        },
+           
+
         handleopen(){
             
         },
@@ -211,10 +279,20 @@ export default {
         },
         ChangeNav(index){
             this.Navnum=index
-            this.$refs.message.ToMessage=true
+            this.$refs.message.messagelist=this.Messagedata
             this.$refs.message.messagetype=index
+            this.$refs.message.ToMessage=true
         },
         EditMsg(){
+            this.$refs.checkuser.editform.truename=this.UserInfo.truename
+            this.$refs.checkuser.editform.username=this.UserInfo.username
+            this.$refs.checkuser.editform.password=this.UserInfo.password
+            this.$refs.checkuser.editform.email=this.UserInfo.email
+            this.$refs.checkuser.editform.uicon=this.usericon
+            this.$refs.checkuser.editform.address=this.UserInfo.address
+            this.$refs.checkuser.editform.workyear=this.UserInfo.workyear
+            this.$refs.checkuser.editform.breif=this.UserInfo.breif
+            this.$refs.checkuser.editform.id=this.UserInfo.id
             this.$refs.checkuser.ToCheck=true
         },
         handleAvatarSuccess(res, file) {
@@ -232,31 +310,58 @@ export default {
                 position: 'top-left'
             });
         },
-        handleChange(file, fileList){
-            console.log(file)
-            this.usericon=file.url
-            if(file.url!=''){
-                this.UpdateUser()
-            } 
+        getFile(file, fileList) {
+            var _this=this
+            this.getBase64(file.raw).then(res => {
+                const params = res.split(',')
+                if (params.length > 0) {
+                    _this.proofImage = params[1]
+                }
+                // console.log(params, 'params')
+                _this.UpdateUser(params)
+                _this.usericon=params[0]+','+params[1]
+                
+                
+            })
+            
+        },
+        getBase64(file) {
+            return new Promise(function (resolve, reject) {
+                const reader = new FileReader()
+                let imgResult = ''
+                reader.readAsDataURL(file)
+                reader.onload = function () {
+                imgResult = reader.result
+                }
+                reader.onerror = function (error) {
+                    reject(error)
+                }
+                reader.onloadend = function () {
+                    resolve(imgResult)
+                }
+            })
         },
 
-        async UpdateUser(){
-            this.UserInfo.uicon=this.usericon
-            const {data:res}=await this.$http.put("edituser",this.UserInfo)
-            if(res!="success") return this.$message.error("操作失败")
-            else{
-                this.$message.success("修改成功")
-            }
-        },
 
         //转换时间戳
 		getTime (time) {
-			var date = new Date(time)
+            var t=0
+            var offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+            var nowDate = new Date(time).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+            var target = new Date(nowDate + offset_GMT * 60 * 1000  );
+            var date = target;//时间戳为10位需*1000，时间戳为13位的话不需乘1000
 			var y = date.getFullYear()
 			var m = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
 			var d = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate())
 			return y + '-' + m + '-' + d
-		},
+        },
+        
+        //接收websocket传过来的消息后进行渲染处理
+        RESETWEB(data){
+            if(data.type=='结束通知'){
+                this.GetMessage()
+            }
+        }
     }
 
 }

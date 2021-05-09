@@ -12,5 +12,8 @@ export default{
     },
     ChangeReadRule({commit},data){
         commit('getReadrule',data)
+    },
+    ChangeWebdata({commit},data){
+        commit('getWebdata',data)
     }
 }

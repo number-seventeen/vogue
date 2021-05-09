@@ -24,7 +24,7 @@ ul{
 .usernav{
     width: 1920px;
     height: 50px;
-    border: 1px solid rgb(211, 209, 209);
+    border: 1px solid rgb(189, 192, 197);
     display: flex;
     font-size: 17px;
     z-index: 100;
@@ -39,7 +39,7 @@ ul{
         font-size: 18px;
         cursor: pointer;
         font-family: DZF;
-        color: rgb(116, 145, 192);
+        color: rgba(124, 124, 124, 0.918);
         position: relative;
     }
 }
@@ -48,7 +48,7 @@ ul{
     top:-2px;
 }
 .cuNav{
-    text-shadow: 0 0 6px rgb(106, 176, 223);
+    text-shadow: 0 0 6px rgba(124, 124, 124, 0.918);
 }
 .Navs{
     width: 1700px;
@@ -61,7 +61,7 @@ ul{
     margin-left: 25px;
     cursor: pointer;
     font-family: DZF;
-    color: rgb(116, 145, 192);
+    color: rgba(124, 124, 124, 0.918);
     
 }
 .center{
@@ -85,7 +85,7 @@ ul{
     cursor: pointer;
 }
 .uicon{
-    box-shadow: 0 0 1px rgb(153, 153, 153);
+    box-shadow: 0 0 1px rgba(124, 124, 124, 0.918);
     height: 100px;
     width: 320px;
     padding-top: 7px;
@@ -105,12 +105,12 @@ ul{
     position: absolute;
     margin-top: -19px;
     margin-left: 36px;
-    box-shadow: 0 0 2px #24353dd2;
+    box-shadow: 0 0 2px rgba(124, 124, 124, 0.918);
     color: rgb(129, 129, 129);
 }
 .infos{
     font-family: DZF;
-    color: rgb(149, 166, 185);
+    color: rgba(124, 124, 124, 0.918);
     height: 656px;
     
 }
@@ -173,7 +173,7 @@ ul{
     bottom: 0;
     font-size: 18px;
     font-family: DZF;
-    color: rgb(139, 151, 165);
+    color: rgba(124, 124, 124, 0.918);
 }
 
 
@@ -182,7 +182,7 @@ ul{
     width: 935px;
     height: 830px;
     margin-left: 10px;
-    box-shadow: 0 0 6px rgb(184, 183, 183);
+    box-shadow: 0 0 6px rgb(127, 132, 158);
     cursor: pointer;
 }
 .historylife{
@@ -191,7 +191,7 @@ ul{
     font-size:17px;
     height: 30px;
     line-height: 30px;
-    color: rgb(169, 185, 204);
+    color: rgba(124, 124, 124, 0.918);
     box-shadow: 0 0 6px rgb(209, 209, 209);
 }
 .hostoryedit{
@@ -200,7 +200,7 @@ ul{
     font-family:DZF;
     font-size:12px;
     line-height: 40px;
-    color: rgb(169, 185, 204);
+    color: rgba(124, 124, 124, 0.918);
 
 }
 .record{
@@ -244,13 +244,14 @@ ul{
     
 }
 .htime{
-    width: 310px;
+    width: 313px;
     height: 40px;
     margin-left: 20px;
     line-height: 50px;
-    color: rgb(170, 183, 190);
+    color: rgba(124, 124, 124, 0.918);
     display: flex;
     text-shadow: 0 0 2px rgb(211, 211, 211);
     font-size: 12px;
+    // background: pink;
     
 }

@@ -272,7 +272,11 @@ export default {
 
       //转换时间戳
       getTime (time) {
-        var date = new Date(time)
+        var t=0
+        var offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+        var nowDate = new Date(time).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+        var target = new Date(nowDate + offset_GMT * 60 * 1000  );
+        var date = target;//时间戳为10位需*1000，时间戳为13位的话不需乘1000
         var y = date.getFullYear()
         var m = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
         var d = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate())

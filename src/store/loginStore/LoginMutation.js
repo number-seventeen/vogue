@@ -10,5 +10,8 @@ export default{
     },
     getReadrule(state,data){
         state.Readrule=data
+    },
+    getWebdata(state,data){
+        state.websocktData=JSON.parse(JSON.stringify(data))
     }
 }

@@ -195,11 +195,20 @@ export default {
 		...mapState({
 			LoginState:state=>state.loginStore.LoginState,
 			Loginid:state=>state.loginStore.Loginid,
-			
+			websocktData:state=>state.loginStore.websocktData,	
 		})
-		
+	
+	},
+	watch:{
+		websocktData:{
+            handler:function(newval,oldval){
+                
+            }
+        },
 	},
 	methods:{
+		//异步请求方法
+
 		async GetWorklist(){
 			var simg=[]
 			var savelike=[]
@@ -356,9 +365,26 @@ export default {
 			const {data:res}=await this.$http.put("editwork",form)
 			
 		},
+		async Sendwebsocket(){
+			const {data:res}=await this.$http.get("getworkupdata?workid="+this.choosedWork.workid);
+			this.setmessage(res)
+		},
+		async setmessage(data){
+			var worksname=data.workname
+			let form={
+                messagetype:'竞拍成功通知',
+                messagecontent:'您已成功竞拍到《'+worksname.toString()+'》'+'请点击信息查看详情并填写相关收货地址',
+				ownnerid:data.tempownner,
+				wid:data.workid
+            }
+            const {data:res}=await this.$http.post("addmessage",form)
+            if(res!='success'){
+                return this.$message.error("发送失败")
+            }
+		},
 
-		
 
+		// 一般事件方法
 		OpenUser(){
 			this.$refs.homeuser.Catchid=this.Loginid
 			this.$refs.homeuser.Catchtype='right'
@@ -422,9 +448,14 @@ export default {
 			this.$router.push({ path: `/${this.RouterHead}/${this.RouterFoot}`,query:{pageid:this.pageid}})
 		},
 		ToBuy(){
-			this.$refs.tobuy.routetype='home'
-			this.$refs.tobuy.storecontent=true
-			this.$refs.tobuy.WorkData=this.choosedWork
+			if(this.Dhours==0&&this.Dminutes==0&&this.Dseconds==0){
+				this.$message.info("该拍卖活动已结束")
+			}
+			else{
+				this.$refs.tobuy.routetype='home'
+				this.$refs.tobuy.storecontent=true
+				this.$refs.tobuy.WorkData=this.choosedWork
+			}
 		},
 		ToMore(){
 			this.pageid=3
@@ -435,11 +466,14 @@ export default {
 		
 		errorHandler() {
         	return true
-      	},
+		  },
+		  
 
 		Watchtime(){
 			var m=this.choosedWork.endtime
-			var dateend=new Date(m);
+            var offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+            var nowDate = new Date(m).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+            var dateend = new Date(nowDate + offset_GMT * 60 * 1000  );
 			var datenow=new Date();
 			let timestampend = dateend.getTime()
 			let timestampnow = datenow.getTime()
@@ -447,7 +481,8 @@ export default {
 				this.ChangeStamp(timestampnow,timestampend)
 			}
 			else{
-				
+				clearInterval(this.countimer)
+				this.Sendwebsocket()
 			}
 		},
 		ChangeStamp(beginTime,endTime){
@@ -467,11 +502,17 @@ export default {
 			this.Dhours=hours
 			this.Dminutes=minutes
 			this.Dseconds=seconds
+			
+			
 		},
 
 		//将时间戳转化为日期时间格式
 		changeDateTime(time){
-            var date = new Date(time);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+			var t=0
+            var offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+            var nowDate = new Date(time).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+            var target = new Date(nowDate + offset_GMT * 60 * 1000  );
+            var date = target;//时间戳为10位需*1000，时间戳为13位的话不需乘1000
             var Y = date.getFullYear() + '-';
             var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
             var D = date.getDate() + ' ';
@@ -479,8 +520,8 @@ export default {
             var m = date.getMinutes() + ':';
             var s = date.getSeconds();
             return Y+M+D+h+m+s 
-        },   
-
+		},   
+		
 		Clear(){
 			this.WorkList=[],
 			this.choosedWork=[],

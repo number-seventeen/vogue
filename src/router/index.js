@@ -9,7 +9,6 @@ import Sale from '@/components/home/Sale.vue'
 import Deal from '@/components/home/Deal.vue'
 import Tobuy from '@/components/home/Tobuy.vue'
 import Ground from '@/components/home/Ground.vue'
-import shareground from '@/components/home/shareground.vue'
 import User from '@/components/home/User.vue'
 
 
@@ -65,21 +64,7 @@ export default new Router({
       meta:{index:7},
       component: Ground
     },
-    {
-      path: '/shareground',
-      name: 'shareground',
-      meta:{index:8},
-      component: shareground
-    },
-    {
-      path: '/User',
-      name: 'User',
-      meta:{index:9},
-      component: User
-    },
     
-    
-
   ]
 })
 

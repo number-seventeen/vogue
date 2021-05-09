@@ -110,8 +110,34 @@ export default {
             this.$message.success("评论成功")
                 this.commentword=''
                 this.getnetshare()
+                this.addcommentMessage()
             }
         },
+        async addcommentMessage(){
+            var infos='您于'+this.changeTime(this.WorkData.loadtime)+'上传的动态收到了一条评论'
+            let form={
+                messagetype:'评论通知',
+                messagecontent:infos,
+                ownnerid:this.WorkData.ownnerid,
+                workid:this.WorkData.workid
+            }
+            const {data:res}=await this.$http.post("addmessage",form)
+            if(res!='success'){
+                return this.$message.error("发送失败")
+            }
+        },
+        changeTime(time){
+            var t=0
+            var offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+            var nowDate = new Date(time).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+            var target = new Date(nowDate + offset_GMT * 60 * 1000  );
+            var date = target;//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            console.log("changetimetime",time)
+            var Y = date.getFullYear() + '-';
+            var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+            var D = date.getDate() + ' ';
+            return Y+M+D 
+        },   
     }
 }
 </script>

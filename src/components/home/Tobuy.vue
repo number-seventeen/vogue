@@ -35,7 +35,8 @@
                             <div><input type="number" class="inprice" v-model="addnumber" placeholder="请输入加价金额"/></div>
                             <div class="priceicon">RMB</div>
                             <div class="autobuy"></div>
-                            <div class="joinbuy" @click="Tocall()">参与竞拍</div>
+                            <div class="joinbuy" @click="Tocall()" v-show="this.isEnd==false">参与竞拍</div>
+                            <div class="joinbuy" v-show="this.isEnd==true">竞拍已结束</div>
                         </div>
                     </div>
                 </div>
@@ -97,6 +98,7 @@ export default {
 			LoginState:state=>state.loginStore.LoginState,
             Loginid:state=>state.loginStore.Loginid,
             Readrule:state=>state.loginStore.Readrule,
+            websocktData:state=>state.loginStore.websocktData,
 		})
 		
     },
@@ -105,14 +107,43 @@ export default {
             handler:function(newval,oldval){
                 console.log("接收到了",newval)
             }
-        }
+        },
+        storecontent:{
+            handler:function(newval){
+                this.isEnd=false
+                if(newval==true){
+                    var jonarr=[]
+                    console.log("接收接收",this.WorkData)
+                    jonarr.push(this.WorkData)
+                    this.jonnerlist=JSON.parse(JSON.stringify(jonarr))
+                    this.maxPrice=this.jonnerlist[0].tempprice
+                    this.maxbelong=this.jonnerlist[0].tempownner
+                    this.Getnetlike()
+                    this.buytimer=setInterval(() => {
+                        this.Watchtime()
+                    }, 1000);
+                }
+            }
+        },
+        websocktData:{
+            handler:function(newval,oldval){
+                // console.log("fff",newval)
+                if(newval.type=='出价信息'&&newval.workid==this.WorkData.workid){
+                    this.Setlist(this.WorkData.workid)
+                }
+                if(newval.type=='结束通知'){
+                    this.RESETWEB()
+                }
+            }
+        },
+        
     },
     data(){
         return{
             storecontent:false,
             routetype:'',
             userName:'wang',
-            websocket:null,//websocket传送接口
+            isEnd:false,
             rulecheck:false,//是否阅读规则
             circleUrl: require('../../assets/img/15.jpg'),
             addnumber:null,
@@ -122,74 +153,19 @@ export default {
             maxPrice:0,
             maxbelong:0,
             msg:'',
+            Dhours:0,
+			Dminutes:0,
+            Dseconds:0,
+            buytimer:null,
         }
-    },
-    created() { // 页面创建生命周期函数
-        console.log("hao")
-            this.websocket = new WebSocket("ws://localhost:9000/websocket/"+ this.userName);
-            this.initWebSocket()
-            
     },
     beforeDestroy() { // 离开页面生命周期函数
-            this.onbeforeunload()
-    },
-    watch:{
-        storecontent:{
-            handler:function(newval){
-                if(newval==true){
-                    var jonarr=[]
-                    console.log("接收接收",this.WorkData)
-                    jonarr.push(this.WorkData)
-                    this.jonnerlist=JSON.parse(JSON.stringify(jonarr))
-                    this.maxPrice=this.jonnerlist[0].tempprice
-                    this.maxbelong=this.jonnerlist[0].tempownner
-                    this.Getnetlike()
-                }
-            }
-        }
+        clearInterval(this.buytimer)
     },
     methods:{
         handleopen(){
         },
-        initWebSocket () {
-            // 连接错误
-            this.websocket.onerror = this.setErrorMessage
-    
-            // 连接成功
-            this.websocket.onopen = this.setOnopenMessage
-    
-            // 收到消息的回调
-            this.websocket.onmessage = this.setOnmessageMessage
-    
-            // 连接关闭的回调
-            this.websocket.onclose = this.setOncloseMessage
-    
-            // 监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
-            window.onbeforeunload = this.onbeforeunload
-        },
-        setErrorMessage () {
-            console.log('Web连接发生错误   状态码：' + this.websocket.readyState)
-        },
-        setOnopenMessage () {
-            console.log('Web连接成功    状态码：' + this.websocket.readyState)
-        },
-        setOnmessageMessage (event) {
-            // 根据服务器推送的消息做自己的业务处理
-            // this.$message.success('服务端返回：' + event.data)
-            console.log('购买页面的服务端返回：' , event.data)
-            let id=Number(event.data)
-            this.Setlist(id)
-        },
-        setOncloseMessage () {
-            console.log('WebSocket连接关闭    状态码：' + this.websocket.readyState)
-        },
-        onbeforeunload () {
-            this.closeWebSocket()
-        },
-        closeWebSocket () {
-            this.websocket.close()
-        },
-
+        
         errorHandler() {
             return true
         },
@@ -202,6 +178,51 @@ export default {
             this.$refs.infobox.workinfo=this.WorkData
             this.$refs.infobox.infodialog=true
         },
+
+        Watchtime(){
+            var m=this.WorkData.endtime
+            var t=0
+            var offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+            var nowDate = new Date(m).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+            var target = new Date(nowDate + offset_GMT * 60 * 1000  );
+            console.log("-8的时间",target)
+            var dateend=target;
+            console.log("ting",dateend)
+            var datenow=new Date();
+			let timestampend = dateend.getTime()
+            let timestampnow = datenow.getTime()
+			if(timestampend>timestampnow){
+                this.ChangeStamp(timestampnow,timestampend)
+            }
+            else{
+                clearInterval(this.buytimer)
+                this.isEnd=true
+                this.SendEnduser()
+                this.SendEndwork()
+                
+            }
+		},
+		ChangeStamp(beginTime,endTime){
+			var dateBegin = new Date(beginTime);
+			var dateEnd = new Date(endTime);
+			var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+			var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+			var dayhour=dayDiff*24
+			var leave1 = dateDiff % (24 * 3600 * 1000);    //计算天数后剩余的毫秒数
+			var hours = Math.floor(leave1 / (3600 * 1000))+dayhour;//计算出小时数
+			//计算相差分钟数
+			var leave2 = leave1 % (3600 * 1000);   //计算小时数后剩余的毫秒数
+			var minutes = Math.floor(leave2 / (60 * 1000)); //计算相差分钟数
+			//计算相差秒数
+			var leave3 = leave2 % (60 * 1000);     //计算分钟数后剩余的毫秒数
+            var seconds = Math.round(leave3 / 1000);
+            this.Dhours=hours
+            this.Dminutes=minutes
+            this.Dseconds=seconds	
+            console.log(this.Dhours,this.Dminutes,this.Dseconds)
+        },
+        
+
         Getback(){
             // this.$parent.GetWorklist()
             if(this.routetype=='home'||this.routetype=='deal'){
@@ -237,7 +258,12 @@ export default {
 			}
         },
         changeTime(time){
-            var date = new Date(time);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var t=0
+            var offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+            var nowDate = new Date(time).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+            var target = new Date(nowDate + offset_GMT * 60 * 1000  );
+            var date = target;//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            console.log("changetimetime",time)
             var Y = date.getFullYear() + '-';
             var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
             var D = date.getDate() + ' ';
@@ -283,7 +309,7 @@ export default {
 			else{
                 console.log("关注了吗",this.WorkData.tempmind)
 				this.WorkData.tempmind=true
-				this.Editwork(true)
+				this.Editwork()
 				var querynetInfo={
 					netquery:this.Loginid
 				}
@@ -302,7 +328,7 @@ export default {
 					}
 					else{
 						this.WorkData.tempmind=false
-						this.Editwork(false)
+						this.Editwork()
 						var querynetInfo={
 							netquery:this.Loginid
 						}
@@ -313,7 +339,7 @@ export default {
 			}
 		},
 
-		async Editwork(state){
+		async Editwork(){
 			let form={
 				workid:this.WorkData.workid,
 				owntype:this.WorkData.owntype,
@@ -339,15 +365,6 @@ export default {
 		},
 
 
-        async Setlist(id){
-            const {data:res}=await this.$http.get("getworkupdata?workid="+id);
-            this.WorkData=res; 
-            this.Getnetlike()
-            this.jonnerlist.push(this.WorkData)
-            console.log("出价记录",this.jonnerlist)
-            this.maxPrice=this.jonnerlist[this.jonnerlist.length-1].tempprice
-            this.maxbelong=this.jonnerlist[this.jonnerlist.length-1].tempownner
-        },
         async Changedata(){
             var arr=JSON.parse(JSON.stringify(this.WorkData))
             arr.tempprice=arr.tempprice+Number(this.addnumber)
@@ -362,6 +379,16 @@ export default {
                 this.GetWorksocket()
                 // this.getidwork()//根据id查找到油画数据
             }
+            this.addnumber=null
+        },
+        async Setlist(id){
+            const {data:res}=await this.$http.get("getworkupdata?workid="+id);
+            this.WorkData=res; 
+            this.Getnetlike()
+            this.jonnerlist.push(this.WorkData)
+            console.log("出价记录",this.jonnerlist)
+            this.maxPrice=this.jonnerlist[this.jonnerlist.length-1].tempprice
+            this.maxbelong=this.jonnerlist[this.jonnerlist.length-1].tempownner
         },
         async Addsalenet(price){
             let form={
@@ -373,9 +400,62 @@ export default {
             const {data:res}=await this.$http.post("addnetbox",form)
         },
         async GetWorksocket(){
-            let para=this.WorkData.workid.toString()
+            let para='call'+this.WorkData.workid.toString()
 			const {data:res}=await this.$http.get("/news/sendAllWebSocket/"+para)
-		}
+        },
+
+        async SendEnduser(){
+            var worksname=this.WorkData.workname
+            let form={
+                messagetype:'竞拍成功通知',
+                messagecontent:'您已成功竞拍到《'+worksname.toString()+'》'+'请点击信息查看详情并填写相关收货地址',
+                ownnerid:this.maxbelong,
+                wid:this.WorkData.workid
+            }
+            const {data:res}=await this.$http.post("addmessage",form)
+            if(res!='success'){
+                return this.$message.error("发送失败")
+            }
+            
+            
+        },
+        async SendEndwork(){
+            this.changework()
+            //通知其他用户竞拍已结束更新页面
+            let para='endw'+this.WorkData.workid.toString()
+			const {data:res}=await this.$http.get("/news/sendAllWebSocket/"+para)
+        },
+        async changework(){
+            let form={
+				workid:this.WorkData.workid,
+				owntype:"购买",
+				worktype:this.WorkData.worktype,
+				workname:this.WorkData.workname,
+				maketime:this.WorkData.maketime,
+				storetotal:this.WorkData.storetotal,
+				ideaword:this.WorkData.ideaword,
+				loadtime:this.changeTime(this.WorkData.loadtime),
+				endtime:this.changeTime(this.WorkData.endtime),
+				salecompany:this.WorkData.salecompany,
+				author:this.WorkData.author,
+				ownnerid:this.maxbelong,
+				workurl:this.WorkData.workurl,
+				workprice:this.WorkData.workprice,
+				tempownner:this.maxbelong,
+				tempprice:this.maxPrice,
+                tempstore:false,
+                tempmind:false
+			}
+            const {data:editres}=await this.$http.put("editwork",form)
+        },
+        RESETWEB(){
+            this.isEnd=true
+            this.$message.info('当前竞拍已结束，将在10秒后关闭页面')
+            setTimeout(() => {
+                this.storecontent=false
+            }, 10000);
+
+        }
         
 
     },

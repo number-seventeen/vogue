@@ -96,8 +96,7 @@ export default {
             this.ToCheck=false
         },
         submitForm() {
-            console.log("头像",this.$parent.usericon)
-            this.editform.uicon=this.$parent.usericon
+            console.log("头像",this.$parent.$parent)
             this.getuserInfo(this.Loginid)
             this.$refs.updataform.validate(async vaild=>{
                 if(!vaild) return;
@@ -106,7 +105,8 @@ export default {
                 if(res!="success") return this.$message.error("操作失败")
                 else{
                     this.$message.success("修改成功")
-                    this.$parent.getUserlist() 
+                    this.$parent.$parent.getUserlist() 
+                    this.ToCheck=false
                 }
             })
             
@@ -155,7 +155,7 @@ export default {
    top:44%;
    left: 20px;
    font-size: 35px;
-   color: rgb(222, 229, 231);
+   color: rgba(124, 124, 124, 0.774);
 }
 .message-inner{
     height: 210px;
@@ -170,44 +170,44 @@ export default {
         font-family: A;
         font-weight: bold;
         font-size: 16px;
-        color: rgba(135, 162, 196, 0.774) !important;
+        color: rgba(124, 124, 124, 0.774) !important;
     }
     .el-input{
         width: 320px;
     }
     .el-button{
         border-radius: 20px;
-        border: 1px solid rgb(202, 219, 224);
-        background:rgba(250, 254, 255, 0.644);
+        border: 1px solid rgba(124, 124, 124, 0.774);
+        background:rgba(255, 255, 250, 0.452);
         outline: none;
-        color:rgba(135, 162, 196, 0.774);
+        color:rgba(124, 124, 124, 0.774);
         font-family: A;
         font-weight: bold;
         letter-spacing: 0.1em;
     }
     .el-input__inner:focus{
         outline: none;
-        border: 1px solid rgb(202, 219, 224);
+        border: 1px solid rgba(124, 124, 124, 0.774);
     }
     .el-input__inner{
         width: 300px;
-        border: 1px solid rgb(202, 219, 224);
+        border: 1px solid rgba(124, 124, 124, 0.774);
         height: 40px;
-        background:rgba(250, 254, 255, 0.452);
+        background:rgba(255, 255, 250, 0.452);
         font-family: A;
         
     }
     .el-textarea__inner:focus{
         outline: none;
-        border: 1px solid rgb(202, 219, 224);
+        border: 1px solid rgba(124, 124, 124, 0.774);
     }
     .el-textarea__inner{
         resize: none;
         width: 475px;
-        border: 1px solid rgb(202, 219, 224);
-        height: 150px;
-        background:rgba(250, 254, 255, 0.452);
-        color:rgba(135, 162, 196, 0.774);
+        border: 1px solid rgba(124, 124, 124, 0.774);
+        height: 160px;
+        background:rgba(255, 255, 250, 0.452);
+        color:rgba(124, 124, 124, 0.774);
         font-family: A;
         font-weight: bold;
         font-size: 16px;
@@ -218,7 +218,10 @@ export default {
         margin-top: -10px;
     }
     .savebutton{
-        margin-left: 30px;
+        margin-top: 20px;
+        width: 140px;
+        height: 50px;
+        margin-left: 60px;
     }
     .addbutton{
        margin-left: 25px; 

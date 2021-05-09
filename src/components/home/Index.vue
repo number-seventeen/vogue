@@ -339,8 +339,9 @@ export default {
 	},
 	
 	mounted(){
-		
-		
+		this.$store.dispatch('ChangeLoginState',false)
+		this.$store.dispatch('ChangeLoginId',0)
+		this.$store.dispatch('ChangeReadRule',false)
 	}
 	
 	

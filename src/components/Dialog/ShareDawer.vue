@@ -15,6 +15,7 @@
                     <el-upload
                     action="#"
                     list-type="picture"
+                    
                     :limit="1"
                     :auto-upload="false"
                     :on-change="handleChange"
@@ -132,7 +133,8 @@ export default {
             dialogImageUrl: '',
             dialogVisible: false,
             disabled: false,
-            pickerOptions: {
+            proofImage:''
+,            pickerOptions: {
                 disabledDate(time) {
                     return time.getTime() < Date.now() - 8.64e7;   //禁用以前的日期，今天不禁用
                     // return date.getTime() <= Date.now();    //禁用今天以及以前的日期
@@ -182,18 +184,56 @@ export default {
 			this.dialogVisible = true;	
         },
         handleChange(file){
-            this.imageUrl=file.url
             console.log(file)
+            var _this=this
+            this.getBase64(file.raw).then(res => {
+                const params = res.split(',')
+                if (params.length > 0) {
+                    _this.proofImage = params[1]
+                }
+                // console.log(params, 'params')
+                _this.Sendurl(params)
+                _this.imageUrl=params[0]+','+params[1] 
+            })
+
+
         },
+        Sendurl(params){
+            var urlinfo=params[0]+','+params[1] 
+            this.imageUrl=urlinfo
+            console.log(this.imageUrl)
+        },
+        getBase64(file) {
+            return new Promise(function (resolve, reject) {
+                const reader = new FileReader()
+                let imgResult = ''
+                reader.readAsDataURL(file)
+                reader.onload = function () {
+                imgResult = reader.result
+                }
+                reader.onerror = function (error) {
+                    reject(error)
+                }
+                reader.onloadend = function () {
+                    resolve(imgResult)
+                }
+            })
+        },
+
+
         changeTime(time){
-				var date = new Date(time);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-		        var Y = date.getFullYear() + '-';
-		        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-		        var D = date.getDate() + ' ';
-		        var h = date.getHours() + ':';
-		        var m = date.getMinutes() + ':';
-		        var s = date.getSeconds();
-		        return Y+M+D+h+m+s 
+            var t=0
+            var offset_GMT = new Date().getTimezoneOffset(); // 本地时间和格林威治的时间差，单位为分钟
+            var nowDate = new Date(time).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+            var target = new Date(nowDate + offset_GMT * 60 * 1000  );
+            var date = target;//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var Y = date.getFullYear() + '-';
+            var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+            var D = date.getDate() + ' ';
+            var h = date.getHours() + ':';
+            var m = date.getMinutes() + ':';
+            var s = date.getSeconds();
+            return Y+M+D+h+m+s 
         },  
         
         async Addsharework(){
